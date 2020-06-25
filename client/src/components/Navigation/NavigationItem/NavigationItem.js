@@ -5,6 +5,7 @@ import './NavigationItem.css'
 
 const NavigationItem = props => (
   <li className={props.classes}>
+    {props.icon ? <span className="material-icons">{props.iconContent}</span> : null}
     {props.item ? <NavLink
                     to={props.link}
                     exact
