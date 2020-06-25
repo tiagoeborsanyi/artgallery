@@ -14,27 +14,37 @@ const Toolbar = props => (
                 <Logo />
               </div>
               <ul className="main-header__items">
-                  <li className="main-header__item image">
-                      <a href="#" className="main-header__brand">
-                        <Logo />
-                      </a>
-                  </li>
-                  <li className="main-header__item link-art">
-                      <a href="#">Arts</a>
-                  </li>
+                <NavigationItem
+                  classes='main-header__item image'
+                  item='link'
+                  link='/'
+                  classesLink='main-header__brand'>
+                  <Logo />
+                </NavigationItem>
+                <NavigationItem
+                  classes='main-header__item link-art'
+                  item='link'
+                  link='/'>
+                  Arts
+                </NavigationItem>
               </ul>
           </div>
           <nav className="main-nav">
               <ul className="main-nav__items">
-                  <li className="main-nav__item search">
-                      <input type="text" placeholder="Search" className="mobile-nav__item-input" />
-                  </li>
-                  <li className="main-nav__item">
-                      <a href="#">Login</a>
-                  </li>
-                  <li className="main-nav__item link-publish">
-                      <a href="#">Publish</a>
-                  </li>
+                <NavigationItem
+                  classes='main-nav__item search' />
+                <NavigationItem
+                  classes='main-nav__item'
+                  item='link'
+                  link='/'>
+                  Login
+                </NavigationItem>
+                <NavigationItem
+                  classes='main-nav__item link-publish'
+                  item='link'
+                  link='/'>
+                  Publish
+                </NavigationItem>
               </ul>
           </nav>
       </div>

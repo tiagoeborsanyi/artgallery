@@ -1,4 +1,5 @@
 .main-header {
+  height: 5rem;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
@@ -31,4 +32,31 @@
     margin: 0;
     padding: 0;
     align-items: center;
+}
+
+.mobile-icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-icon > img {
+  width: 3rem !important;
+}
+
+@media (min-width: 40rem) {
+  .main-header__items,
+  .main-nav__items,
+  .main-nav {
+      display: flex;
+  }
+  .mobile-icon {
+    display: none;
+}
+}
+
+@media (max-width: 69rem) {
+  .main-header {
+      padding: 0 1.5rem;
+  }
 }
