@@ -16,7 +16,9 @@ const Layout = props => {
 
   return (
     <React.Fragment>
-      <Toolbar drawerToggledClicked={sideDrawerToggleHandler} />
+      <Toolbar
+        isAuth=''
+        drawerToggledClicked={sideDrawerToggleHandler} />
       <SideDrawer
         open={showSideDrawer}
         closed={sideDrawerClosedHandler} />
