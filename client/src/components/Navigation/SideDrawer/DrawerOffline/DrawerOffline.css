@@ -1,0 +1,9 @@
+.draweroffline {
+  display: block;
+}
+
+@media (min-width: 40rem) {
+  .draweroffline {
+    display: none;
+  }
+}
