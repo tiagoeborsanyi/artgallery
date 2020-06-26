@@ -1,0 +1,104 @@
+.container-L {
+  width: 100%;
+  margin: 3rem auto;
+}
+
+.container-title {
+  text-align: center;
+}
+
+.container-login {
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);;
+  border-radius: 4px;
+}
+
+.login-form-control.forgot-password {
+  height: 2.5rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.login-form-control.forgot-password > a {
+  color: rgb(255, 0, 0, 0.7);
+  text-decoration: none;
+}
+
+.button-login-form {
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  background-color: #e7e7e7;
+  color: rgba(0, 0, 0, 0.7);
+
+}
+
+.button-login-form.active {
+  color: white;
+  background-color: rgba(82, 148, 202, 0.7);
+}
+
+.button-login-form:hover {
+  cursor: pointer;
+}
+
+.container-login__or {
+  text-align: center;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+}
+
+.container-login-google {
+  height: 3rem;
+  width: 100%;
+  padding: 0.3rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(0, 0, 0, 0.2);;
+  border-radius: 35px;
+}
+
+.container-login-google > img {
+  height: 1.2rem;
+  margin-right: 0.3rem;
+}
+
+.container-login-google > a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.container-login_new {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-login_new > p {
+  margin: 0 0.5rem;
+}
+
+.container-login_new > a {
+  text-decoration: none;
+  color: rgb(255, 0, 0, 0.7);
+}
+
+@media (min-width: 40rem) {
+  .container-L {
+      max-width: 25rem;
+  }
+}
