@@ -1,0 +1,25 @@
+.button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.button-form-form {
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  background-color: #e7e7e7;
+  color: rgba(0, 0, 0, 0.7);
+
+}
+
+.button-form.active {
+  color: white;
+  background-color: rgba(82, 148, 202, 0.7);
+}
+
+.button-form:hover {
+  cursor: pointer;
+}

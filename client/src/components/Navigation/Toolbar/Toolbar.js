@@ -44,7 +44,7 @@ const Toolbar = props => (
                 <NavigationItem
                   classes='main-nav__item'
                   item='link'
-                  link='/'>
+                  link='/login'>
                   Login
                 </NavigationItem>
                 <NavigationItem
