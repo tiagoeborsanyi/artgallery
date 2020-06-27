@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import './Login.css'
+import firebase from '../../../services/firebase'
 import * as action from '../../../store/actions/index'
 import { checkValidity } from '../../../shared/utility'
 import Input from '../../../components/UI/Input/Input'
@@ -41,6 +42,17 @@ const Login = props => {
     }
   })
 
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      console.log('user: ', user)
+      if (user) {
+        const iT = firebase.auth().currentUser.getIdToken(true)
+        console.log('idToken', iT)
+      }
+    })
+
+  }, [])
+
   const inputChangeHandler = (event, controlName) => {
     const updateControls = {
       ...controls,
@@ -58,6 +70,17 @@ const Login = props => {
     event.preventDefault()
     const { email, password } = controls
     props.onAuth(email['value'], password['value'], 'login')
+  }
+
+  const loginWithGoogleHandler = () => {
+    const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithRedirect(provider)
+  }
+
+  const logout = () => {
+    firebase.auth().signOut().then(() => {
+      console.log('deslogou')
+    })
   }
 
   const formElementArray = []
@@ -92,10 +115,13 @@ const Login = props => {
               <button className='button-login-form active'>Log in</button>
           </form>
           <p className='container-login__or'>or</p>
-          <div className='container-login-google'>
+          <button className='container-login-google' onClick={loginWithGoogleHandler}>
               <img src={require('../../../assets/icons8-google-logo-48.png')} alt='icon google' />
-              <Link to='/'>Continue with Google</Link>
-          </div>
+              <span>Continue with Google</span>
+          </button>
+          <button onClick={logout}>
+            logout
+          </button>
       </div>
       <div className='container-login_new'>
           <p>New to DrawDry?</p>

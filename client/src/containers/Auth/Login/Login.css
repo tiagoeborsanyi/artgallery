@@ -64,7 +64,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid rgba(0, 0, 0, 0.2);;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
   border-radius: 35px;
 }
 
@@ -73,11 +74,11 @@
   margin-right: 0.3rem;
 }
 
-.container-login-google > a {
+.container-login-google > span {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.7);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .container-login_new {

@@ -30,9 +30,9 @@ export const logout = () => {
   }
 }
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email = '', password = '', isSignup) => {
   // Aqui eu faço a lógica de logar com login e senha
   return dispatch => {
-    console.log(email, password, isSignup)
+    console.log(!!email, password, isSignup)
   }
 }
