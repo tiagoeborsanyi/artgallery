@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import './Login.css'
+import * as action from '../../../store/actions/index'
+import { checkValidity } from '../../../shared/utility'
 import Input from '../../../components/UI/Input/Input'
 
 const Login = props => {
@@ -39,11 +42,22 @@ const Login = props => {
   })
 
   const inputChangeHandler = (event, controlName) => {
-
+    const updateControls = {
+      ...controls,
+      [controlName]: {
+        ...controls[controlName],
+        value: event.target.value,
+        valid: checkValidity(event.target.value, controls[controlName].validation),
+        touched: true
+      }
+    }
+    setControls(updateControls)
   }
 
   const submitHandler = event => {
-
+    event.preventDefault()
+    const { email, password } = controls
+    props.onAuth(email['value'], password['value'], 'login')
   }
 
   const formElementArray = []
@@ -59,7 +73,7 @@ const Login = props => {
       label={formElement.config.label}
       value={formElement.config.value}
       elementConfig={formElement.config.elementConfig}
-      invalid={formElement.config.valid}
+      invalid={!formElement.config.valid}
       shouldValidate={formElement.config.validation}
       touched={formElement.config.touched}
       classes={formElement.config.space}
@@ -70,17 +84,17 @@ const Login = props => {
     <div className='container-L'>
       <h2 className='container-title'>Log in</h2>
       <div className='container-login'>
-          <form>
+          <form onSubmit={submitHandler}>
               {form}
               <div className='login-form-control forgot-password'>
-                  <a href='#'>Forgot password?</a>
+                  <Link to='/'>Forgot password?</Link>
               </div>
               <button className='button-login-form active'>Log in</button>
           </form>
           <p className='container-login__or'>or</p>
           <div className='container-login-google'>
               <img src={require('../../../assets/icons8-google-logo-48.png')} alt='icon google' />
-              <a href='#'>Continue with Google</a>
+              <Link to='/'>Continue with Google</Link>
           </div>
       </div>
       <div className='container-login_new'>
@@ -91,4 +105,10 @@ const Login = props => {
   )
 }
 
-export default Login
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (email, password, isSignup) => dispatch(action.auth(email, password, isSignup))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Login)

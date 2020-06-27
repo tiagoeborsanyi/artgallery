@@ -26,3 +26,7 @@
   background-color: #e7e7e7;
   outline: none;
 }
+
+.input-form-control .invalid {
+  border: 1px solid red;
+}
