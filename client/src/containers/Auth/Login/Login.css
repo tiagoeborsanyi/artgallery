@@ -29,56 +29,11 @@
   text-decoration: none;
 }
 
-.button-login-form {
-  height: 3rem;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: 700;
-  border: none;
-  border-radius: 4px;
-  background-color: #e7e7e7;
-  color: rgba(0, 0, 0, 0.7);
-
-}
-
-.button-login-form.active {
-  color: white;
-  background-color: rgba(82, 148, 202, 0.7);
-}
-
-.button-login-form:hover {
-  cursor: pointer;
-}
-
 .container-login__or {
   text-align: center;
   font-size: 1rem;
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
-}
-
-.container-login-google {
-  height: 3rem;
-  width: 100%;
-  padding: 0.3rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  background-color: white;
-  border-radius: 35px;
-}
-
-.container-login-google > img {
-  height: 1.2rem;
-  margin-right: 0.3rem;
-}
-
-.container-login-google > span {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 0.9rem;
-  font-weight: 600;
 }
 
 .container-login_new {

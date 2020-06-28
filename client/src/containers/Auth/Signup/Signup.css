@@ -1,0 +1,152 @@
+.container-S {
+  width: 100%;
+  margin: 3rem auto;
+}
+
+.container-signup-title {
+  text-align: center;
+}
+
+.container-signup {
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);;
+  border-radius: 4px;
+}
+
+.signup-form-control {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.signup-form-control.first {
+  margin-bottom: 0.9rem;
+}
+
+.signup-form-control > label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0.5rem 0;
+}
+
+.signup-form-control > input {
+  height: 2.5rem;
+  width: 100%;
+  padding: 0 0.8rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #e7e7e7;
+  outline: none;
+}
+
+.button-signup-form {
+  height: 3rem;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  background-color: #e7e7e7;
+  color: rgba(0, 0, 0, 0.7);
+
+}
+
+.button-signup-form.active {
+  color: white;
+  background-color: rgba(82, 148, 202, 0.7);
+}
+
+.button-signup-form:hover {
+  cursor: pointer;
+}
+
+.container-signup-terms {
+  width: 70%;
+  margin: auto;
+}
+
+.container-signup-terms > p {
+  text-align: center;
+  line-height: 1.6;
+}
+
+.container-signup-terms > p a {
+  color: rgb(0, 0, 0, 0.7);
+}
+
+.container-signup__or-divider {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.container-signup__or-line {
+  height: 1px;
+  width: 100%;
+  background-color: #ccc;
+}
+.container-signup__or {
+  position: absolute;
+  z-index: 50;
+  margin: 0;
+  padding: 0 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  background-color: white;
+}
+
+.container-signup-google {
+  height: 3rem;
+  width: 100%;
+  padding: 0.3rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(0, 0, 0, 0.2);;
+  border-radius: 35px;
+}
+
+.container-signup-google > img {
+  height: 1.2rem;
+  margin-right: 0.3rem;
+}
+
+.container-signup-google > a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.container-signup_new {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-signup_new > p {
+  margin: 0 0.5rem;
+}
+
+.container-signup_new > a {
+  text-decoration: none;
+  color: rgb(255, 0, 0, 0.7);
+}
+
+@media (min-width: 40rem) {
+  .container-S {
+      max-width: 25rem;
+  }
+}

@@ -1,9 +1,4 @@
-.button:disabled {
-  color: #ccc;
-  cursor: not-allowed;
-}
-
-.button-form-form {
+.button-form {
   height: 3rem;
   width: 100%;
   font-size: 1rem;
@@ -12,6 +7,7 @@
   border-radius: 4px;
   background-color: #e7e7e7;
   color: rgba(0, 0, 0, 0.7);
+  outline: none;
 
 }
 
@@ -20,6 +16,38 @@
   background-color: rgba(82, 148, 202, 0.7);
 }
 
-.button-form:hover {
+.container-login-google {
+  height: 3rem;
+  width: 100%;
+  padding: 0.3rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 35px;
+  outline: none;
+}
+
+.container-login-google > img {
+  height: 1.2rem;
+  margin-right: 0.3rem;
+}
+
+.container-login-google > span {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.button-form:hover,
+.button {
   cursor: pointer;
+}
+
+.button:disabled {
+  color: rgb(150, 147, 147);
+  background-color: #e7e7e7;
+  cursor: not-allowed;
 }

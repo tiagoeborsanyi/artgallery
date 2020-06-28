@@ -7,6 +7,7 @@ import firebase from '../../../services/firebase'
 import * as action from '../../../store/actions/index'
 import { checkValidity } from '../../../shared/utility'
 import Input from '../../../components/UI/Input/Input'
+import Button from '../../../components/UI/Button/Button'
 
 const Login = props => {
   const [controls, setControls] = useState({
@@ -41,6 +42,7 @@ const Login = props => {
       space: ''
     }
   })
+  const [formisValid, setFormIsValid] = useState(false)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
@@ -63,7 +65,12 @@ const Login = props => {
         touched: true
       }
     }
+    let formIsValid = true
+    for (let key in updateControls) {
+      formIsValid = updateControls[key].valid && formIsValid
+    }
     setControls(updateControls)
+    setFormIsValid(formIsValid)
   }
 
   const submitHandler = event => {
@@ -77,11 +84,11 @@ const Login = props => {
     firebase.auth().signInWithRedirect(provider)
   }
 
-  const logout = () => {
-    firebase.auth().signOut().then(() => {
-      console.log('deslogou')
-    })
-  }
+  // const logout = () => {
+  //   firebase.auth().signOut().then(() => {
+  //     console.log('deslogou')
+  //   })
+  // }
 
   const formElementArray = []
   for (let key in controls) {
@@ -112,16 +119,19 @@ const Login = props => {
               <div className='login-form-control forgot-password'>
                   <Link to='/'>Forgot password?</Link>
               </div>
-              <button className='button-login-form active'>Log in</button>
+              <Button
+                btnType='button-form active'
+                disabled={!formisValid}>
+                Log in
+              </Button>
           </form>
           <p className='container-login__or'>or</p>
-          <button className='container-login-google' onClick={loginWithGoogleHandler}>
+          <Button
+            btnType='container-login-google'
+            clicked={loginWithGoogleHandler}>
               <img src={require('../../../assets/icons8-google-logo-48.png')} alt='icon google' />
               <span>Continue with Google</span>
-          </button>
-          <button onClick={logout}>
-            logout
-          </button>
+          </Button>
       </div>
       <div className='container-login_new'>
           <p>New to DrawDry?</p>
