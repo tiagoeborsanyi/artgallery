@@ -6,6 +6,9 @@ const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   uid: { type: String, required: true },
+  followers: { type: [String] },
+  following: { type: [String] },
+  favorites: { type: mongoose.Types.ObjectId, require: false, ref: 'Photo' },
   createUser: { type: Date, default: Date.now }
 })
 
