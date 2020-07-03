@@ -9,8 +9,14 @@ const photoSchema = new Schema({
   original_img: { type: String, required: true },
   tags: { type: [String], required: false },
   download: { type: Boolean, required: true },
-  create_date: { type: Date, default: Date.now },
-  creator: { type: mongoose.Types.ObjectId, require: true, ref: 'User' }
+  favorited: { type: [{ type: ObjectId, ref: 'User' }], required: false },
+  comment: { type: [{
+    user: { type: ObjectId, ref: 'User', required: true },
+    content: { type: String, required: true},
+    createcomment: { type: Date, default: Date.now }
+  }], required: false },
+  creator: { type: mongoose.Types.ObjectId, require: true, ref: 'User' },
+  createphoto: { type: Date, default: Date.now }
 })
 
 module.exports = mongoose.model('Photo', photoSchema)
