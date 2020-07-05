@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const admin = require('firebase-admin')
 
 const photosRoutes = require('./routes/photos-routes')
 const usersRoutes = require('./routes/users-routes')
@@ -16,6 +17,11 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept, Authorization')
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
   next()
+})
+
+admin.initializeApp({
+  credential: admin.credential.cert(keys.firebase),
+  databaseURL: "https://drawdry-3f5b8.firebaseio.com"
 })
 
 app.use('/api/photos', photosRoutes)

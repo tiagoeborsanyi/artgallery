@@ -1,18 +1,21 @@
 const HttpError = require('../models/http-error')
 const User = require('../models/user')
 
-const getUsers = (req, res, next) => {
-  res.json({user: 'get user'})
+const getUsers = async (req, res, next) => {
+  console.log('req.uid: ', req.uid)
+  let users;
+  try {
+    users = await User.find()
+  } catch (error) {
+    const err = new HttpError('Fetching users failed, please try again later.')
+    return next(err)
+  }
+  res.json({ users: users.map(user => user.toObject({ getters: true }))})
 }
 
-const signup = (req, res, next) => {
-
-}
-
-const login = (req, res) => {
+const signupOrLogin = (req, res, next) => {
 
 }
 
 exports.getUsers = getUsers
-exports.signup = signup
-exports.login = login
+exports.signupOrLogin = signupOrLogin

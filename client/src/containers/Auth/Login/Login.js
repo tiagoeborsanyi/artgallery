@@ -49,7 +49,7 @@ const Login = props => {
       console.log('user: ', user)
       if (user) {
         const iT = firebase.auth().currentUser.getIdToken(true)
-        console.log('idToken', iT)
+        console.log('idToken', iT, user)
       }
     })
 

@@ -15,6 +15,7 @@ const photoSchema = new Schema({
     content: { type: String, required: true},
     createcomment: { type: Date, default: Date.now }
   }], required: false },
+  sell: { type: Boolean, required: false },
   creator: { type: mongoose.Types.ObjectId, require: true, ref: 'User' },
   createphoto: { type: Date, default: Date.now }
 })
