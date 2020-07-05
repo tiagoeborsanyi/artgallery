@@ -4,7 +4,7 @@ const HttpError = require('../models/http-error')
 
 module.exports = async (req, res, next) => {
   try {
-    const adminCheckAuth = await admin.auth().verifyIdToken(req.body.idToken)
+    const adminCheckAuth = await admin.auth().verifyIdToken(req.headers.authorization)
     if (adminCheckAuth) {
       // console.log(adminCheckAuth)
       req.uid = adminCheckAuth.uid

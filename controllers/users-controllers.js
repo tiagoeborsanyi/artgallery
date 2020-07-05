@@ -13,8 +13,14 @@ const getUsers = async (req, res, next) => {
   res.json({ users: users.map(user => user.toObject({ getters: true }))})
 }
 
-const signupOrLogin = (req, res, next) => {
+const signupOrLogin = async (req, res, next) => {
+  const { displayName, email, uid } = req.body
+  let existingUser;
+  try {
+    existingUser = await User.findOne({ uid: req.uid })
+  } catch (error) {
 
+  }
 }
 
 exports.getUsers = getUsers
