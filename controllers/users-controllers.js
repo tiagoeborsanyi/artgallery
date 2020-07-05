@@ -2,7 +2,7 @@ const HttpError = require('../models/http-error')
 const User = require('../models/user')
 
 const getUsers = (req, res, next) => {
-
+  res.json({user: 'get user'})
 }
 
 const signup = (req, res, next) => {
