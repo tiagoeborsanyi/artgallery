@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 const photosRoutes = require('./routes/photos-routes')
+const usersRoutes = require('./routes/users-routes')
 const HttpError = require('./models/http-error')
 const keys = require('./config/keys')
 
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/photos', photosRoutes)
+app.use('/api/users', usersRoutes)
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this. route.', 404);
