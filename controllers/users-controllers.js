@@ -15,11 +15,34 @@ const getUsers = async (req, res, next) => {
 
 const signupOrLogin = async (req, res, next) => {
   const { displayName, email, uid } = req.body
-  let existingUser;
-  try {
-    existingUser = await User.findOne({ uid: req.uid })
-  } catch (error) {
 
+  let existingUser
+  try {
+    existingUser = await User.findOne({ uid })
+  } catch (error) {
+    const err = new HttpError('Signup failed, please try again later.', 500)
+    return next(err)
+  }
+
+  if (existingUser) {
+    res.status(201).json({ user: 'exist user, ok' })
+  } else {
+    const createUser = new User({
+      displayName,
+      email,
+      uid,
+      followers: [],
+      following: [],
+      favorites: []
+    })
+    try {
+      await createUser.save()
+    } catch (error) {
+      console.log(error)
+      const err = new HttpError('create user failed', 500)
+      return next(err)
+    }
+    res.status(201).json({user: createUser.displayName, email: createUser.email})
   }
 }
 
