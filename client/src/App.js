@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
-// import * as actions from './store/actions/index'
+import * as actions from './store/actions/index'
 import Layout from './hoc/Layout/Layout'
 import HomeUnlogged from './containers/Home/HomeUnlogged/HomeUnlogged'
 import Login from './containers/Auth/Login/Login'
@@ -10,6 +10,11 @@ import Signup from './containers/Auth/Signup/Signup'
 import Logout from './containers/Auth/Logout/Logout'
 
 const App = props => {
+
+  const { onTryAutoSignup } = props
+  useEffect(() => {
+    onTryAutoSignup()
+  }, [onTryAutoSignup])
 
   let routes = (
     <Switch>
@@ -20,10 +25,10 @@ const App = props => {
     </Switch>
   )
 
-  if (false) {
+  if (props.isAuthenticated) {
     routes = (
       <Switch>
-        <route path='/logout' component={Logout} />
+        <Route path='/logout' component={Logout} />
         <Route path='/' exact render={() => <p>logado</p>} />
         <Redirect to='/' />
       </Switch>
@@ -39,4 +44,16 @@ const App = props => {
   )
 }
 
-export default withRouter(App)
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

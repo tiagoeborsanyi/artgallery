@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer'
@@ -13,11 +14,11 @@ const Layout = props => {
   const sideDrawerToggleHandler = () => {
     setShowSideDrawer(!showSideDrawer)
   }
-
+  console.log(props.isAuthenticated)
   return (
     <React.Fragment>
       <Toolbar
-        isAuth=''
+        isAuth={!props.isAuthenticated}
         drawerToggledClicked={sideDrawerToggleHandler} />
       <SideDrawer
         open={showSideDrawer}
@@ -29,4 +30,10 @@ const Layout = props => {
   )
 }
 
-export default Layout
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(Layout)

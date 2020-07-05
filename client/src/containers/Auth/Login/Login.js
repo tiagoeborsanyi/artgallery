@@ -44,17 +44,6 @@ const Login = props => {
   })
   const [formisValid, setFormIsValid] = useState(false)
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      console.log('user: ', user)
-      if (user) {
-        const iT = firebase.auth().currentUser.getIdToken(true)
-        console.log('idToken', iT, user)
-      }
-    })
-
-  }, [])
-
   const inputChangeHandler = (event, controlName) => {
     const updateControls = {
       ...controls,

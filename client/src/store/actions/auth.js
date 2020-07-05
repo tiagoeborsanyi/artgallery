@@ -1,5 +1,6 @@
 // import axios from 'axios'
 
+import firebase from '../../services/firebase'
 import * as actionTypes from './actionTypes'
 
 export const authStart = () => {
@@ -8,11 +9,13 @@ export const authStart = () => {
   }
 }
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, userId, email, displayName) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    token,
-    userId
+    token: token,
+    userId: userId,
+    email: email,
+    displayName: displayName
   }
 }
 
@@ -34,5 +37,36 @@ export const auth = (email = '', password = '', isSignup) => {
   // Aqui eu faço a lógica de logar com login e senha
   return dispatch => {
     console.log(!!email, password, isSignup)
+  }
+}
+
+export const setAuthRedirectPath = path => {
+  return {
+    type: actionTypes.SET_AUTH_REDIRECT_PATH,
+    path: path
+  }
+}
+
+export const authCheckState = () => {
+  return dispatch => {
+    console.log('teste')
+    firebase.auth().onAuthStateChanged(async (user) => {
+      // console.log('user: ', user)
+      if (user) {
+        const iT = await firebase.auth().currentUser.getIdToken(true)
+        // console.log('idToken', iT, user)
+        dispatch(authSuccess(
+          iT,
+          user.uid,
+          user.email,
+          user.displayName
+      ))
+      } else {
+        firebase.auth().signOut().then(() => {
+          console.log('deslogou')
+          dispatch(logout())
+        })
+      }
+    })
   }
 }

@@ -41,18 +41,28 @@ const Toolbar = props => (
               <ul className="main-nav__items">
                 <NavigationItem
                   classes='main-nav__item search' />
+                { props.isAuth ?
                 <NavigationItem
                   classes='main-nav__item'
                   item='link'
                   link='/login'>
                   Login
-                </NavigationItem>
+                </NavigationItem> :
+                null }
                 <NavigationItem
                   classes='main-nav__item link-publish'
                   item='link'
                   link='/'>
                   Publish
                 </NavigationItem>
+                { !props.isAuth ?
+                <NavigationItem
+                  classes='main-nav__item'
+                  item='link'
+                  link='/logout'>
+                  Logout
+                </NavigationItem> :
+                null }
               </ul>
           </nav>
       </div>
