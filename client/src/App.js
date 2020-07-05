@@ -7,6 +7,7 @@ import Layout from './hoc/Layout/Layout'
 import HomeUnlogged from './containers/Home/HomeUnlogged/HomeUnlogged'
 import Login from './containers/Auth/Login/Login'
 import Signup from './containers/Auth/Signup/Signup'
+import Logout from './containers/Auth/Logout/Logout'
 
 const App = props => {
 
@@ -22,6 +23,7 @@ const App = props => {
   if (false) {
     routes = (
       <Switch>
+        <route path='/logout' component={Logout} />
         <Route path='/' exact render={() => <p>logado</p>} />
         <Redirect to='/' />
       </Switch>

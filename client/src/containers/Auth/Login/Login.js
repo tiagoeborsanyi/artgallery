@@ -84,12 +84,6 @@ const Login = props => {
     firebase.auth().signInWithRedirect(provider)
   }
 
-  // const logout = () => {
-  //   firebase.auth().signOut().then(() => {
-  //     console.log('deslogou')
-  //   })
-  // }
-
   const formElementArray = []
   for (let key in controls) {
     formElementArray.push({
