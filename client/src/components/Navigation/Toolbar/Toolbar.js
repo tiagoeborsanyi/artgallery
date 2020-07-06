@@ -6,67 +6,77 @@ import NavigationItem from '../NavigationItem/NavigationItem'
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle'
 import DrawerOffline from '../SideDrawer/DrawerOffline/DrawerOffline'
 
-const Toolbar = props => (
-  <header className="main-header">
-      <div className="main-header__content">
-          <div className="main-header__content-mobile">
-            {props.isAuth ?
-            <div className="main-header__content-mobile-auth">
-              <DrawerToggle clicked={props.drawerToggledClicked} />
-              <div className="mobile-icon">
-                <Logo />
+const Toolbar = props => {
+  return (
+    <header className="main-header">
+        <div className="main-header__content">
+            <div className="main-header__content-mobile">
+              {!props.isAuth ?
+              <div className="main-header__content-mobile-auth">
+                <DrawerToggle clicked={props.drawerToggledClicked} />
+                <div className="mobile-icon">
+                  <Logo />
+                </div>
               </div>
-            </div>
-            :
-            <div className="main-header__content-mobile-auth">
-              <DrawerOffline />
-            </div>}
-            <ul className="main-header__items">
-              <NavigationItem
-                classes='main-header__item image'
-                item='link'
-                link='/'
-                classesLink='main-header__brand'>
-                <Logo />
-              </NavigationItem>
-              <NavigationItem
-                classes='main-header__item'
-                item='link'
-                link='/'>
-                Arts
-              </NavigationItem>
-            </ul>
-          </div>
-          <nav className="main-nav">
-              <ul className="main-nav__items">
+              :
+              <div className="main-header__content-mobile-auth">
+                <DrawerOffline />
+              </div>}
+              <ul className="main-header__items">
                 <NavigationItem
-                  classes='main-nav__item search' />
-                { props.isAuth ?
-                <NavigationItem
-                  classes='main-nav__item'
+                  classes='main-header__item image'
                   item='link'
-                  link='/login'>
-                  Login
-                </NavigationItem> :
-                null }
+                  link='/'
+                  classesLink='main-header__brand'>
+                  <Logo />
+                </NavigationItem>
                 <NavigationItem
-                  classes='main-nav__item link-publish'
+                  classes='main-header__item'
                   item='link'
                   link='/'>
-                  Publish
+                  Arts
                 </NavigationItem>
-                { !props.isAuth ?
-                <NavigationItem
-                  classes='main-nav__item'
-                  item='link'
-                  link='/logout'>
-                  Logout
-                </NavigationItem> :
-                null }
               </ul>
-          </nav>
-      </div>
-  </header>
-)
+            </div>
+            <nav className="main-nav">
+                <ul className="main-nav__items">
+                  <NavigationItem
+                    classes='main-nav__item search' />
+                  { props.isAuth ?
+                  <NavigationItem
+                    classes='main-nav__item'
+                    item='link'
+                    link='/login'>
+                    Login
+                  </NavigationItem> :
+                  null }
+                  <NavigationItem
+                    classes='main-nav__item link-publish'
+                    item='link'
+                    link='/'>
+                    Publish
+                  </NavigationItem>
+                  { !props.isAuth ?
+                  <div>
+                    <NavigationItem
+                      classes='main-nav__item'
+                      item='link'
+                      link='/logout'>
+                      Logout
+                    </NavigationItem>
+                    <NavigationItem
+                    classes='main-nav__item'
+                    item='link'
+                    link="/">
+                      <img src={props.photoIcon} alt="phot icon" style={{width: '20%', borderRadius: '100%'}} />
+                    </NavigationItem>
+                  </div> :
+                  null }
+                </ul>
+            </nav>
+        </div>
+    </header>
+  )
+}
 
 export default Toolbar

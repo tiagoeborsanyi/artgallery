@@ -13,7 +13,7 @@ const Logout = props => {
       console.log('deslogou')
       onLogout()
     })
-  }, [])
+  }, [onLogout])
 
   return <Redirect to="/" />
 }

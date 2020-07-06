@@ -14,13 +14,15 @@ const Layout = props => {
   const sideDrawerToggleHandler = () => {
     setShowSideDrawer(!showSideDrawer)
   }
-  console.log(props.isAuthenticated)
+
   return (
     <React.Fragment>
       <Toolbar
         isAuth={!props.isAuthenticated}
-        drawerToggledClicked={sideDrawerToggleHandler} />
+        drawerToggledClicked={sideDrawerToggleHandler}
+        photoIcon={props.isPhotoIcon} />
       <SideDrawer
+        isAuth={!props.isAuthenticated}
         open={showSideDrawer}
         closed={sideDrawerClosedHandler} />
       <main>
@@ -32,7 +34,8 @@ const Layout = props => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    isPhotoIcon: state.auth.photoURL
   }
 }
 

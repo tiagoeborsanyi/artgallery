@@ -9,13 +9,14 @@ export const authStart = () => {
   }
 }
 
-export const authSuccess = (token, userId, email, displayName) => {
+export const authSuccess = (token, userId, email, displayName, photoURL) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: token,
     userId: userId,
     email: email,
-    displayName: displayName
+    displayName: displayName,
+    photoURL: photoURL
   }
 }
 
@@ -49,9 +50,9 @@ export const setAuthRedirectPath = path => {
 
 export const authCheckState = () => {
   return dispatch => {
-    console.log('teste')
+    dispatch(authStart())
     firebase.auth().onAuthStateChanged(async (user) => {
-      // console.log('user: ', user)
+      console.log('user: ', user)
       if (user) {
         const iT = await firebase.auth().currentUser.getIdToken(true)
         // console.log('idToken', iT, user)
@@ -59,7 +60,8 @@ export const authCheckState = () => {
           iT,
           user.uid,
           user.email,
-          user.displayName
+          user.displayName,
+          user.photoURL
       ))
       } else {
         firebase.auth().signOut().then(() => {

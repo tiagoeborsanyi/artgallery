@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense } from 'react'
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import * as actions from './store/actions/index'
+import Spinner from './components/UI/Spinner/Spinner'
 import Layout from './hoc/Layout/Layout'
 import HomeUnlogged from './containers/Home/HomeUnlogged/HomeUnlogged'
 import Login from './containers/Auth/Login/Login'
@@ -16,20 +17,23 @@ const App = props => {
     onTryAutoSignup()
   }, [onTryAutoSignup])
 
-  let routes = (
-    <Switch>
-      <Route path='/login' component={Login} />
-      <Route path='/signup' component={Signup} />
-      <Route path='/' exact component={HomeUnlogged} />
-      <Redirect to='/' />
-    </Switch>
-  )
+  let routes = null
 
-  if (props.isAuthenticated) {
+  if (props.isAuthenticated  && true) {
     routes = (
       <Switch>
         <Route path='/logout' component={Logout} />
         <Route path='/' exact render={() => <p>logado</p>} />
+        <Redirect to='/' />
+      </Switch>
+    )
+  } else {
+    console.log('entrou')
+    routes = (
+      <Switch>
+        <Route path='/login' component={Login} />
+        <Route path='/signup' component={Signup} />
+        <Route path='/' exact component={HomeUnlogged} />
         <Redirect to='/' />
       </Switch>
     )
@@ -38,7 +42,7 @@ const App = props => {
   return (
     <div>
       <Layout>
-        {routes}
+        <Suspense fallback={<Spinner />}>{props.isLoading ? <Spinner /> : routes}</Suspense>
       </Layout>
     </div>
   )
@@ -46,7 +50,8 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    isLoading: state.auth.loading
   }
 }
 

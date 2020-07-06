@@ -6,6 +6,7 @@ const initialState = {
   userId: null,
   email: null,
   displayName: null,
+  photoURL: null,
   error: null,
   loading: false,
   authRediretPath: '/'
@@ -21,6 +22,7 @@ const authSuccess = (state, action) => {
     userId: action.userId,
     email: action.email,
     displayName: action.displayName,
+    photoURL: action.photoURL,
     error: null,
     loading: false
   })
@@ -38,7 +40,8 @@ const authLogout = (state, action) => {
     token: null,
     userId: null,
     email: null,
-    displayName: null
+    displayName: null,
+    photoURL: null
   })
 }
 
