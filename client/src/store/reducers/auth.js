@@ -41,7 +41,9 @@ const authLogout = (state, action) => {
     userId: null,
     email: null,
     displayName: null,
-    photoURL: null
+    photoURL: null,
+    loading: false,
+    authRediretPath: '/'
   })
 }
 

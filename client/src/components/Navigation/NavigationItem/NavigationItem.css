@@ -44,6 +44,13 @@
   outline: none;
 }
 
+.main-nav__item.link-publish {
+  padding-left: 0;
+}
+.main-nav__item.login {
+  padding-right: 1.5rem;
+}
+
 .main-nav__item.link-publish > a {
   color: white;
   padding: 0.5rem 0.8rem;

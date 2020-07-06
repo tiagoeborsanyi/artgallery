@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './Toolbar.css'
 import Logo from '../../Logo/Logo'
@@ -7,6 +7,10 @@ import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle'
 import DrawerOffline from '../SideDrawer/DrawerOffline/DrawerOffline'
 
 const Toolbar = props => {
+  const [openMenu, setOpenMenu] = useState(false)
+  const iconMenu = () => {
+    setOpenMenu(!openMenu)
+  }
   return (
     <header className="main-header">
         <div className="main-header__content">
@@ -44,11 +48,48 @@ const Toolbar = props => {
                     classes='main-nav__item search' />
                   { props.isAuth ?
                   <NavigationItem
-                    classes='main-nav__item'
+                    classes='main-nav__item login'
                     item='link'
                     link='/login'>
                     Login
                   </NavigationItem> :
+                  null }
+                  { !props.isAuth ?
+                  <div className="main-header__photo-icon">
+                    <button
+                      className="main-header__photo-icon-button"
+                      onClick={iconMenu}>
+                      <img src={props.photoIcon} alt="phot icon" />
+                    </button>
+                    <div className={`main-header__photo-icon-content ${openMenu ? "open" : "close"}`}>
+                      <ul className="main-header__photo-icon-content__items">
+                      <NavigationItem
+                          classes='mobile-nav__item'
+                          item='link'
+                          link='/'
+                          icon='icon'
+                          iconContent='account_box'>
+                          My Profile
+                        </NavigationItem>
+                        <NavigationItem
+                          classes='mobile-nav__item'
+                          item='link'
+                          link='/'
+                          icon='icon'
+                          iconContent='bookmark'>
+                          Saved
+                        </NavigationItem>
+                        <NavigationItem
+                          classes='main-nav__item'
+                          item='link'
+                          link='/logout'
+                          icon='icon'
+                          iconContent='sensor_door'>
+                            Logout
+                        </NavigationItem>
+                      </ul>
+                    </div>
+                  </div> :
                   null }
                   <NavigationItem
                     classes='main-nav__item link-publish'
@@ -56,22 +97,6 @@ const Toolbar = props => {
                     link='/'>
                     Publish
                   </NavigationItem>
-                  { !props.isAuth ?
-                  <div>
-                    <NavigationItem
-                      classes='main-nav__item'
-                      item='link'
-                      link='/logout'>
-                      Logout
-                    </NavigationItem>
-                    <NavigationItem
-                    classes='main-nav__item'
-                    item='link'
-                    link="/">
-                      <img src={props.photoIcon} alt="phot icon" style={{width: '20%', borderRadius: '100%'}} />
-                    </NavigationItem>
-                  </div> :
-                  null }
                 </ul>
             </nav>
         </div>
