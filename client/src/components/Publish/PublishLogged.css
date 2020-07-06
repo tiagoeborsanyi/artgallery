@@ -1,3 +1,341 @@
-.Publish {
-  margin: 10rem auto;
+.container {
+  width: 100%;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.container-newart-title {
+  text-align: left;
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 0;
+}
+
+.container-newart {
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem 0;
+}
+
+.newart-form-control-flexline {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.newart-form-control {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.newart-form-control.space,
+.newart-form-control-flexline.space {
+  margin-bottom: 0.9rem;
+}
+
+.newart-form-control > label {
+  display: flex;
+  align-items: flex-start;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0.5rem 0;
+}
+
+.newart-form-control > label span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.newart-form-control > input {
+  height: 2.5rem;
+  width: 100%;
+  padding: 0 0.8rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #e7e7e7;
+  outline: none;
+}
+
+.newart-form-control.input-file {
+  width: 30%;
+}
+.newart-form-control.textarea {
+  height: 100%;
+  width: 100%;
+}
+
+/* INICIO IMAGE PREVIEW */
+.image-preview {
+  height: 175px;
+  width: 140px;
+  position: relative;
+}
+.image-preview__img {
+  position: absolute;
+  height: 175px;
+  width: 140px;
+  opacity: 1;
+  z-index: 5;
+  background-image: url('');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.image-preview__input {
+  height: 175px;
+  width: 140px;
+  position: absolute;
+  border: none;
+  outline: none;
+  background: transparent;
+  opacity: 0;
+  z-index: 10;
+}
+.image-preview__change {
+  height: 175px;
+  width: 140px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #ccc;
+}
+.image-preview__change > span {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.image-preview__hover {
+  height: 175px;
+  width: 140px;
+  position: absolute;
+  background: linear-gradient(to top, rgba(14, 48, 143, 0.3), 100%, transparent);
+  opacity: 0;
+}
+.image-preview__input {
+  cursor: pointer;
+}
+.image-preview:hover > .image-preview__hover {
+  opacity: 1 !important;
+}
+/* FINAL IMAGE PREVIEW */
+
+/* INICIO ORIGINAL IMAGE */
+.original-image__preview {
+  height: 270px;
+  width: 220px;
+  position: relative;
+}
+.original-image__img {
+  position: absolute;
+  height: 270px;
+  width: 220px;
+  opacity: 1;
+  z-index: 5;
+  background-image: url('');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.original-image__input {
+  height: 270px;
+  width: 220px;
+  position: absolute;
+  border: none;
+  outline: none;
+  background: transparent;
+  opacity: 0;
+  z-index: 10;
+}
+.original-image__change {
+  height: 270px;
+  width: 220px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #ccc;
+}
+.original-image__change > span {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.original-image__hover {
+  height: 270px;
+  width: 220px;
+  position: absolute;
+  background: linear-gradient(to top, rgba(14, 48, 143, 0.3), 100%, transparent);
+  opacity: 0;
+}
+.original-image__input:hover {
+  cursor: pointer;
+}
+.original-image__preview:hover > .original-image__hover {
+  opacity: 1;
+}
+
+/* FINAL ORIGINAL IMAGE */
+
+.newart-form-control.textarea > textarea {
+  height: 175px;
+  width: 100%;
+  outline: none;
+  resize: none;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #e7e7e7;
+}
+
+/* INIT TAGS FOR RESULT */
+.newart-tags {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.newart-tags-result__items {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+.newart-tags-result__item {
+  display: inline-block;
+  margin: 0.3rem;
+}
+.newart-tags-result__item > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 35px;
+}
+.newart-tags-result__item > button span {
+  font-size: 0.8rem;
+  margin-right: 0.2rem;
+}
+.newart-tags-result__item > button:hover {
+  cursor: pointer;
+  background-color: #ededed;
+}
+
+/* FINAL TAGS FOR RESULT */
+
+
+
+/* INIT BUTTON SWITCH DOWNLOAD */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgba(82, 148, 202, 0.7);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgba(82, 148, 202, 0.7);
+}
+
+input:checked + .slider:before {
+  transform: translateX(36px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* FINAL BUTTON SWITCH DOWNLOAD */
+
+.button-newart-form {
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  background-color: #e7e7e7;
+  color: rgba(0, 0, 0, 0.7);
+
+}
+
+.button-newart-form.active {
+  color: white;
+  background-color: rgba(82, 148, 202, 0.7);
+}
+
+.button-newart-form:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 40rem) {
+  .container {
+      max-width: 38rem;
+      padding: 0;
+  }
+  .button-newart-form {
+      width: 15rem;
+  }
+  .newart-form-control-flexline {
+      flex-direction: row;
+  }
+  .newart-form-control.textarea {
+      width: 70%;
+  }
 }
