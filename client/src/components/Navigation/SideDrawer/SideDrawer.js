@@ -44,7 +44,7 @@ const SideDrawer = props => {
           <NavigationItem
             classes='mobile-nav__item'
             item='link'
-            link='/'
+            link='/publish'
             icon='icon'
             iconContent='publish'>
             Publish

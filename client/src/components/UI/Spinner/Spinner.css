@@ -18,6 +18,9 @@
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
+.Loader.form {
+  font-size: 3px;
+}
 .Loader:before {
   width: 50%;
   height: 50%;

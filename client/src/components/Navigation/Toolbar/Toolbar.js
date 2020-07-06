@@ -94,7 +94,7 @@ const Toolbar = props => {
                   <NavigationItem
                     classes='main-nav__item link-publish'
                     item='link'
-                    link='/'>
+                    link='/publish'>
                     Publish
                   </NavigationItem>
                 </ul>

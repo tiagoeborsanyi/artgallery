@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -8,8 +8,10 @@ import * as action from '../../../store/actions/index'
 import { checkValidity } from '../../../shared/utility'
 import Input from '../../../components/UI/Input/Input'
 import Button from '../../../components/UI/Button/Button'
+import Spinner from '../../../components/UI/Spinner/Spinner'
 
 const Login = props => {
+  const [loading, setLoading] = useState(false)
   const [controls, setControls] = useState({
     email: {
       elementConfig: {
@@ -69,6 +71,7 @@ const Login = props => {
   }
 
   const loginWithGoogleHandler = () => {
+    setLoading(true)
     const provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithRedirect(provider)
   }
@@ -112,8 +115,13 @@ const Login = props => {
           <Button
             btnType='container-login-google'
             clicked={loginWithGoogleHandler}>
+              { loading ?
+              <Spinner form='form' />
+              :
+              <>
               <img src={require('../../../assets/icons8-google-logo-48.png')} alt='icon google' />
               <span>Continue with Google</span>
+              </>}
           </Button>
       </div>
       <div className='container-login_new'>

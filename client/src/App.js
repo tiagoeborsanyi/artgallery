@@ -9,6 +9,8 @@ import HomeUnlogged from './containers/Home/HomeUnlogged/HomeUnlogged'
 import Login from './containers/Auth/Login/Login'
 import Signup from './containers/Auth/Signup/Signup'
 import Logout from './containers/Auth/Logout/Logout'
+import Publish from './containers/Publish/Publish'
+import PublishNotLogged from './components/Publish/PublishNotLogged/PublishNotLogged'
 
 const App = props => {
 
@@ -22,15 +24,16 @@ const App = props => {
   if (props.isAuthenticated  && true) {
     routes = (
       <Switch>
+        <Route path='/publish' component={Publish} />
         <Route path='/logout' component={Logout} />
         <Route path='/' exact render={() => <p>logado</p>} />
         <Redirect to='/' />
       </Switch>
     )
   } else {
-    console.log('entrou')
     routes = (
       <Switch>
+        <Route path='/publish' component={PublishNotLogged} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/' exact component={HomeUnlogged} />
