@@ -16,7 +16,7 @@ const PublishLogged = props => {
       <div className="container">
         <h1 className="container-newart-title">New Art</h1>
         <div className="container-newart">
-          <form onSubmit={e => e.preventDefault()}>
+          <form onSubmit={props.submitPublish}>
             <Input
               classes="space"
               label="Title"
