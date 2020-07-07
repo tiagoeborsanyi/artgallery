@@ -30,7 +30,10 @@ const PublishLogged = props => {
                 title="Thumbnail"
                 subtitle="280x350"
                 height="175px"
-                width="140px" />
+                width="140px"
+                pickedHandler={props.pickedHandler}
+                previewUrl={props.previewUrl1}
+                resume={0} />
               <div className="newart-form-control textarea space">
                 <label>Description</label>
                 <textarea></textarea>
@@ -42,7 +45,10 @@ const PublishLogged = props => {
               svgWidth="100px"
               svgHeight="100px"
               height="270px"
-              width="220px" />
+              width="220px"
+              pickedHandler={props.pickedHandler}
+              previewUrl={props.previewUrl2}
+              resume={props.resume2} />
             <div className="newart-tags">
               <div className="newart-form-control space">
                 <label>Tags <span>(Optional)</span></label>
