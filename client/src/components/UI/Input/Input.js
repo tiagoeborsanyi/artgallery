@@ -14,6 +14,7 @@ const Input = props => {
       <input
         className={classValid}
         value={props.value}
+        name={props.name}
         onChange={props.changed}
         {...props.elementConfig} />
     </div>
