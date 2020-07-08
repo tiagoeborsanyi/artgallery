@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './HomeUnlogged.css'
 
@@ -14,7 +15,7 @@ const HomeUnlogged = props => {
             <p className="homeunlogged-banner-info__content-text last">
               We’re sure you’ll find an illustration or your favorite creator
             </p>
-            <a href="#" className="homeunlogged-banner-info__content-link">see the best arts</a>
+            <Link to='/' className="homeunlogged-banner-info__content-link">see the best arts</Link>
         </div>
         </div>
         <div className="homeunlogged-featured-arts">
