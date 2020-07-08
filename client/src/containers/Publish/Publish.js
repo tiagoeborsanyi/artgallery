@@ -6,6 +6,7 @@ import PublishLogged from '../../components/Publish/PublishLogged'
 
 const Publish = props => {
   const [previewUrl2, setPreviewUrl2] = useState()
+  const [tags, setTags] = useState([])
   const [isValid, setIsValid] = useState(false);
   const [resume, setResume] = useState(0)
   const storage = firebase.storage().ref()
@@ -36,6 +37,14 @@ const Publish = props => {
       console.log('result: ', resultRef)
     }
   }
+
+  const presKey = e => {
+    if(e.key === 'Enter') {
+      setTags([...tags, e.target.value])
+      e.target.value = ''
+    }
+  }
+
   const submitHandler = event => {
     event.preventDefault()
   }
@@ -45,7 +54,9 @@ const Publish = props => {
     submitPublish={submitHandler}
     pickedHandler={pickedHandler}
     previewUrl2={previewUrl2}
-    resume2={resume} />
+    resume2={resume}
+    tags={tags}
+    onPresKey={presKey} />
 }
 
 export default Publish

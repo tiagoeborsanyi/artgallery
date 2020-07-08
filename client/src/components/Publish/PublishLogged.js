@@ -5,12 +5,7 @@ import Input from '../UI/Input/Input'
 import InputImage from '../UI/InputImage/InputImage'
 
 const PublishLogged = props => {
-  const presKey = e => {
-    if(e.key === 'Enter') {
-      console.log(e.target.value)
-    }
-  }
-
+  console.log(props.tags)
   return (
     <React.Fragment>
       <div className="container">
@@ -52,9 +47,19 @@ const PublishLogged = props => {
             <div className="newart-tags">
               <div className="newart-form-control space">
                 <label>Tags <span>(Optional)</span></label>
-                <input type="text" placeholder="Press 'Enter' after each tag." onKeyDown={presKey} />
+                <input type="text" placeholder="Press 'Enter' after each tag." onKeyDown={props.onPresKey} />
               </div>
                 <ul className="newart-tags-result__items">
+                  {props.tags.map((tag, index) => (
+                    <li className="newart-tags-result__item" key={index}>
+                      <button>
+                        <span className="material-icons">
+                          close
+                        </span>
+                          {tag}
+                      </button>
+                    </li>
+                  ))}
                   <li className="newart-tags-result__item">
                     <button>
                       <span className="material-icons">
