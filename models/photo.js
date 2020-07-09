@@ -9,7 +9,7 @@ const photoSchema = new Schema({
   original_img: [{ type: String, required: true }],
   tags: [String],
   download: { type: Boolean, required: true },
-  favorited: [{ type: ObjectId, required: false, ref: 'User' }],
+  favorited: [{ type: ObjectId, ref: 'User' }],
   comment: { type: [{
     user: { type: ObjectId, ref: 'User', required: true },
     content: { type: String, required: true},

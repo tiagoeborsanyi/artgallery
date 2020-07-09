@@ -35,13 +35,13 @@ const Input = props => {
     }
   }, [files]);
 
-  const pickedHandler = event => {
+  const pickedHandler = (event, typeimg) => {
       let pickedFile;
       if (event.target.files && event.target.files.length >= 1) {
         pickedFile = event.target.files;
         setFiles([...pickedFile])
       }
-      props.onPicked(event.target.files);
+      props.onPicked(event.target.files, typeimg);
   };
 
   switch (props.inputType) {
@@ -72,7 +72,7 @@ const Input = props => {
                 type="file"
                 accept=".jpg,.png,.jpeg"
                 multiple={props.elementConfig.selectimg}
-                onChange={pickedHandler} />
+                onChange={event => pickedHandler(event, props.elementConfig.width)} />
                 <div
                   className="newart-image__img"
                   style={{

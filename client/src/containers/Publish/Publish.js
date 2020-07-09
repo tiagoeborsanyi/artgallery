@@ -10,7 +10,14 @@ import Button from '../../components/UI/Button/Button'
 const Publish = props => {
   const [publishForm, setPublishForm] = useState(objForm)
   const [formisValid, setFormIsValid] = useState(false)
-  const [files, setFiles] = useState()
+  const [pathImages, setPathImages] = useState({
+    thumb: '',
+    original_img: []
+  })
+  const [files, setFiles] = useState({
+    thumb: '',
+    original_img: []
+  })
   const storage = firebase.storage().ref()
 
   const presKey = e => {
@@ -33,31 +40,60 @@ const Publish = props => {
     }
   }
 
-  const filesHandler = (controlFiles) => {
-    console.log(controlFiles)
+  const filesHandler = (controlFiles, typeimg) => {
+    console.log(controlFiles, typeimg)
+    if (typeimg === '140px') {
+      setFiles({
+        ...files,
+        thumb: controlFiles
+      })
+      // console.log(files)
+      pickedHandler(controlFiles[0], 'thumb')
+    } else {
+      setFiles({
+        ...files,
+        original_img: controlFiles
+      })
+      pickedHandler(controlFiles, 'original')
+    }
   }
 
-  const pickedHandler = (event, name) => {
-    let pickedFile;
-    let objImg = []
-    if (event.target.files && event.target.files.length === 1) {
-      pickedFile = event.target.files[0]
-      const imgRef = storage.child(`${pickedFile.lastModified}${pickedFile.name}`)
-      const resultRef = imgRef.put(pickedFile)
-      resultRef.on('state_changed', (p) => {
-        let progress = (p.bytesTransferred / p.totalBytes) * 100
-        objImg.push(progress)
-      }, (error) => {
-        console.log(error)
-      }, async () => {
-        const uploadURL = await resultRef.snapshot.ref.getDownloadURL()
-        objImg.push(uploadURL)
-        // console.log('URL: ', uploadURL)
+  const pickedHandler = (pickedFile, type) => {
+    const promises = []
+    Array.from(pickedFile).forEach(file => {
+      const uploadTask = storage.child(`${file.lastModified}${file.name}`).put(file)
+      // promises.push(uploadTask)
+      uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        snapshot => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          if (snapshot.state === firebase.storage.TaskState.RUNNING) {
+            console.log(`Progress: ${progress}%`);
+           }
+        },
+        error => console.log(error),
+        async () => {
+          const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
+          promises.push(downloadURL)
+        }
+      )
+    })
+    Promise.all(promises)
+      .then(() => {
+        if (type === 'thumb') {
+          setPathImages({
+            ...pathImages,
+            thumb: promises
+          })
+        } else {
+          console.log(promises)
+          setPathImages({
+            ...pathImages,
+            original_img: promises
+          })
+        }
       })
-      // console.log('result: ', resultRef)
-      objImg.push(resultRef)
-    }
-    return objImg
+      .catch(err => console.log(err))
   }
 
   const inputChangeHandler = (event, controlName) => {
@@ -78,9 +114,10 @@ const Publish = props => {
     setFormIsValid(formIsValid)
   }
 
-  const submitHandler = event => {
+  const submitHandler = async event => {
     event.preventDefault()
-    console.log(publishForm)
+    console.log(pathImages)
+
   }
 
   const formElementArray = []
