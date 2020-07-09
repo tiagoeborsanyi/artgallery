@@ -23,9 +23,7 @@ const Input = props => {
       const fileReader = new FileReader()
       fileReader.onload = () => {
           arr.push(fileReader.result)
-          console.log(files.length, count)
           if (files.length === count) {
-            console.log('entrou')
             setPreviewUrl(arr)
           }
           count++
@@ -43,7 +41,7 @@ const Input = props => {
         pickedFile = event.target.files;
         setFiles([...pickedFile])
       }
-      // props.onInput(props.id, pickedFile, fileIsValid);
+      props.onPicked(event.target.files);
   };
 
   switch (props.inputType) {
@@ -63,7 +61,7 @@ const Input = props => {
     case ('input-image'):
       inputElement = (
         <div className="newart-form-control-flexline space">
-          <div className={`newart-form-control space`} style={{width: props.elementConfig.selectimgwidth}}>
+          <div className={`newart-form-control form-control-input__mobile-desktop space`}>
             <label>{props.label} <span>{props.elementConfig.subtitle}</span></label>
             <div
               className="newart-image__preview"

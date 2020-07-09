@@ -7,9 +7,13 @@
 }
 
 .newart-form-control__container-result {
-  width: 58%;
+  width: 100%;
   display: block;
   padding-top: 1.2rem;
+}
+
+.newart-form-control.form-control-input__mobile-desktop {
+  width: 100%;
 }
 
 .newart-form-control.space,
@@ -103,4 +107,13 @@
 }
 .newart-image__preview:hover > .newart-image__hover {
   opacity: 1;
+}
+
+@media (min-width: 40rem) {
+  .newart-form-control.form-control-input__mobile-desktop {
+    width: 40%;
+  }
+  .newart-form-control__container-result {
+    width: 58%;
+  }
 }

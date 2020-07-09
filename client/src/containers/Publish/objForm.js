@@ -36,16 +36,13 @@ export const objForm = {
       type: 'file',
       selectimg: false,
       subtitle: '280x350',
-      selectimgwidth: '30%',
       width: '140px',
       height: '175px',
       svgWidth: "48px",
       svgHeight: "48px",
       previewurl: '',
-      resume: 0,
       thumburl: '',
-      metadata: {},
-      divline: 'newart-form-control-flexline'
+      metadata: {}
     },
     label: 'Thumbnail',
     value: '',
@@ -62,13 +59,11 @@ export const objForm = {
       type: 'file',
       selectimg: true,
       subtitle: '280x350',
-      selectimgwidth: '40%',
       width: '220px',
       height: '270px',
       svgWidth: "100px",
       svgHeight: "100px",
       previewurl: '',
-      resume: 0,
       thumburl: '',
       metadata: {}
     },
@@ -88,7 +83,7 @@ export const objForm = {
       placeholder: 'Press "Enter" after each tag.',
       content: []
     },
-    label: 'Description',
+    label: 'Tags',
     value: '',
     validation: {
       required: false,

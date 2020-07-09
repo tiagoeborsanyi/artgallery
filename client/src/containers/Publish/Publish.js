@@ -10,10 +10,11 @@ import Button from '../../components/UI/Button/Button'
 const Publish = props => {
   const [publishForm, setPublishForm] = useState(objForm)
   const [formisValid, setFormIsValid] = useState(false)
+  const [files, setFiles] = useState()
   const storage = firebase.storage().ref()
 
   const presKey = e => {
-    if(e.key === 'Enter') {
+    if(e.key === 'Enter' && e.target.value.length >= 2) {
       setPublishForm({
         ...publishForm,
         tags: {
@@ -30,6 +31,10 @@ const Publish = props => {
       })
       e.target.value = ''
     }
+  }
+
+  const filesHandler = (controlFiles) => {
+    console.log(controlFiles)
   }
 
   const pickedHandler = (event, name) => {
@@ -56,12 +61,6 @@ const Publish = props => {
   }
 
   const inputChangeHandler = (event, controlName) => {
-    if (controlName === 'preview1') {
-      pickedHandler(event, controlName)
-      // console.log(publishForm[controlName], test)
-      return;
-    }
-    console.log('dentro')
     const updatepublishForm = {
       ...publishForm,
       [controlName]: {
@@ -104,6 +103,7 @@ const Publish = props => {
         touched={formElement.config.touched}
         classes={formElement.config.space}
         onPresKey={presKey}
+        onPicked={filesHandler}
         changed={event => inputChangeHandler(event, formElement.id)} />
   ))
 
