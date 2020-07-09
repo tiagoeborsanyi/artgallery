@@ -14,6 +14,7 @@ const Login = props => {
   const [loading, setLoading] = useState(false)
   const [controls, setControls] = useState({
     email: {
+      elementType: 'input',
       elementConfig: {
         type: 'email',
         placeholder: 'Your email'
@@ -29,6 +30,7 @@ const Login = props => {
       space: 'space'
     },
     password: {
+      elementType: 'input',
       elementConfig: {
         type: 'password',
         placeholder: 'Your password'
@@ -86,6 +88,7 @@ const Login = props => {
   let form = formElementArray.map(formElement => (
     <Input
       key={formElement.id}
+      imputType={formElement.config.elementType}
       label={formElement.config.label}
       value={formElement.config.value}
       elementConfig={formElement.config.elementConfig}

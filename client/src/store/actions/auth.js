@@ -52,7 +52,7 @@ export const authCheckState = () => {
   return dispatch => {
     dispatch(authStart())
     firebase.auth().onAuthStateChanged(async (user) => {
-      console.log('user: ', user)
+      // console.log('user: ', user)
       if (user) {
         const iT = await firebase.auth().currentUser.getIdToken(true)
         // console.log('idToken', iT, user)

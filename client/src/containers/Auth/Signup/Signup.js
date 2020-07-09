@@ -12,6 +12,7 @@ import Button from '../../../components/UI/Button/Button'
 const Signup = props => {
   const [controls, setControls] = useState({
     name: {
+      elementType: 'input',
       elementConfig: {
         type: 'text',
         placeholder: 'Your name'
@@ -26,6 +27,7 @@ const Signup = props => {
       space: 'space'
     },
     email: {
+      elementType: 'input',
       elementConfig: {
         type: 'email',
         placeholder: 'Your email'
@@ -41,6 +43,7 @@ const Signup = props => {
       space: 'space'
     },
     confirmEmail: {
+      elementType: 'input',
       elementConfig: {
         type: 'email',
         placeholder: 'Your email'
@@ -56,6 +59,7 @@ const Signup = props => {
       space: 'space'
     },
     password: {
+      elementType: 'input',
       elementConfig: {
         type: 'password',
         placeholder: 'Your password'
@@ -118,6 +122,7 @@ const Signup = props => {
   let form = formElementArray.map(formElement => (
     <Input
       key={formElement.id}
+      imputType={formElement.config.elementType}
       label={formElement.config.label}
       value={formElement.config.value}
       elementConfig={formElement.config.elementConfig}

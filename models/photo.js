@@ -6,10 +6,10 @@ const photoSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: false },
   thumbnail: { type: String, required: false },
-  original_img: { type: String, required: true },
-  tags: { type: [String], required: false },
+  original_img: [{ type: String, required: true }],
+  tags: [String],
   download: { type: Boolean, required: true },
-  favorited: { type: [{ type: ObjectId, ref: 'User' }], required: false },
+  favorited: [{ type: ObjectId, required: false, ref: 'User' }],
   comment: { type: [{
     user: { type: ObjectId, ref: 'User', required: true },
     content: { type: String, required: true},

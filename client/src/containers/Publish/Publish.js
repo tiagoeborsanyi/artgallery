@@ -2,123 +2,155 @@ import React, { useState } from 'react'
 
 import './Publish.css'
 import firebase from '../../services/firebase'
-import PublishLogged from '../../components/Publish/PublishLogged'
+import { checkValidity } from '../../shared/utility'
+import { objForm } from './objForm'
+import Input from '../../components/UI/Input/Input'
+import Button from '../../components/UI/Button/Button'
 
 const Publish = props => {
-  const [form, setForm] = useState({
-    title: {
-      label: 'Title',
-      value: '',
-      validation: {
-        required: true,
-      },
-      valid: false,
-      touched: false,
-      space: 'space'
-    },
-    description: {
-      label: 'Description',
-      value: '',
-      validation: {
-        required: false,
-      },
-      valid: true,
-      touched: false,
-      space: 'space'
-    },
-    preview1: {
-      label: 'Thumbnail',
-      previewurl: '',
-      resume: 0,
-      thumburl: '',
-      metadata: {}
-    },
-    preview2: {
-      label: 'Original Image',
-      previewurl: '',
-      resume: 0,
-      thumburl: '',
-      metadata: {}
-    },
-    tags: {
-      label: 'Tags',
-      value: []
-    },
-    download: {
-      label: 'Allow Download',
-      value: '',
-      checked: false,
-      touched: false
-    }
-  })
-  const [previewUrl2, setPreviewUrl2] = useState()
-  const [resume, setResume] = useState(0)
+  const [publishForm, setPublishForm] = useState(objForm)
+  const [formisValid, setFormIsValid] = useState(false)
   const storage = firebase.storage().ref()
 
-  const pickedHandler = (event) => {
+  const presKey = e => {
+    if(e.key === 'Enter') {
+      setPublishForm({
+        ...publishForm,
+        tags: {
+          ...publishForm.tags,
+          value: '',
+          elementConfig: {
+            content: [
+              ...publishForm.tags.elementConfig.content,
+              e.target.value
+            ],
+            placeholder: 'Press "Enter" after each tag.'
+          }
+        }
+      })
+      e.target.value = ''
+    }
+  }
+
+  const pickedHandler = (event, name) => {
     let pickedFile;
+    let objImg = {}
     if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0]
-      // console.log(pickedFile)
       const reader = new FileReader()
       reader.onloadend = () => {
-        setPreviewUrl2(reader.result)
-        console.log('preview: ', typeof reader.result)
+        objImg['preview'] = reader.result
+        console.log('preview: ', reader.result)
       }
       reader.readAsDataURL(pickedFile)
       const imgRef = storage.child(`${pickedFile.lastModified}${pickedFile.name}`)
       const resultRef = imgRef.put(pickedFile)
       resultRef.on('state_changed', (p) => {
         let progress = (p.bytesTransferred / p.totalBytes) * 100
-        setResume(progress)
-        console.log('result: ', progress)
+        setPublishForm({
+          ...publishForm,
+          [name]: {
+            ...publishForm[name],
+            elementConfig: {
+              ...publishForm[name].elementConfig,
+              resume: progress
+            }
+          }
+        })
       }, (error) => {
         console.log(error)
       }, async () => {
         const uploadURL = await resultRef.snapshot.ref.getDownloadURL()
-        console.log('URL: ', uploadURL)
+        objImg['uploadurl'] = uploadURL
+        // console.log('URL: ', uploadURL)
       })
-      console.log('result: ', resultRef)
+      // console.log('result: ', resultRef)
+      objImg['resultref'] = resultRef
     }
+    return objImg
   }
 
-  const presKey = e => {
-    if(e.key === 'Enter') {
-      setForm({...form, tags: {value: [...form.tags.value, e.target.value]}})
-      e.target.value = ''
+  const inputChangeHandler = (event, controlName) => {
+    if (controlName === 'preview1') {
+      const test = pickedHandler(event, controlName)
+      setPublishForm({
+        ...publishForm,
+        [controlName]: {
+          ...publishForm[controlName],
+          elementConfig: {
+            // ...publishForm[controlName].elementConfig,
+            previewurl: test.preview,
+            thumburl: test.uploadurl,
+            metadata: test.resultref
+          }
+        }
+      })
+      console.log(publishForm[controlName], test)
     }
-  }
-
-  const inputChangeHandler = (event) => {
-    if (event.target.name === 'download') {
-      setForm({...form, download: {checked: !form.download.checked}})
-    }
-    const updateForm = {
-      ...form,
-      [event.target.name]: {
-        ...form[event.target.name],
+    const updatepublishForm = {
+      ...publishForm,
+      [controlName]: {
+        ...publishForm[controlName],
         value: event.target.value,
-        // valid: checkValidity(event.target.value, controls[controlName].validation),
+        valid: checkValidity(event.target.value, publishForm[controlName].validation),
         touched: true
       }
     }
-    setForm(updateForm)
+    let formIsValid = true
+    for (let key in updatepublishForm) {
+      formIsValid = updatepublishForm[key].valid && formIsValid
+    }
+    setPublishForm(updatepublishForm)
+    setFormIsValid(formIsValid)
   }
 
   const submitHandler = event => {
     event.preventDefault()
-    console.log(form)
+    console.log(publishForm)
   }
 
+  const formElementArray = []
+  for (let key in publishForm) {
+    formElementArray.push({
+      id: key,
+      config: publishForm[key]
+    })
+  }
 
-  return <PublishLogged
-    form={form}
-    changed={event => inputChangeHandler(event)}
-    submitPublish={submitHandler}
-    pickedHandler={pickedHandler}
-    previewUrl2={previewUrl2}
-    resume2={resume}
-    onPresKey={presKey} />
+  let form = formElementArray.map(formElement => (
+      <Input
+        key={formElement.id}
+        inputType={formElement.config.elementType}
+        label={formElement.config.label}
+        value={formElement.config.value}
+        elementConfig={formElement.config.elementConfig}
+        invalid={!formElement.config.valid}
+        shouldValidate={formElement.config.validation}
+        touched={formElement.config.touched}
+        classes={formElement.config.space}
+        onPresKey={presKey}
+        changed={event => inputChangeHandler(event, formElement.id)} />
+  ))
+
+  return (
+    <React.Fragment>
+      <div className="container">
+        <h1 className="container-newart-title">New Art</h1>
+        <div className="container-newart">
+          <form onSubmit={submitHandler}>
+            <div className={''}>
+              {form}
+            </div>
+            <Button
+              btnType='button-form active'
+              disabled={!formisValid}>
+                Publish Art
+            </Button>
+          </form>
+        </div>
+      </div>
+    </React.Fragment>
+  )
 }
 
 export default Publish
