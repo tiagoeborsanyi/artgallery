@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './Publish.css'
 import firebase from '../../services/firebase'
@@ -9,6 +9,7 @@ import Button from '../../components/UI/Button/Button'
 
 const Publish = props => {
   const [publishForm, setPublishForm] = useState(objForm)
+  const [preview, setPreview] = useState()
   const [formisValid, setFormIsValid] = useState(false)
   const storage = firebase.storage().ref()
 
@@ -34,38 +35,23 @@ const Publish = props => {
 
   const pickedHandler = (event, name) => {
     let pickedFile;
-    let objImg = {}
+    let objImg = []
     if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0]
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        objImg['preview'] = reader.result
-        console.log('preview: ', reader.result)
-      }
-      reader.readAsDataURL(pickedFile)
       const imgRef = storage.child(`${pickedFile.lastModified}${pickedFile.name}`)
       const resultRef = imgRef.put(pickedFile)
       resultRef.on('state_changed', (p) => {
         let progress = (p.bytesTransferred / p.totalBytes) * 100
-        setPublishForm({
-          ...publishForm,
-          [name]: {
-            ...publishForm[name],
-            elementConfig: {
-              ...publishForm[name].elementConfig,
-              resume: progress
-            }
-          }
-        })
+        objImg.push(progress)
       }, (error) => {
         console.log(error)
       }, async () => {
         const uploadURL = await resultRef.snapshot.ref.getDownloadURL()
-        objImg['uploadurl'] = uploadURL
+        objImg.push(uploadURL)
         // console.log('URL: ', uploadURL)
       })
       // console.log('result: ', resultRef)
-      objImg['resultref'] = resultRef
+      objImg.push(resultRef)
     }
     return objImg
   }
@@ -73,20 +59,11 @@ const Publish = props => {
   const inputChangeHandler = (event, controlName) => {
     if (controlName === 'preview1') {
       const test = pickedHandler(event, controlName)
-      setPublishForm({
-        ...publishForm,
-        [controlName]: {
-          ...publishForm[controlName],
-          elementConfig: {
-            // ...publishForm[controlName].elementConfig,
-            previewurl: test.preview,
-            thumburl: test.uploadurl,
-            metadata: test.resultref
-          }
-        }
-      })
-      console.log(publishForm[controlName], test)
+      setPreview(test)
+      // console.log(publishForm[controlName], test)
+      return;
     }
+    console.log('dentro')
     const updatepublishForm = {
       ...publishForm,
       [controlName]: {

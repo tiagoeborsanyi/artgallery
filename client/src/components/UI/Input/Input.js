@@ -1,14 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './Input.css'
 import './input-image.css'
 
 const Input = props => {
+  const [file, setFile] = useState();
+  const [previewUrl, setPreviewUrl] = useState();
   let inputElement = null
   let classValid = ''
   if (props.invalid && props.shouldValidate && props.touched) {
     classValid = 'invalid'
   }
+
+  useEffect(() => {
+    if (!file) {
+        return;
+    }
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+        setPreviewUrl(fileReader.result);
+    }
+    fileReader.readAsDataURL(file);
+    }, [file]);
+
+    const pickedHandler = event => {
+        let pickedFile;
+        if (event.target.files && event.target.files.length === 1) {
+            pickedFile = event.target.files[0];
+            setFile(pickedFile);
+        // props.onInput(props.id, pickedFile, fileIsValid);
+        }
+    };
 
   switch (props.inputType) {
     case ('input'):
@@ -36,21 +58,20 @@ const Input = props => {
               style={{width: props.elementConfig.width, height: props.elementConfig.height}}
               type="file"
               accept=".jpg,.png,.jpeg"
-              onChange={props.changed} />
+              onChange={pickedHandler} />
               <div
                 className="newart-image__img"
                 style={{
                   width: props.elementConfig.width,
                   height: props.elementConfig.height,
-                  backgroundImage: `url(${props.elementConfig.previewUrl
-                })`}}></div>
+                  backgroundImage: `url(${previewUrl})`}}
+                ></div>
               <div className="newart-image__change" style={{width: props.elementConfig.width, height: props.elementConfig.height}}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width={props.elementConfig.svgWidth} height={props.elementConfig.svgHeight}><path d="M0 0h24v24H0z" fill="none" /><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" /></svg>
                 <span>Choose File...</span>
               </div>
               <div className="newart-image__hover" style={{width: props.elementConfig.width, height: props.elementConfig.height}}></div>
           </div>
-          <progress value={props.elementConfig.resume} max="100">{props.elementConfig.resume}%</progress>
         </div>
       )
     break
