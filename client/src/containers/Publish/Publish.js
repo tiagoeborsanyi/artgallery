@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import './Publish.css'
 import firebase from '../../services/firebase'
@@ -9,7 +9,6 @@ import Button from '../../components/UI/Button/Button'
 
 const Publish = props => {
   const [publishForm, setPublishForm] = useState(objForm)
-  const [preview, setPreview] = useState()
   const [formisValid, setFormIsValid] = useState(false)
   const storage = firebase.storage().ref()
 
@@ -58,8 +57,7 @@ const Publish = props => {
 
   const inputChangeHandler = (event, controlName) => {
     if (controlName === 'preview1') {
-      const test = pickedHandler(event, controlName)
-      setPreview(test)
+      pickedHandler(event, controlName)
       // console.log(publishForm[controlName], test)
       return;
     }

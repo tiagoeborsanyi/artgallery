@@ -34,7 +34,9 @@ export const objForm = {
     elementType: 'input-image',
     elementConfig: {
       type: 'file',
+      selectimg: false,
       subtitle: '280x350',
+      selectimgwidth: '30%',
       width: '140px',
       height: '175px',
       svgWidth: "48px",
@@ -58,7 +60,9 @@ export const objForm = {
     elementType: 'input-image',
     elementConfig: {
       type: 'file',
+      selectimg: true,
       subtitle: '280x350',
+      selectimgwidth: '40%',
       width: '220px',
       height: '270px',
       svgWidth: "100px",

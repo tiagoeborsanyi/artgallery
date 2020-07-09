@@ -6,6 +6,12 @@
   justify-content: center;
 }
 
+.newart-form-control__container-result {
+  width: 58%;
+  display: block;
+  padding-top: 1.2rem;
+}
+
 .newart-form-control.space,
 .newart-form-control-flexline.space {
   margin-bottom: 0.9rem;
@@ -52,6 +58,15 @@
   opacity: 1;
   z-index: 5;
   /* background-image: url(''); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.newart-image__img-result {
+  height: 120px;
+  width: 100px;
+  display: inline-block;
+  margin: 0.5rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
