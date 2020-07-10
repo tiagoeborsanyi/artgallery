@@ -72,7 +72,7 @@ export const objForm = {
     validation: {
       required: false
     },
-    valid: true,
+    valid: false,
     touched: true,
     space: 'space'
   },
@@ -88,7 +88,7 @@ export const objForm = {
     validation: {
       required: false,
     },
-    valid: true,
+    valid: false,
     touched: true,
     space: 'space'
   },

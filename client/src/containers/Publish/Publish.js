@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './Publish.css'
 import firebase from '../../services/firebase'
@@ -10,6 +10,7 @@ import Button from '../../components/UI/Button/Button'
 const Publish = props => {
   const [publishForm, setPublishForm] = useState(objForm)
   const [formisValid, setFormIsValid] = useState(false)
+  const [pressKey, setPressKey] = useState('')
   const [pathImages, setPathImages] = useState({
     thumb: '',
     original_img: []
@@ -21,6 +22,14 @@ const Publish = props => {
   const [loadFile, setLoadFile] = useState(false)
   const storage = firebase.storage().ref()
 
+  useEffect(() => {
+    let formIsValid = true
+      for (let key in publishForm) {
+        formIsValid = publishForm[key].valid && formIsValid
+      }
+      setFormIsValid(formIsValid)
+  }, [publishForm])
+
   const presKey = e => {
     if(e.key === 'Enter' && e.target.value.length >= 2) {
       setPublishForm({
@@ -28,6 +37,7 @@ const Publish = props => {
         tags: {
           ...publishForm.tags,
           value: '',
+          valid: true,
           elementConfig: {
             content: [
               ...publishForm.tags.elementConfig.content,
@@ -94,6 +104,10 @@ const Publish = props => {
             ...pathImages,
             original_img: promises
           })
+          setPublishForm({
+            ...publishForm,
+            preview2: { ...publishForm.preview2, valid: true }
+          })
         }
       })
       .catch(err => console.log(err))
@@ -109,32 +123,30 @@ const Publish = props => {
         touched: true
       }
     }
-    let formIsValid = true
-    for (let key in updatepublishForm) {
-      formIsValid = updatepublishForm[key].valid && formIsValid
-    }
     setPublishForm(updatepublishForm)
-    setFormIsValid(formIsValid)
   }
 
   const submitHandler = async event => {
     event.preventDefault()
-    const updatePathImages = []
-    pathImages.original_img.map(arr => updatePathImages.push(`${Object.create(arr).snapshot.ref.location.bucket}/o/${Object.create(arr).snapshot.ref.location.path}`))
-    // console.log('PUBLISH FORM: ', publishForm)
-    const finalObjForm = {
-      title: publishForm.title.value,
-      description: publishForm.description.value,
-      thumbnail: pathImages.thumb.length ?
-        `${Object.create(pathImages.thumb[0]).snapshot.ref.location.bucket}/o/${Object.create(pathImages.thumb[0]).snapshot.ref.location.path}`
-        :
-        '',
-      original_img: updatePathImages,
-      tags: publishForm.tags.elementConfig.content,
-      download: publishForm.download.elementConfig.checked,
-      creator: 'id123'
+    console.log(formisValid, pressKey)
+    if (formisValid && pressKey !== 'Enter') {
+      const updatePathImages = []
+      pathImages.original_img.map(arr => updatePathImages.push(`${Object.create(arr).snapshot.ref.location.bucket}/o/${Object.create(arr).snapshot.ref.location.path}`))
+      const finalObjForm = {
+        title: publishForm.title.value,
+        description: publishForm.description.value,
+        thumbnail: pathImages.thumb.length ?
+          `${Object.create(pathImages.thumb[0]).snapshot.ref.location.bucket}/o/${Object.create(pathImages.thumb[0]).snapshot.ref.location.path}`
+          :
+          '',
+        original_img: updatePathImages,
+        tags: publishForm.tags.elementConfig.content,
+        download: publishForm.download.elementConfig.checked,
+        creator: 'id123'
+      }
+      console.log(finalObjForm)
     }
-    console.log(finalObjForm)
+    setPressKey('')
   }
 
   const formElementArray = []
@@ -167,7 +179,7 @@ const Publish = props => {
       <div className="container">
         <h1 className="container-newart-title">New Art</h1>
         <div className="container-newart">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={submitHandler} onKeyPress={(e) => setPressKey(e.key)}>
             <div className={''}>
               {form}
             </div>
