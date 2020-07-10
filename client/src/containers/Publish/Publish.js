@@ -7,10 +7,9 @@ import { objForm } from './objForm'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
 
-const Publish = props => {
+const Publish = () => {
   const [publishForm, setPublishForm] = useState(objForm)
   const [formisValid, setFormIsValid] = useState(false)
-  const [pressKey, setPressKey] = useState('')
   const [pathImages, setPathImages] = useState({
     thumb: '',
     original_img: []
@@ -52,13 +51,11 @@ const Publish = props => {
   }
 
   const filesHandler = (controlFiles, typeimg) => {
-    console.log(controlFiles, typeimg)
     if (typeimg === '140px') {
       setFiles({
         ...files,
         thumb: controlFiles
       })
-      // console.log(files)
       pickedHandler(controlFiles, 'thumb')
     } else {
       setLoadFile(true)
@@ -74,14 +71,13 @@ const Publish = props => {
     const promises = []
     Array.from(pickedFile).forEach(file => {
       const uploadTask = storage.child(`${file.lastModified}${file.name}`).put(file)
-      console.log(Object.create(uploadTask).snapshot.ref.location)
       promises.push(uploadTask)
       uploadTask.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
         snapshot => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           if (snapshot.state === firebase.storage.TaskState.RUNNING) {
-            console.log(`Progress: ${progress}%`);
+            // console.log(`Progress: ${progress}%`);
            }
         },
         error => console.log(error),
@@ -104,10 +100,6 @@ const Publish = props => {
             ...pathImages,
             original_img: promises
           })
-          setPublishForm({
-            ...publishForm,
-            preview2: { ...publishForm.preview2, valid: true }
-          })
         }
       })
       .catch(err => console.log(err))
@@ -126,10 +118,8 @@ const Publish = props => {
     setPublishForm(updatepublishForm)
   }
 
-  const submitHandler = async event => {
-    event.preventDefault()
-    console.log(formisValid, pressKey)
-    if (formisValid && pressKey !== 'Enter') {
+  const submitHandler = async () => {
+    if (!!pathImages.original_img.length) {
       const updatePathImages = []
       pathImages.original_img.map(arr => updatePathImages.push(`${Object.create(arr).snapshot.ref.location.bucket}/o/${Object.create(arr).snapshot.ref.location.path}`))
       const finalObjForm = {
@@ -145,8 +135,9 @@ const Publish = props => {
         creator: 'id123'
       }
       console.log(finalObjForm)
+    } else {
+      console.log('tem que adicionar imagens')
     }
-    setPressKey('')
   }
 
   const formElementArray = []
@@ -156,7 +147,6 @@ const Publish = props => {
       config: publishForm[key]
     })
   }
-
   let form = formElementArray.map(formElement => (
       <Input
         key={formElement.id}
@@ -179,13 +169,15 @@ const Publish = props => {
       <div className="container">
         <h1 className="container-newart-title">New Art</h1>
         <div className="container-newart">
-          <form onSubmit={submitHandler} onKeyPress={(e) => setPressKey(e.key)}>
+          <form onSubmit={e => e.preventDefault()}>
             <div className={''}>
               {form}
             </div>
             <Button
+              type='submit'
               btnType='button-form active'
-              disabled={!formisValid}>
+              disabled={!formisValid}
+              clicked={submitHandler}>
                 Publish Art
             </Button>
           </form>
