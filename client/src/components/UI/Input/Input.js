@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import './Input.css'
 import './input-image.css'
+import Spinner from '../Spinner/Spinner'
 
 const Input = props => {
   const [files, setFiles] = useState([]);
@@ -93,7 +94,7 @@ const Input = props => {
             key={i}
             className="newart-image__img-result"
             style={{backgroundImage: `url(${p})`}}
-            ></div>)) : null}
+            >{props.loadfile ? <Spinner /> : null}</div>)) : null}
           </div>
         </div>
       )

@@ -18,6 +18,7 @@ const Publish = props => {
     thumb: '',
     original_img: []
   })
+  const [loadFile, setLoadFile] = useState(false)
   const storage = firebase.storage().ref()
 
   const presKey = e => {
@@ -48,8 +49,9 @@ const Publish = props => {
         thumb: controlFiles
       })
       // console.log(files)
-      pickedHandler(controlFiles[0], 'thumb')
+      pickedHandler(controlFiles, 'thumb')
     } else {
+      setLoadFile(true)
       setFiles({
         ...files,
         original_img: controlFiles
@@ -62,7 +64,8 @@ const Publish = props => {
     const promises = []
     Array.from(pickedFile).forEach(file => {
       const uploadTask = storage.child(`${file.lastModified}${file.name}`).put(file)
-      // promises.push(uploadTask)
+      console.log(Object.create(uploadTask).snapshot.ref.location)
+      promises.push(uploadTask)
       uploadTask.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
         snapshot => {
@@ -73,8 +76,8 @@ const Publish = props => {
         },
         error => console.log(error),
         async () => {
-          const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
-          promises.push(downloadURL)
+          // const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
+          // promises.push(downloadURL)
         }
       )
     })
@@ -86,7 +89,7 @@ const Publish = props => {
             thumb: promises
           })
         } else {
-          console.log(promises)
+          setLoadFile(false)
           setPathImages({
             ...pathImages,
             original_img: promises
@@ -116,8 +119,22 @@ const Publish = props => {
 
   const submitHandler = async event => {
     event.preventDefault()
-    console.log(pathImages)
-
+    const updatePathImages = []
+    pathImages.original_img.map(arr => updatePathImages.push(`${Object.create(arr).snapshot.ref.location.bucket}/o/${Object.create(arr).snapshot.ref.location.path}`))
+    // console.log('PUBLISH FORM: ', publishForm)
+    const finalObjForm = {
+      title: publishForm.title.value,
+      description: publishForm.description.value,
+      thumbnail: pathImages.thumb.length ?
+        `${Object.create(pathImages.thumb[0]).snapshot.ref.location.bucket}/o/${Object.create(pathImages.thumb[0]).snapshot.ref.location.path}`
+        :
+        '',
+      original_img: updatePathImages,
+      tags: publishForm.tags.elementConfig.content,
+      download: publishForm.download.elementConfig.checked,
+      creator: 'id123'
+    }
+    console.log(finalObjForm)
   }
 
   const formElementArray = []
@@ -139,6 +156,7 @@ const Publish = props => {
         shouldValidate={formElement.config.validation}
         touched={formElement.config.touched}
         classes={formElement.config.space}
+        loadfile={loadFile}
         onPresKey={presKey}
         onPicked={filesHandler}
         changed={event => inputChangeHandler(event, formElement.id)} />
