@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import './Publish.css'
 import firebase from '../../services/firebase'
@@ -135,6 +136,9 @@ const Publish = () => {
         creator: 'id123'
       }
       console.log(finalObjForm)
+      axios.post('/api/photos/create-art', finalObjForm)
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
     } else {
       console.log('tem que adicionar imagens')
     }

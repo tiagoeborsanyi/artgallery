@@ -9,9 +9,9 @@ const photoSchema = new Schema({
   original_img: [{ type: String, required: true }],
   tags: [String],
   download: { type: Boolean, required: true },
-  favorited: [{ type: ObjectId, ref: 'User' }],
+  favorited: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
   comment: { type: [{
-    user: { type: ObjectId, ref: 'User', required: true },
+    user: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
     content: { type: String, required: true},
     createcomment: { type: Date, default: Date.now }
   }], required: false },
