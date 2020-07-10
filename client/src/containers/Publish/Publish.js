@@ -107,6 +107,19 @@ const Publish = () => {
   }
 
   const inputChangeHandler = (event, controlName) => {
+    if (controlName === 'download') {
+      setPublishForm({
+        ...publishForm,
+        download: {
+          ...publishForm.download,
+          elementConfig : {
+            type: 'checkbox',
+            checked: !publishForm.download.elementConfig.checked
+          }
+        }
+      })
+      return
+    }
     const updatepublishForm = {
       ...publishForm,
       [controlName]: {
