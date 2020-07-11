@@ -11,10 +11,19 @@
 }
 
 .input-form-control > label {
+  display: flex;
+  align-items: flex-start;
   font-size: 1rem;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.7);
   margin: 0.5rem 0;
+}
+
+.input-form-control > label span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .input-form-control > input {

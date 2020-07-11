@@ -97,6 +97,12 @@
   font-size: 1rem;
   font-weight: 600;
 }
+.newart-image__change .textImage {
+  font-size: 0.9rem;
+}
+.newart-image__change .imageValid {
+  color: red;
+}
 .newart-image__hover {
   position: absolute;
   background: linear-gradient(to top, rgba(14, 48, 143, 0.3), 100%, transparent);

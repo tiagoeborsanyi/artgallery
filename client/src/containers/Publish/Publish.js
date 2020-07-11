@@ -54,7 +54,6 @@ const Publish = () => {
 
   const removeTagHandler = (id) => {
     if (id !== 0) {
-      console.log(id)
       const updateTags = publishForm
       const newListTags = updateTags.tags.elementConfig.content.filter((tag, i) => id !== i)
       setPublishForm({

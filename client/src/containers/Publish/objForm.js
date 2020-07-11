@@ -3,6 +3,7 @@ export const objForm = {
     elementType: 'input',
     elementConfig: {
       type: 'text',
+      subtitle: '(REQUIRED)',
       placeholder: 'Your Title'
     },
     label: 'Title',
@@ -58,7 +59,7 @@ export const objForm = {
     elementConfig: {
       type: 'file',
       selectimg: true,
-      subtitle: '280x350',
+      subtitle: '280x350 (REQUIRED)',
       extratext: 'max 5 images',
       width: '220px',
       height: '270px',
