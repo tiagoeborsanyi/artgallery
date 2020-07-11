@@ -82,14 +82,14 @@ export const objForm = {
     elementConfig: {
       type: 'text',
       placeholder: 'Press "Enter" after each tag.',
-      content: []
+      content: ['all']
     },
     label: 'Tags',
     value: '',
     validation: {
       required: false,
     },
-    valid: false,
+    valid: true,
     touched: true,
     space: 'space'
   },

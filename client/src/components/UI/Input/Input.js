@@ -112,23 +112,15 @@ const Input = props => {
           </div>
           <ul className="newart-tags-result__items">
             {props.elementConfig.content.map((tag, index) => (
-              <li className="newart-tags-result__item" key={index}>
+              <li className="newart-tags-result__item" key={index} onClick={() => props.removeTag(index)}>
                 <button>
                   <span className="material-icons">
                     close
                   </span>
-                    {tag}
+                  <span>{tag}</span>
                 </button>
               </li>
             ))}
-            <li className="newart-tags-result__item">
-              <button>
-                <span className="material-icons">
-                  close
-                </span>
-                  All
-              </button>
-            </li>
           </ul>
         </div>
       )

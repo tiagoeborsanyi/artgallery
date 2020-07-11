@@ -52,6 +52,24 @@ const Publish = () => {
     }
   }
 
+  const removeTagHandler = (id) => {
+    if (id !== 0) {
+      console.log(id)
+      const updateTags = publishForm
+      const newListTags = updateTags.tags.elementConfig.content.filter((tag, i) => id !== i)
+      setPublishForm({
+        ...publishForm,
+        tags: {
+          ...publishForm.tags,
+          elementConfig: {
+            ...publishForm.tags.elementConfig,
+            content: newListTags
+          }
+        }
+      })
+    }
+  }
+
   const filesHandler = (controlFiles, typeimg) => {
     if (typeimg === '140px') {
       setFiles({
@@ -189,6 +207,7 @@ const Publish = () => {
         classes={formElement.config.space}
         loadfile={loadFile}
         onPresKey={presKey}
+        removeTag={removeTagHandler}
         onPicked={filesHandler}
         changed={event => inputChangeHandler(event, formElement.id)} />
   ))
