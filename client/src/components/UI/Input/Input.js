@@ -41,11 +41,21 @@ const Input = props => {
 
   const pickedHandler = (event, typeimg) => {
       let pickedFile;
+      let pickedFiltered = [];
       if (event.target.files && event.target.files.length >= 1) {
         pickedFile = event.target.files;
-        setFiles([...pickedFile])
+        [...pickedFile].forEach((file, i) => {
+          if (file.type.split('/')[0] !== 'image') {
+            setImageValid('imageValid')
+          } else {
+            pickedFiltered.push(file)
+          }
+          if (i === ([...pickedFile].length-1) && pickedFiltered.length >= 0) {
+            setFiles(pickedFiltered)
+            props.onPicked(pickedFiltered, typeimg);
+          }
+        })
       }
-      props.onPicked(event.target.files, typeimg);
   };
 
   switch (props.inputType) {
