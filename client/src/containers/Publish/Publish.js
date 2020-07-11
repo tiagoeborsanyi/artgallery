@@ -24,11 +24,12 @@ const Publish = () => {
 
   useEffect(() => {
     let formIsValid = true
+    const arrImages = pathImages.original_img.length
       for (let key in publishForm) {
-        formIsValid = publishForm[key].valid && formIsValid
+        formIsValid = publishForm[key].valid && formIsValid && arrImages
       }
       setFormIsValid(formIsValid)
-  }, [publishForm])
+  }, [publishForm, pathImages])
 
   const presKey = e => {
     if(e.key === 'Enter' && e.target.value.length >= 2) {
@@ -70,6 +71,7 @@ const Publish = () => {
 
   const pickedHandler = (pickedFile, type) => {
     const promises = []
+    setFormIsValid(false)
     Array.from(pickedFile).forEach(file => {
       const uploadTask = storage.child(`${file.lastModified}${file.name}`).put(file)
       promises.push(uploadTask)
@@ -95,12 +97,22 @@ const Publish = () => {
             ...pathImages,
             thumb: promises
           })
+          let formIsValid = true
+          for (let key in publishForm) {
+            formIsValid = publishForm[key].valid && formIsValid
+          }
+          setFormIsValid(formIsValid)
         } else {
           setLoadFile(false)
           setPathImages({
             ...pathImages,
             original_img: promises
           })
+          let formIsValid = true
+          for (let key in publishForm) {
+            formIsValid = publishForm[key].valid && formIsValid
+          }
+          setFormIsValid(formIsValid)
         }
       })
       .catch(err => console.log(err))

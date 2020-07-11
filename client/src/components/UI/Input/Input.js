@@ -12,7 +12,6 @@ const Input = props => {
   if (props.invalid && props.shouldValidate && props.touched) {
     classValid = 'invalid'
   }
-
   useEffect(() => {
     if (!files || files.length > 5) {
         return;

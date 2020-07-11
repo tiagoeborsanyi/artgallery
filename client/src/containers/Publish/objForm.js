@@ -71,7 +71,7 @@ export const objForm = {
     label: 'Original Image',
     value: '',
     validation: {
-      required: false
+      required: true
     },
     valid: true,
     touched: true,
