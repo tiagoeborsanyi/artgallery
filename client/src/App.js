@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from './store/actions/index'
 import Spinner from './components/UI/Spinner/Spinner'
 import Layout from './hoc/Layout/Layout'
+import HomeLogged from './containers/Home/HomeLogged/HomeLogged'
 import HomeUnlogged from './containers/Home/HomeUnlogged/HomeUnlogged'
 import Login from './containers/Auth/Login/Login'
 import Signup from './containers/Auth/Signup/Signup'
@@ -26,7 +27,7 @@ const App = props => {
       <Switch>
         <Route path='/publish' component={Publish} />
         <Route path='/logout' component={Logout} />
-        <Route path='/' exact render={() => <p>logado</p>} />
+        <Route path='/' exact component={HomeLogged} />
         <Redirect to='/' />
       </Switch>
     )

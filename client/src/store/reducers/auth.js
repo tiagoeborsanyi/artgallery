@@ -13,7 +13,11 @@ const initialState = {
 }
 
 const authStart = (state, action) => {
-  return updateObject(state, { error: null, loading: true })
+  return updateObject(state, {
+    error: null,
+    loading: true,
+    googleRedirectStatus: false
+  })
 }
 
 const authSuccess = (state, action) => {
@@ -51,6 +55,12 @@ const setAuthRedirectPath = (state, action) => {
   return updateObject(state, { authRediretPath: action.path })
 }
 
+const googleRedirect = (state, action) => {
+  return updateObject(state, {
+    loading: action.statusRedirect
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_START: return authStart(state, action)
@@ -58,6 +68,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_FAIL: return authFail(state, action)
     case actionTypes.AUTH_LOGOUT: return authLogout(state, action)
     case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state, action)
+    case actionTypes.GOOGLE_REDIRECT: return googleRedirect(state, action)
     default: return state
   }
 }

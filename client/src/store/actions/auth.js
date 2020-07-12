@@ -35,9 +35,16 @@ export const logout = () => {
 }
 
 export const auth = (email = '', password = '', isSignup) => {
-  // Aqui eu faço a lógica de logar com login e senha
+  // Aqui eu faço a lógica de logar com login e senha n
   return dispatch => {
     console.log(!!email, password, isSignup)
+  }
+}
+
+export const googleRedirect = (status) => {
+  return {
+    type: actionTypes.GOOGLE_REDIRECT,
+    statusRedirect: status
   }
 }
 

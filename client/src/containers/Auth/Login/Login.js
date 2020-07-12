@@ -72,7 +72,7 @@ const Login = props => {
     props.onAuth(email['value'], password['value'], 'login')
   }
 
-  const loginWithGoogleHandler = () => {
+  const loginWithGoogleHandler = async () => {
     setLoading(true)
     const provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithRedirect(provider)
