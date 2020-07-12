@@ -20,6 +20,7 @@ const Publish = () => {
     original_img: []
   })
   const [loadFile, setLoadFile] = useState(false)
+  const [loadFileThumb, setLoadFileThumb] = useState(false)
   const storage = firebase.storage().ref()
 
   useEffect(() => {
@@ -71,6 +72,7 @@ const Publish = () => {
 
   const filesHandler = (controlFiles, typeimg) => {
     if (typeimg === '140px') {
+      setLoadFileThumb(true)
       setFiles({
         ...files,
         thumb: controlFiles
@@ -110,6 +112,7 @@ const Publish = () => {
     Promise.all(promises)
       .then(() => {
         if (type === 'thumb') {
+          setLoadFileThumb(false)
           setPathImages({
             ...pathImages,
             thumb: promises
@@ -205,6 +208,7 @@ const Publish = () => {
         touched={formElement.config.touched}
         classes={formElement.config.space}
         loadfile={loadFile}
+        loadFileThumb={loadFileThumb}
         onPresKey={presKey}
         removeTag={removeTagHandler}
         onPicked={filesHandler}
