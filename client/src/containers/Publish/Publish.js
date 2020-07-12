@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
 import './Publish.css'
 import firebase from '../../services/firebase'
@@ -8,7 +9,7 @@ import { objForm } from './objForm'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
 
-const Publish = () => {
+const Publish = props => {
   const [publishForm, setPublishForm] = useState(objForm)
   const [formisValid, setFormIsValid] = useState(false)
   const [pathImages, setPathImages] = useState({
@@ -165,7 +166,7 @@ const Publish = () => {
   }
 
   const submitHandler = async () => {
-    if (!!pathImages.original_img.length) {
+    if (!!pathImages.original_img.length && props.isAuthenticated) {
       const updatePathImages = []
       pathImages.original_img.map(arr => updatePathImages.push(`${Object.create(arr).snapshot.ref.location.bucket}/o/${Object.create(arr).snapshot.ref.location.path}`))
       const finalObjForm = {
@@ -178,9 +179,10 @@ const Publish = () => {
         original_img: updatePathImages,
         tags: publishForm.tags.elementConfig.content,
         download: publishForm.download.elementConfig.checked,
-        creator: 'id123'
+        creator: props.uid
       }
-      console.log(finalObjForm)
+      console.log('OBJ: ', finalObjForm)
+      console.log('TOKEN: ', props.token)
       axios.post('/api/photos/create-art', finalObjForm)
         .then(response => console.log(response))
         .catch(error => console.log(error))
@@ -238,4 +240,12 @@ const Publish = () => {
   )
 }
 
-export default Publish
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+    token: state.auth.token,
+    uid: state.auth.userId
+  }
+}
+
+export default connect(mapStateToProps)(Publish)
