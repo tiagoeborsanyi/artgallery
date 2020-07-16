@@ -34,7 +34,7 @@ const HomeLogged = props => {
       props.onLoginGoogleRedirect(false)
       props.onLogout()
     })
-  }, [])
+  })
 
   let content = <Spinner />
   if (!props.onGoogleRedirectStatus) {

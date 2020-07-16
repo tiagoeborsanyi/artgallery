@@ -181,9 +181,10 @@ const Publish = props => {
         download: publishForm.download.elementConfig.checked,
         creator: props.uid
       }
-      console.log('OBJ: ', finalObjForm)
-      console.log('TOKEN: ', props.token)
-      axios.post('/api/photos/create-art', finalObjForm)
+      const headers = {
+        headers: { Authorization: props.token }
+      }
+      axios.post('/api/photos/create-art', finalObjForm, headers)
         .then(response => console.log(response))
         .catch(error => console.log(error))
     } else {

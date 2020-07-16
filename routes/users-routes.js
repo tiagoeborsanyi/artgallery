@@ -3,7 +3,6 @@ const router = express.Router()
 
 const checkAuth = require('../middleware/check-auth')
 const userController = require('../controllers/users-controllers')
-const { route } = require('./photos-routes')
 
 router.get('/', checkAuth, userController.getUsers)
 

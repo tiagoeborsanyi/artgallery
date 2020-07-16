@@ -36,6 +36,7 @@ const signupOrLogin = async (req, res, next) => {
       email,
       uid,
       avatar: '',
+      arts: [],
       followers: [],
       following: [],
       favorites: []

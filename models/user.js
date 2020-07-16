@@ -7,6 +7,7 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   uid: { type: String, required: true },
   avatar: { type: String, required: false },
+  arts: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Photo' }],
   followers: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
   following: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
   favorites: [{ type: mongoose.Types.ObjectId, ref: 'Photo' }],
