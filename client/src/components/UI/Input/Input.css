@@ -6,7 +6,15 @@
   justify-content: center;
 }
 
-.input-form-control.space {
+.input-form-control-flexline {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.input-form-control.space,
+.input-form-control-flexline.space {
   margin-bottom: 0.9rem;
 }
 
@@ -38,4 +46,10 @@
 
 .input-form-control .invalid {
   border: 1px solid red;
+}
+
+@media (min-width: 40rem) {
+  .input-form-control-flexline {
+    flex-direction: row;
+}
 }

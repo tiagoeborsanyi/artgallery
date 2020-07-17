@@ -1,0 +1,38 @@
+.newart-tags {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.newart-tags-result__items {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+.newart-tags-result__item {
+  display: inline-block;
+  margin: 0.3rem;
+}
+.newart-tags-result__item > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 35px;
+  outline: none;
+}
+.newart-tags-result__item > button span {
+  font-size: 0.8rem;
+  margin-right: 0.2rem;
+  align-self: flex-end;
+}
+.newart-tags-result__item > button:hover {
+  cursor: pointer;
+  background-color: #ededed;
+}

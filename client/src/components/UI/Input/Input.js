@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 import './Input.css'
 import './input-image.css'
+import './input-switch.css'
+import './input-textarea.css'
+import './input-tags.css'
 import Spinner from '../Spinner/Spinner'
 
 const Input = props => {
@@ -116,7 +119,7 @@ const Input = props => {
     case ('tags'):
       inputElement = (
         <div className="newart-tags">
-          <div className="newart-form-control space">
+          <div className="input-form-control space">
             <label>{props.label} <span>(Optional)</span></label>
             <input
               type="text"
@@ -149,7 +152,7 @@ const Input = props => {
       break;
       case ('checkbox-switch'):
         inputElement = (
-          <div className="newart-form-control space">
+          <div className="input-form-control space">
             <label>{props.label}</label>
             <label className="switch">
               <input

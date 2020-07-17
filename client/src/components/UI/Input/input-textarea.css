@@ -1,0 +1,20 @@
+.newart-form-control.textarea {
+  height: 100%;
+  width: 100%;
+}
+
+.newart-form-control.textarea > textarea {
+  height: 175px;
+  width: 100%;
+  outline: none;
+  resize: none;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #e7e7e7;
+}
+
+@media (min-width: 40rem) {
+  .newart-form-control.textarea {
+      width: 70%;
+  }
+}
