@@ -1,4 +1,4 @@
-.container {
+/* .container {
   width: 100%;
   margin: 3rem auto;
   padding: 0 1rem;
@@ -80,7 +80,7 @@
 }
 
 /* INIT TAGS FOR RESULT */
-.newart-tags {
+/* .newart-tags {
   display: block;
   width: 100%;
   height: auto;
@@ -115,14 +115,14 @@
 .newart-tags-result__item > button:hover {
   cursor: pointer;
   background-color: #ededed;
-}
+} */
 
 /* FINAL TAGS FOR RESULT */
 
 
 
 /* INIT BUTTON SWITCH DOWNLOAD */
-.switch {
+/* .switch {
   position: relative;
   display: inline-block;
   width: 80px;
@@ -172,17 +172,17 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-.slider.round {
+/* .slider.round {
   border-radius: 34px;
 }
 
 .slider.round:before {
   border-radius: 50%;
-}
+} */
 
 /* FINAL BUTTON SWITCH DOWNLOAD */
 
-.button-newart-form {
+/* .button-newart-form {
   height: 3rem;
   width: 100%;
   font-size: 1rem;
@@ -219,4 +219,4 @@ input:checked + .slider:before {
   .newart-form-control.textarea {
       width: 70%;
   }
-}
+} */
