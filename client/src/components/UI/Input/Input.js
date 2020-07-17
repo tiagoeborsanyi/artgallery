@@ -77,7 +77,7 @@ const Input = props => {
     break
     case ('input-image'):
       inputElement = (
-        <div className="newart-form-control-flexline space">
+        <div className="input-form-control-flexline space">
           <div className={`newart-form-control form-control-input__mobile-desktop space`}>
             <label>{props.label} <span>{props.elementConfig.subtitle}</span></label>
             <div
