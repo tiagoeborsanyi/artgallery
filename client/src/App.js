@@ -11,6 +11,7 @@ import Login from './containers/Auth/Login/Login'
 import Signup from './containers/Auth/Signup/Signup'
 import Logout from './containers/Auth/Logout/Logout'
 import Publish from './containers/Publish/Publish'
+import ViewImage from './containers/ViewImage/ViewImage'
 import PublishNotLogged from './components/Publish/PublishNotLogged/PublishNotLogged'
 
 const App = props => {
@@ -27,6 +28,7 @@ const App = props => {
       <Switch>
         <Route path='/publish' component={Publish} />
         <Route path='/logout' component={Logout} />
+        <Route path='/vimage/:vimageId' component={ViewImage} />
         <Route path='/' exact component={HomeLogged} />
         <Redirect to='/' />
       </Switch>
@@ -37,6 +39,7 @@ const App = props => {
         <Route path='/publish' component={PublishNotLogged} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
+        <Route path='/vimage/:vimageId' component={ViewImage} />
         <Route path='/' exact component={HomeUnlogged} />
         <Redirect to='/' />
       </Switch>

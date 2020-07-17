@@ -108,4 +108,5 @@ const createArt = async (req, res, next) => {
 }
 
 exports.getPhotos = getPhotos
+exports.getPhotoById = getPhotoById
 exports.createArt = createArt

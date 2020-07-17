@@ -9,6 +9,8 @@ router.get('/', (req, res, next) => {
   res.json({ photos: 'return same photos... '})
 })
 
+router.get('/photobyid', photoController.getPhotoById)
+
 router.post(
   '/create-art',
   checkAuth,

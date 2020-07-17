@@ -185,7 +185,11 @@ const Publish = props => {
         headers: { Authorization: props.token }
       }
       axios.post('/api/photos/create-art', finalObjForm, headers)
-        .then(response => console.log(response))
+        .then(response => {
+          if (response.status === 201) {
+            props.history.push(`/vimage/${response.data.photo._id}`)
+          }
+        })
         .catch(error => console.log(error))
     } else {
       console.log('tem que adicionar imagens')
