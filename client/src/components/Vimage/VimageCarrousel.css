@@ -1,0 +1,257 @@
+.vimage {
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.vimage-carousel {
+  height: 23rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 0%;
+  box-shadow: 0 4px 20px -11px rgba(0, 0, 0, 0.6);
+  perspective: 100px;
+  overflow: hidden;
+}
+.vimage-carousel > ol {
+  overflow: hidden;
+}
+
+.vimage-carousel > ol,
+.vimage-carousel > li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel__viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  overflow: scroll;
+  counter-reset: item;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel__slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  counter-increment: item;
+  outline: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* .carousel__slide.first {
+  background-image: url('../img/ilt1.jpg');
+}
+.carousel__slide.second {
+  background-image: url('../img/ilt2.jpg');
+}
+.carousel__slide.third {
+  background-image: url('../img/ilt3.jpg');
+}
+.carousel__slide.four {
+  background-image: url('../img/ilt4.jpg');
+}
+.carousel__slide.five {
+  background-image: url('../img/ilt5.png');
+} */
+
+.carousel__slide::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -40%, 70px);
+  color: white;
+  font-size: 2rem;
+}
+
+.carousel__snapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+}
+
+/* @media (prefers-reduced-motion: reduce) {
+  .carousel__snapper {
+    animation-name: none;
+  }
+} */
+
+.vimage-carousel:hover .carousel__snapper,
+.vimage-carousel:focus-within .carousel__snapper {
+  animation-name: none;
+}
+
+.vimage-carousel::before,
+.vimage-carousel::after,
+.carousel__prev,
+.carousel__next {
+  position: absolute;
+  top: 0;
+  margin-top: 11rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  transform: translateY(-50%);
+  border-radius: 100%;
+  font-size: 0;
+  outline: 0;
+}
+
+.vimage-carousel::before,
+.carousel__prev {
+  left: 0.5rem;
+}
+.vimage-carousel::after,
+.carousel__next {
+  right: 0.5rem;
+}
+
+.vimage-carousel::before,
+.vimage-carousel::after {
+  content: '';
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-size: 0.7rem 0.7rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: white;
+  font-size: 1rem;
+  line-height: 2rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.vimage-carousel::before {
+  background-image: url('../../assets/keyboard_arrow_left-white-18dp.svg');
+}
+.vimage-carousel::after {
+  background-image: url('../../assets//keyboard_arrow_right-white-18dp.svg');
+}
+
+
+
+/* INICIO DA THUMB */
+
+.vimage-thumb {
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+.carousel__navigation {
+  text-align: left;
+}
+.carousel__navigation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+.carousel__navigation-list,
+.carousel__navigation-item {
+  display: inline-block;
+}
+
+.carousel__navigation-item {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.carousel__navigation-item__cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(14, 48, 143, 0.3), 100%, transparent);
+}
+
+.carousel__navigation-button {
+  display: inline-block;
+  height: 2.9rem;
+  width: 2.4rem;
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  transition: transform 0.1s;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* .carousel__navigation-button.first {
+  background-image: url('../img/ilt1.jpg');
+}
+.carousel__navigation-button.second {
+  background-image: url('../img/ilt2.jpg');
+}
+.carousel__navigation-button.third {
+  background-image: url('../img/ilt3.jpg');
+}
+.carousel__navigation-button.four {
+  background-image: url('../img/ilt4.jpg');
+}
+.carousel__navigation-button.five {
+  background-image: url('../img/ilt5.png');
+} */
+
+.carousel__navigation-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__navigation-button > span {
+  color: lightgoldenrodyellow;
+  font-size: 2rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.carousel__navigation-button:hover > span {
+  color: rgb(175, 175, 117);
+}
+
+/* FINAL DA THUMB */
+
+@media (min-width: 40rem) {
+  .vimage {
+      max-width: 1100px;
+  }
+  .vimage-carousel {
+      height: 33rem;
+  }
+  .vimage-carousel::before,
+  .vimage-carousel::after,
+  .carousel__prev,
+  .carousel__next {
+      margin-top: 15rem;
+  }
+  .carousel__navigation-button {
+      height: 4.5rem;
+      width: 4rem;
+  }
+  .vimage-thumb {
+      justify-content: start;
+  }
+}
+
+@media (max-width: 69rem) {
+  .vimage {
+      padding: 0 1.5rem;
+  }
+}
