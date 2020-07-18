@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import './VimageCarrousel.css'
 import './Vimage.css'
@@ -30,10 +29,10 @@ const Vimage = props => {
               <ol className="carousel__navigation-list">
                 <li className="carousel__navigation-item">
                   <div className="carousel__navigation-item__cover"></div>
-                  <Link to=''
+                  <button to=''
                       className="carousel__navigation-button first">
                       <span className="material-icons">arrow_downward</span>
-                  </Link>
+                  </button>
                 </li>
               </ol>
           </aside>
@@ -59,35 +58,42 @@ const Vimage = props => {
         <span>{props.arte.creator.displayName}</span>
       </div>
       <div className="vimage-description">
-          <h1>Description</h1>
-          <p>
-            {props.arte ? props.arte.thumbnail : null}
-              This component of the description will need to refer directly to the artwork at hand. There's no perfect formula for this, however it does need to be engaging! Remember that it should reflect you and your personality, as well as your enthusiasm for your work.
-          </p>
+        {props.arte.description ?
+          (
+            <div>
+              <h1>Description</h1>
+              <p>
+                {props.arte.description}
+              </p>
+            </div>
+          ) : null}
+
       </div>
       <div className="vimage-title__comments">
           <h1>Comments</h1>
       </div>
       <div className="vimage-form">
-          <form>
-              <div className="vimage-form-control first">
-                  <img src="../img//avatar-370-456322.webp" alt="person" />
-                  <input type="text" placeholder="ADD YOUR COMMENTS..." />
-              </div>
-          </form>
+        <form>
+            <div className="vimage-form-control first tooltip">
+                <img src={props.autualUserIcon ? props.autualUserIcon : require('../../assets/person_icon_black.png')} alt="person" />
+                <span className='tooltiptext'>Faça login</span>
+                <input type="text" placeholder="ADD YOUR COMMENTS..." className={!props.isAuth ? 'disabled' : ''} disabled={!props.isAuth} />
+            </div>
+        </form>
       </div>
       <div className="vimage-coments">
-          <ul className="vimage-coments__items">
-              <li>
-                  <div className="vimage__item-person comment">
-                      <img src="../img//avatar-370-456322.webp" alt="person" />
-                      <span>Tiago Emerick</span>
-                  </div>
-                  <div className="vimage__item-comment">
-                      <p>This component of the description will need to refer directly to the artwork at hand. There's no perfect formula for this</p>
-                  </div>
-              </li>
-          </ul>
+        {props.arte.comment.length ?
+        (<ul className="vimage-coments__items">
+            <li>
+                <div className="vimage__item-person comment">
+                    <img src="../img//avatar-370-456322.webp" alt="person" />
+                    <span>Tiago Emerick</span>
+                </div>
+                <div className="vimage__item-comment">
+                    <p>This component of the description will need to refer directly to the artwork at hand. There's no perfect formula for this</p>
+                </div>
+            </li>
+        </ul>) : <p>SEM COMENTARIOS</p>}
       </div>
   </div>
   )

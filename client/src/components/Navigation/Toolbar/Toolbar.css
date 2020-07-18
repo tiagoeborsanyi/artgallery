@@ -84,6 +84,7 @@
 }
 .main-header__photo-icon-content.open {
   z-index: 100;
+  background: white;
   display: block;
 }
 .main-header__photo-icon-content.close {
