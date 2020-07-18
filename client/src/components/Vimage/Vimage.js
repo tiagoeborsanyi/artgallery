@@ -5,7 +5,7 @@ import './VimageCarrousel.css'
 import './Vimage.css'
 
 const Vimage = props => {
-  console.log(props.arte.original_img.length)
+  console.log(props.arte)
   return (
     <div className="vimage">
       <section className="vimage-carousel" aria-label="Gallery">
@@ -56,8 +56,8 @@ const Vimage = props => {
           </ul>
       </div>
       <div className="vimage__item-person">
-          <img src="../img//avatar-370-456322.webp" alt="person" />
-          <span>Tiago Emerick</span>
+          {/* <img src={require('props.avatar')} alt="person" /> */}
+          <span>{props.arte.creator.displayName}</span>
       </div>
       <div className="vimage-description">
           <h1>Description</h1>
