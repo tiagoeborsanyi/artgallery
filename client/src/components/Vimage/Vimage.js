@@ -5,22 +5,21 @@ import './VimageCarrousel.css'
 import './Vimage.css'
 
 const Vimage = props => {
-  console.log(props.arte)
   return (
     <div className="vimage">
       <section className="vimage-carousel" aria-label="Gallery">
           <ol className="carousel__viewport">
             {props.arte ? props.arte.original_img.map((img, i) => (
               <li key={img}
-                  id="carousel__slide1"
+                  id={`carousel__slide${i+1}`}
                   className="carousel__slide first"
                   style={{backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/${img}?alt=media')`}}>
                 {(props.arte.original_img.length >= 2) ?
                   (<div className="carousel__snapper">
-                    <Link to={`#carousel__slide${props.arte.original_img.length}`}
-                        className="carousel__prev">Go to last slide</Link>
-                    <Link to={`#carousel__slide${i+2}`}
-                        className="carousel__next">Go to next slide</Link>
+                    <a href={`#carousel__slide${ i === 0 ? props.arte.original_img.length : i}`}
+                      className="carousel__prev">Go to last slide</a>
+                    <a href={`#carousel__slide${props.arte.original_img.length === i+1 ? '1' : i+2}`}
+                        className="carousel__next">Go to next slide</a>
                   </div>) : null}
                 </li>
             )) : null}
@@ -56,8 +55,8 @@ const Vimage = props => {
           </ul>
       </div>
       <div className="vimage__item-person">
-          {/* <img src={require('props.avatar')} alt="person" /> */}
-          <span>{props.arte.creator.displayName}</span>
+        <img src={props.arte.creator.avatar} alt="person" />
+        <span>{props.arte.creator.displayName}</span>
       </div>
       <div className="vimage-description">
           <h1>Description</h1>

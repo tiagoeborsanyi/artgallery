@@ -18,7 +18,7 @@ const getUser = (req, res, next) => {
 }
 
 const signupOrLogin = async (req, res, next) => {
-  const { displayName, email, uid } = req.body
+  const { displayName, avatar, email, uid } = req.body
 
   let existingUser
   try {
@@ -35,7 +35,8 @@ const signupOrLogin = async (req, res, next) => {
       displayName,
       email,
       uid,
-      avatar: '',
+      avatar,
+      likes: [],
       arts: [],
       followers: [],
       following: [],

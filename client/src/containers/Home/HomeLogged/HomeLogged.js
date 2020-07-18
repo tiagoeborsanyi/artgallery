@@ -14,6 +14,7 @@ const HomeLogged = props => {
         props.onLoginGoogleRedirect(true)
         const objUser = {
           displayName: result.user.displayName,
+          avatar: result.user.photoURL,
           email: result.user.email,
           uid: result.user.uid
         }

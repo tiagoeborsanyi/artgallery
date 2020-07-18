@@ -27,8 +27,7 @@ const ViewImage = props => {
   let vimage = <p>loading</p>
   if (arte) {
     vimage = <Vimage
-      arte={arte.photo}
-      avatar={props.avatar} />
+      arte={arte.photo} />
   }
 
   return vimage
@@ -36,8 +35,7 @@ const ViewImage = props => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null,
-    avatar: state.auth.photoURL
+    isAuthenticated: state.auth.token !== null
   }
 }
 
