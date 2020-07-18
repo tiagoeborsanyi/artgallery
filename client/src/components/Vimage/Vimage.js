@@ -27,13 +27,18 @@ const Vimage = props => {
       <section className="vimage-thumb">
           <aside className="carousel__navigation">
               <ol className="carousel__navigation-list">
-                <li className="carousel__navigation-item">
-                  <div className="carousel__navigation-item__cover"></div>
-                  <button to=''
-                      className="carousel__navigation-button first">
-                      <span className="material-icons">arrow_downward</span>
-                  </button>
-                </li>
+                {props.arte ? props.arte.original_img.map((img, i) => (
+                  <li
+                    key={img}
+                    className="carousel__navigation-item"
+                    style={{backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/${img}?alt=media')`}}>
+                    <div className="carousel__navigation-item__cover"></div>
+                    <button
+                        className="carousel__navigation-button">
+                        <span className="material-icons">arrow_downward</span>
+                    </button>
+                  </li>
+                )) : null}
               </ol>
           </aside>
       </section>
@@ -76,7 +81,7 @@ const Vimage = props => {
         <form>
             <div className="vimage-form-control first tooltip">
                 <img src={props.autualUserIcon ? props.autualUserIcon : require('../../assets/person_icon_black.png')} alt="person" />
-                <span className='tooltiptext'>Faça login</span>
+                {!props.isAuth ? <span className='tooltiptext'>Faça login</span> : null}
                 <input type="text" placeholder="ADD YOUR COMMENTS..." className={!props.isAuth ? 'disabled' : ''} disabled={!props.isAuth} />
             </div>
         </form>

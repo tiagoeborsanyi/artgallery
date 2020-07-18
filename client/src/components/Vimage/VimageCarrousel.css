@@ -154,6 +154,9 @@
 .carousel__navigation-item {
   position: relative;
   margin-right: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .carousel__navigation-item__cover {
@@ -166,22 +169,15 @@
 }
 
 .carousel__navigation-button {
-  display: inline-block;
-  height: 2.9rem;
-  width: 2.4rem;
-  background-color: #ccc;
-  border: none;
-  border-radius: 4px;
-  transition: transform 0.1s;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.carousel__navigation-button {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 2.9rem;
+  width: 2.4rem;
+  background: linear-gradient(to top, rgba(14, 48, 143, 0.3), 100%, transparent);
+  border: none;
+  border-radius: 4px;
+  transition: transform 0.1s;
 }
 
 .carousel__navigation-button > span {
@@ -192,6 +188,7 @@
 }
 
 .carousel__navigation-button:hover > span {
+  cursor: pointer;
   color: rgb(175, 175, 117);
 }
 
