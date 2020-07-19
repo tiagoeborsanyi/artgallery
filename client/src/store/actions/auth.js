@@ -37,10 +37,21 @@ export const logout = () => {
 export const auth = (name = '', email = '', password = '', isSignup = false) => {
   // Aqui eu faço a lógica de logar com login e senha n
   return dispatch => {
+    dispatch(authStart())
     if (isSignup) {
       console.log(name, email, password, isSignup)
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .catch(error => {
+          console.log(error)
+          dispatch(authFail(error))
+        })
     } else {
       console.log(email, password)
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch(error => {
+          console.log(error)
+          dispatch(authFail(error))
+        })
     }
   }
 }

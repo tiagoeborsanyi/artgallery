@@ -97,7 +97,7 @@ const Signup = props => {
 
   const submitHandler = event => {
     event.preventDefault()
-    const { name, email, confirmEmail, password } = controls
+    const { name, email, password } = controls
     props.onAuth(
       name['value'],
       email['value'],
@@ -136,32 +136,32 @@ const Signup = props => {
     <div className="container-S">
       <h2 className="container-signup-title">Sign up</h2>
       <div className="container-signup">
-        <span className='error-form'>Email has to be the same.</span>
-          <Button
-            btnType='container-login-google'
-            clicked={loginWithGoogleHandler}>
-              <img src={require('../../../assets/icons8-google-logo-48.png')} alt='icon google' />
-              <span>Continue with Google</span>
-          </Button>
-          <div className="container-signup__or-divider">
-              <div className="container-signup__or-line"></div>
-              <p className="container-signup__or">or</p>
-          </div>
-          <form onSubmit={submitHandler}>
-              {form}
-              <Button
-                btnType='button-form active'
-                disabled={!formisValid}>
-                Log in
-              </Button>
-          </form>
-          <div className="container-signup-terms">
-              <p>
-                  By sign up, you agree to DrawDry
-                  <Link to='/'>Terms of Use</Link>, <Link to='/'>Privacy Policy</Link>
-                  and <Link to='/'>Cookie Policy</Link>
-              </p>
-          </div>
+        <span className='error-form'>{props.error && props.error.message}</span>
+        <Button
+          btnType='container-login-google'
+          clicked={loginWithGoogleHandler}>
+            <img src={require('../../../assets/icons8-google-logo-48.png')} alt='icon google' />
+            <span>Continue with Google</span>
+        </Button>
+        <div className="container-signup__or-divider">
+            <div className="container-signup__or-line"></div>
+            <p className="container-signup__or">or</p>
+        </div>
+        <form onSubmit={submitHandler}>
+            {form}
+            <Button
+              btnType='button-form active'
+              disabled={!formisValid}>
+              Log in
+            </Button>
+        </form>
+        <div className="container-signup-terms">
+            <p>
+                By sign up, you agree to DrawDry
+                <Link to='/'>Terms of Use</Link>, <Link to='/'>Privacy Policy</Link>
+                and <Link to='/'>Cookie Policy</Link>
+            </p>
+        </div>
       </div>
       <div className="container-signup_new">
           <p>Already have an account?</p>
@@ -171,10 +171,16 @@ const Signup = props => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    error: state.auth.error
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (name, email, password, isSignup) => dispatch(action.auth(name, email, password, isSignup))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)

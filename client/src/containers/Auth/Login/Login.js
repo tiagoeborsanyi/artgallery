@@ -108,11 +108,14 @@ const Login = props => {
               <div className='login-form-control forgot-password'>
                   <Link to='/'>Forgot password?</Link>
               </div>
-              <Button
+              {props.loading ?
+              <Spinner form='form' />
+              :
+              (<Button
                 btnType='button-form active'
                 disabled={!formisValid}>
                 Log in
-              </Button>
+              </Button>)}
           </form>
           <p className='container-login__or'>or</p>
           <Button
@@ -135,10 +138,16 @@ const Login = props => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    isLoadAuth: state.auth.loading
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (name, email, password) => dispatch(action.auth(name, email, password))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
