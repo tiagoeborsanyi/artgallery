@@ -9,7 +9,14 @@ const initialState = {
   photoURL: null,
   error: null,
   loading: false,
+  loadingWithEmail: false,
   authRediretPath: '/'
+}
+
+const loadEmail = (state, action) => {
+  return updateObject(state, {
+    loadingWithEmail: true
+  })
 }
 
 const authStart = (state, action) => {
@@ -35,7 +42,8 @@ const authSuccess = (state, action) => {
 const authFail = (state, action) => {
   return updateObject(state, {
     error: action.error,
-    loading: false
+    loading: false,
+    loadingWithEmail: false
   })
 }
 
@@ -47,6 +55,7 @@ const authLogout = (state, action) => {
     displayName: null,
     photoURL: null,
     loading: false,
+    loadingWithEmail: false,
     authRediretPath: '/'
   })
 }
@@ -63,6 +72,7 @@ const googleRedirect = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.LOAD_EMAIL: return loadEmail(state, action)
     case actionTypes.AUTH_START: return authStart(state, action)
     case actionTypes.AUTH_SUCCESS: return authSuccess(state, action)
     case actionTypes.AUTH_FAIL: return authFail(state, action)

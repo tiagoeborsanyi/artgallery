@@ -103,12 +103,13 @@ const Login = props => {
     <div className='container-L'>
       <h2 className='container-title'>Log in</h2>
       <div className='container-login'>
+          <span className='error-form'>{props.error && props.error.message}</span>
           <form onSubmit={submitHandler}>
               {form}
               <div className='login-form-control forgot-password'>
                   <Link to='/'>Forgot password?</Link>
               </div>
-              {props.loading ?
+              {props.isLoadAuth ?
               <Spinner form='form' />
               :
               (<Button
@@ -140,7 +141,8 @@ const Login = props => {
 
 const mapStateToProps = state => {
   return {
-    isLoadAuth: state.auth.loading
+    isLoadAuth: state.auth.loadingWithEmail,
+    error: state.auth.error
   }
 }
 

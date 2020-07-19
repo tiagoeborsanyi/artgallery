@@ -1,3 +1,4 @@
+export const LOAD_EMAIL = 'LOAD_EMAIL';
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SSUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';

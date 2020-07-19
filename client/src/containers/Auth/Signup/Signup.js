@@ -8,6 +8,7 @@ import * as action from '../../../store/actions/index'
 import { checkValidity } from '../../../shared/utility'
 import Input from '../../../components/UI/Input/Input'
 import Button from '../../../components/UI/Button/Button'
+import Spinner from '../../../components/UI/Spinner/Spinner'
 
 const Signup = props => {
   const [controls, setControls] = useState({
@@ -149,11 +150,14 @@ const Signup = props => {
         </div>
         <form onSubmit={submitHandler}>
             {form}
-            <Button
+            {props.isLoadAuth ?
+            <Spinner form='form' />
+            :
+            (<Button
               btnType='button-form active'
               disabled={!formisValid}>
-              Log in
-            </Button>
+              Sign up
+            </Button>)}
         </form>
         <div className="container-signup-terms">
             <p>
@@ -173,6 +177,7 @@ const Signup = props => {
 
 const mapStateToProps = state => {
   return {
+    isLoadAuth: state.auth.loadingWithEmail,
     error: state.auth.error
   }
 }

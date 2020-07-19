@@ -3,6 +3,12 @@
 import firebase from '../../services/firebase'
 import * as actionTypes from './actionTypes'
 
+export const loadWithEmail = () => {
+  return {
+    type: actionTypes.LOAD_EMAIL
+  }
+}
+
 export const authStart = () => {
   return {
     type: actionTypes.AUTH_START
@@ -37,7 +43,7 @@ export const logout = () => {
 export const auth = (name = '', email = '', password = '', isSignup = false) => {
   // Aqui eu faço a lógica de logar com login e senha n
   return dispatch => {
-    dispatch(authStart())
+    dispatch(loadWithEmail())
     if (isSignup) {
       console.log(name, email, password, isSignup)
       firebase.auth().createUserWithEmailAndPassword(email, password)
