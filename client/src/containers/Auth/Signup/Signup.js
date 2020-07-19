@@ -89,7 +89,7 @@ const Signup = props => {
     }
     let formIsValid = true
     for (let key in updateControls) {
-      formIsValid = updateControls[key].valid && formIsValid
+      formIsValid = updateControls[key].valid && formIsValid && (updateControls.email.value === updateControls.confirmEmail.value)
     }
     setControls(updateControls)
     setFormIsValid(formIsValid)
@@ -101,7 +101,6 @@ const Signup = props => {
     props.onAuth(
       name['value'],
       email['value'],
-      confirmEmail['value'],
       password['value'],
       'signup'
     )
@@ -137,6 +136,7 @@ const Signup = props => {
     <div className="container-S">
       <h2 className="container-signup-title">Sign up</h2>
       <div className="container-signup">
+        <span className='error-form'>Email has to be the same.</span>
           <Button
             btnType='container-login-google'
             clicked={loginWithGoogleHandler}>
@@ -173,7 +173,7 @@ const Signup = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password, isSignup) => dispatch(action.auth(email, password, isSignup))
+    onAuth: (name, email, password, isSignup) => dispatch(action.auth(name, email, password, isSignup))
   }
 }
 

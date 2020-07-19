@@ -79,6 +79,13 @@
   color: rgb(255, 0, 0, 0.7);
 }
 
+.error-form {
+  display: inherit;
+  color: rgb(255, 0, 0, 0.8);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
 @media (min-width: 40rem) {
   .container-S {
       max-width: 25rem;

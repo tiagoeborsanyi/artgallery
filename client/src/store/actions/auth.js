@@ -34,10 +34,14 @@ export const logout = () => {
   }
 }
 
-export const auth = (email = '', password = '', isSignup) => {
+export const auth = (name = '', email = '', password = '', isSignup = false) => {
   // Aqui eu faço a lógica de logar com login e senha n
   return dispatch => {
-    console.log(!!email, password, isSignup)
+    if (isSignup) {
+      console.log(name, email, password, isSignup)
+    } else {
+      console.log(email, password)
+    }
   }
 }
 
