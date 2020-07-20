@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-  displayName: { type: String, required: true },
+  displayName: { type: String, required: false },
   email: { type: String, required: true },
-  uid: { type: String, required: true },
+  uid: { type: String, required: false },
   avatar: { type: String, required: false },
   arts: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Photo' }],
   followers: [{ type: mongoose.Types.ObjectId, ref: 'User' }],

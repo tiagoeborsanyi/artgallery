@@ -35,7 +35,8 @@ const authSuccess = (state, action) => {
     displayName: action.displayName,
     photoURL: action.photoURL,
     error: null,
-    loading: false
+    loading: false,
+    loadingWithEmail: false
   })
 }
 

@@ -1,4 +1,4 @@
-// import axios from 'axios'
+import axios from 'axios'
 
 import firebase from '../../services/firebase'
 import * as actionTypes from './actionTypes'
@@ -42,22 +42,35 @@ export const logout = () => {
 
 export const auth = (name = '', email = '', password = '', isSignup = false) => {
   // Aqui eu faço a lógica de logar com login e senha n
-  return dispatch => {
+  return async dispatch => {
     dispatch(loadWithEmail())
-    if (isSignup) {
-      console.log(name, email, password, isSignup)
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(error => {
-          console.log(error)
-          dispatch(authFail(error))
-        })
-    } else {
-      console.log(email, password)
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .catch(error => {
-          console.log(error)
-          dispatch(authFail(error))
-        })
+    const objUser = {
+      displayName: name,
+      avatar:  '',
+      email: email,
+      uid: ''
+    }
+    try {
+      const response = await axios.post('/api/users/signupOrLogin', objUser)
+      if (response.status === 201) {
+        if (isSignup) {
+          console.log(name, email, password, isSignup)
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+            .catch(error => {
+              console.log(error)
+              dispatch(authFail(error))
+            })
+        } else {
+          console.log(email, password)
+          firebase.auth().signInWithEmailAndPassword(email, password)
+            .catch(error => {
+              console.log(error)
+              dispatch(authFail(error))
+            })
+        }
+      }
+    } catch (err) {
+      dispatch(authFail(err))
     }
   }
 }
@@ -83,7 +96,7 @@ export const authCheckState = () => {
       // console.log('user: ', user)
       if (user) {
         const iT = await firebase.auth().currentUser.getIdToken(true)
-        // console.log('idToken', iT, user)
+        console.log('idToken', iT, user)
         dispatch(authSuccess(
           iT,
           user.uid,
