@@ -59,7 +59,7 @@ const Toolbar = props => {
                     <button
                       className="main-header__photo-icon-button"
                       onClick={iconMenu}>
-                      <img src={props.photoIcon} alt="phot icon" />
+                      <img src={props.photoIcon ? props.photoIcon : require('../../../assets/icon_default_logged.png')} alt="phot icon" />
                     </button>
                     <div className={`main-header__photo-icon-content ${openMenu ? "open" : "close"}`}>
                       <ul className="main-header__photo-icon-content__items">
