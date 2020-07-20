@@ -37,7 +37,7 @@ const Toolbar = props => {
                 <NavigationItem
                   classes='main-header__item'
                   item='link'
-                  link='/'>
+                  link='/arts'>
                   Arts
                 </NavigationItem>
               </ul>

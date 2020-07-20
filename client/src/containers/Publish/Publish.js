@@ -179,7 +179,7 @@ const Publish = props => {
         original_img: updatePathImages,
         tags: publishForm.tags.elementConfig.content,
         download: publishForm.download.elementConfig.checked,
-        creator: props.uid
+        creator: props.email
       }
       const headers = {
         headers: { Authorization: props.token }
@@ -249,7 +249,7 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
     token: state.auth.token,
-    uid: state.auth.userId
+    email: state.auth.email
   }
 }
 

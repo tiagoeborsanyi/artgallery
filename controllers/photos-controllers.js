@@ -72,7 +72,7 @@ const createArt = async (req, res, next) => {
 
   let user
   try {
-    user = await User.findOne({ uid: creator }).exec()
+    user = await User.findOne({ email: creator }).exec()
   } catch(error) {
     const err = new HttpError('Creating Art failed, please try again.', 500)
     return next(err)

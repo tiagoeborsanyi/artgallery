@@ -22,7 +22,7 @@ const signupOrLogin = async (req, res, next) => {
 
   let existingUser
   try {
-    existingUser = await User.findOne({ uid })
+    existingUser = await User.findOne({ email })
   } catch (error) {
     const err = new HttpError('Signup failed, please try again later.', 500)
     return next(err)

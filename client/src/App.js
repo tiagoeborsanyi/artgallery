@@ -29,8 +29,9 @@ const App = props => {
         <Route path='/publish' component={Publish} />
         <Route path='/logout' component={Logout} />
         <Route path='/vimage/:vimageId' component={ViewImage} />
-        <Route path='/' exact component={HomeLogged} />
-        <Redirect to='/' />
+        <Route path='/arts' component={HomeLogged} />
+        <Route path='/' exact component={HomeUnlogged} />
+        <Redirect to='/arts' />
       </Switch>
     )
   } else {
@@ -40,6 +41,7 @@ const App = props => {
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/vimage/:vimageId' component={ViewImage} />
+        <Route path='/arts' component={HomeLogged} />
         <Route path='/' exact component={HomeUnlogged} />
         <Redirect to='/' />
       </Switch>
