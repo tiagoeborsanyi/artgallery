@@ -30,6 +30,10 @@ const ViewImage = props => {
     }
   }, [vimageId, uid])
 
+  const downloadImageHandler = (img) => {
+    console.log('download: ', img)
+  }
+
   const onLikeHandler = async () => {
     let newArte
     try {
@@ -51,6 +55,7 @@ const ViewImage = props => {
     vimage = <Vimage
       arte={arte}
       isAuth={props.isAuthenticated}
+      downloadImage={downloadImageHandler}
       autualUserIcon={props.isAtualUserIcon}
       like={like}
       clickedLike={onLikeHandler} />
