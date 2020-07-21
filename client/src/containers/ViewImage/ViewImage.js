@@ -32,7 +32,6 @@ const ViewImage = props => {
 
   const downloadImageHandler = (img) => {
     const nImg = img.split('/o/')[1]
-    console.log(nImg)
     const storage = firebase.storage().ref()
     storage.child(nImg).getDownloadURL().then(url => {
       // console.log(url)
@@ -41,6 +40,7 @@ const ViewImage = props => {
       a.target = '_blank'
       a.rel = 'noopener noreferrer'
       a.href = url;
+      a.ariaLabel = 'download'
       a.click();
     })
 
