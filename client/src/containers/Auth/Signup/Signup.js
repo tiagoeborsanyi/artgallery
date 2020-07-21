@@ -12,21 +12,21 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 
 const Signup = props => {
   const [controls, setControls] = useState({
-    name: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Your name'
-      },
-      label: 'Name',
-      value: '',
-      validation: {
-        required: true
-      },
-      valid: false,
-      touched: false,
-      space: 'space'
-    },
+    // name: {
+    //   elementType: 'input',
+    //   elementConfig: {
+    //     type: 'text',
+    //     placeholder: 'Your name'
+    //   },
+    //   label: 'Name',
+    //   value: '',
+    //   validation: {
+    //     required: true
+    //   },
+    //   valid: false,
+    //   touched: false,
+    //   space: 'space'
+    // },
     email: {
       elementType: 'input',
       elementConfig: {
@@ -98,9 +98,8 @@ const Signup = props => {
 
   const submitHandler = event => {
     event.preventDefault()
-    const { name, email, password } = controls
+    const { email, password } = controls
     props.onAuth(
-      name['value'],
       email['value'],
       password['value'],
       'signup'
@@ -184,7 +183,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (name, email, password, isSignup) => dispatch(action.auth(name, email, password, isSignup))
+    onAuth: (email, password, isSignup) => dispatch(action.auth(email, password, isSignup))
   }
 }
 

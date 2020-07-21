@@ -69,7 +69,7 @@ const Login = props => {
   const submitHandler = event => {
     event.preventDefault()
     const { email, password } = controls
-    props.onAuth('', email['value'], password['value'])
+    props.onAuth(email['value'], password['value'])
   }
 
   const loginWithGoogleHandler = async () => {
@@ -148,7 +148,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (name, email, password) => dispatch(action.auth(name, email, password))
+    onAuth: (email, password) => dispatch(action.auth(email, password))
   }
 }
 
