@@ -34,7 +34,7 @@ const Vimage = props => {
                     className="carousel__navigation-item"
                     style={{backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/${img}?alt=media')`}}>
                     <div className="carousel__navigation-item__cover"></div>
-                    {props.arte.download ?
+                    {(props.isAuth && props.arte.download) ?
                     (<button
                         onClick={() => props.downloadImage(img)}
                         className="carousel__navigation-button">

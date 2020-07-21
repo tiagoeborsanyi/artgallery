@@ -18,7 +18,6 @@ const ViewImage = props => {
     const fetchData = async () => {
       const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
       if (!isCancelled.current) {
-        console.log(result)
         if(result.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
           setLike(true)
         }
