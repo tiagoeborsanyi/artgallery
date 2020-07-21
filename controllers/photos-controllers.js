@@ -14,7 +14,7 @@ const getPhotoById = async (req, res, next) => {
 
   let photo
   try {
-    photo = await Photo.findById(photoId).populate('creator')
+    photo = await Photo.findById(photoId).populate('creator').populate('likes')
   } catch (error) {
     const err = new HttpError('Something whent weong, could not find a art.', 500);
     return next(err);

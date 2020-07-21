@@ -2,6 +2,7 @@ import React from 'react'
 
 import './VimageCarrousel.css'
 import './Vimage.css'
+import Button from '../UI/Button/Button'
 
 const Vimage = props => {
   return (
@@ -46,9 +47,13 @@ const Vimage = props => {
           <h1>Title</h1>
           <ul className="vimage-title__items">
               <li className="vimage-title__item">
+                <Button
+                  clicked={props.clickedLike}
+                  btnType='like'>
                   <div className="vimage-title__item-icon">
-                      <span className="material-icons">favorite</span>
+                    <span className="material-icons">favorite</span>
                   </div>
+                </Button>
               </li>
               <li className="vimage-title__item-icon">
                   <div className="vimage-title__item-marked">

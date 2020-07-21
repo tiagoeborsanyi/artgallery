@@ -55,3 +55,8 @@
   background-color: #e7e7e7;
   cursor: not-allowed;
 }
+
+.like {
+  border: none;
+  background: transparent;
+}

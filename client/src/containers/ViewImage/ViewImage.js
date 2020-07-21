@@ -15,6 +15,7 @@ const ViewImage = props => {
     const fetchData = async () => {
       const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
       if (!isCancelled.current) {
+        console.log(result)
         setArte(result.data)
       }
     }
@@ -24,12 +25,17 @@ const ViewImage = props => {
     }
   }, [vimageId])
 
+  const onLikeHandler = () => {
+
+  }
+
   let vimage = <p>loading</p>
   if (arte) {
     vimage = <Vimage
       arte={arte.photo}
       isAuth={props.isAuthenticated}
-      autualUserIcon={props.isAtualUserIcon} />
+      autualUserIcon={props.isAtualUserIcon}
+      clickedLike={onLikeHandler} />
   }
 
   return vimage
