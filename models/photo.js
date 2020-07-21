@@ -16,8 +16,8 @@ const photoSchema = new Schema({
     createcomment: { type: Date, default: Date.now }
   }],
   likes: [{
-    user: { type: Schema.Types.ObjectId, ref: 'User' }
-  }],
+    user: { type: Schema.Types.ObjectId, ref: 'users' }
+}],
   sell: { type: Boolean, required: false },
   creator: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
   createphoto: { type: Date, default: Date.now }

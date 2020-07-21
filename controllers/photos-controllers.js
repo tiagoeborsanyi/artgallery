@@ -87,6 +87,7 @@ const createArt = async (req, res, next) => {
     download,
     favorited: [],
     comment: [],
+    likes: [],
     sell: false,
     creator: user._id,
   })

@@ -65,12 +65,12 @@ const Vimage = props => {
       <div className="vimage-description">
         {props.arte.description ?
           (
-            <div>
+            <>
               <h1>Description</h1>
               <p>
                 {props.arte.description}
               </p>
-            </div>
+            </>
           ) : null}
 
       </div>

@@ -4,6 +4,7 @@ const { check } = require('express-validator')
 const checkAuth = require('../middleware/check-auth')
 const router = express.Router()
 const photoController = require('../controllers/photos-controllers')
+const likeController = require('../controllers/likes-controllers')
 
 router.get('/', (req, res, next) => {
   res.json({ photos: 'return same photos... '})
@@ -20,5 +21,9 @@ router.post(
   ],
   photoController.createArt
   )
+
+// LIKE
+router.post('/like/:lid', likeController.like)
+
 
 module.exports = router

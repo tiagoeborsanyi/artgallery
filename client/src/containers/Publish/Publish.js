@@ -190,7 +190,7 @@ const Publish = props => {
             props.history.push(`/vimage/${response.data.photo._id}`)
           }
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error.message))
     } else {
       console.log('tem que adicionar imagens')
     }
