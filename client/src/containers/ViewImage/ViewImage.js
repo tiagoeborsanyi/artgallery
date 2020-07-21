@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 
 import './ViewImage.css'
+import firebase from '../../services/firebase'
 import Vimage from '../../components/Vimage/Vimage'
 
 const ViewImage = props => {
@@ -31,7 +32,25 @@ const ViewImage = props => {
   }, [vimageId, uid])
 
   const downloadImageHandler = (img) => {
-    console.log('download: ', img)
+    const nImg = img.split('/o/')[1]
+    console.log(nImg)
+    const storage = firebase.storage().ref()
+    storage.child(nImg).getDownloadURL().then(url => {
+      const xhr = new XMLHttpRequest()
+      xhr.responseType = 'blob'
+      xhr.onload = (e) => {
+        let blob = xhr.response
+        console.log(blob)
+        // window.URL.revokeObjectURL(url)
+      }
+      xhr.open('GET', url, true)
+      xhr.send()
+      const a = document.createElement("a");
+      a.download = true;
+      a.href = url;
+      a.click();
+    })
+
   }
 
   const onLikeHandler = async () => {
