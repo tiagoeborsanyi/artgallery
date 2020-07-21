@@ -45,7 +45,7 @@ export const auth = (email = '', password = '', isSignup = false) => {
   return dispatch => {
     dispatch(loadWithEmail())
     if (isSignup) {
-      console.log(email, password, isSignup)
+      // console.log(email, password, isSignup)
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(async res => {
           try {
@@ -64,7 +64,7 @@ export const auth = (email = '', password = '', isSignup = false) => {
           dispatch(authFail(error))
         })
     } else {
-      console.log(email, password)
+      // console.log(email, password)
       firebase.auth().signInWithEmailAndPassword(email, password)
       .catch(error => {
         console.log(error)
@@ -95,7 +95,7 @@ export const authCheckState = () => {
       // console.log('user: ', user)
       if (user) {
         const iT = await firebase.auth().currentUser.getIdToken(true)
-        console.log('idToken', iT, user)
+        // console.log('idToken', iT, user)
         dispatch(authSuccess(
           iT,
           user.uid,

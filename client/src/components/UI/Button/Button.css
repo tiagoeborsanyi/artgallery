@@ -59,4 +59,5 @@
 .like {
   border: none;
   background: transparent;
+  outline: none;
 }

@@ -44,28 +44,45 @@ const Vimage = props => {
           </aside>
       </section>
       <div className="vimage-title">
-          <h1>Title</h1>
-          <ul className="vimage-title__items">
-              <li className="vimage-title__item">
-                <Button
-                  clicked={props.clickedLike}
-                  btnType='like'>
-                  <div className="vimage-title__item-icon">
-                    <span className="material-icons">favorite</span>
-                  </div>
-                </Button>
-              </li>
-              <li className="vimage-title__item-icon">
-                  <div className="vimage-title__item-marked">
-                      <span className="material-icons marked-turned">turned_in</span>
-                      <span className="material-icons marked-check">check</span>
-                  </div>
-              </li>
-          </ul>
+        <div className="vimage-title__content">
+          <h1>{props.arte.title}</h1>
+          <span>{props.arte.likes.length > 0 ? `${props.arte.likes.length} LIKE` : null}</span>
+        </div>
+        <ul className="vimage-title__items">
+            <li className="vimage-title__item" style={{display: 'flex'}}>
+              <Button
+                clicked={props.clickedLike}
+                btnType='like'>
+                <div className="vimage-title__item-icon">
+                  <span
+                    className={`material-icons ${props.like && 'active'}`}
+                    >
+                    favorite
+                  </span>
+                </div>
+              </Button>
+            </li>
+            <li className="vimage-title__item-icon">
+                <div className="vimage-title__item-marked">
+                    <span className="material-icons marked-turned">turned_in</span>
+                    <span className="material-icons marked-check">check</span>
+                </div>
+            </li>
+        </ul>
       </div>
       <div className="vimage__item-person">
-        <img src={props.arte.creator.avatar} alt="person" />
-        <span>{props.arte.creator.displayName}</span>
+        <img src={
+            props.arte.creator.avatar ?
+            props.arte.creator.avatar :
+            require('../../assets/icon_default_logged.png')}
+            alt="person" />
+        <span>
+          {
+            props.arte.creator.displayName ?
+            props.arte.creator.displayName :
+            props.arte.creator.email.split('@')[0]
+          }
+        </span>
       </div>
       <div className="vimage-description">
         {props.arte.description ?

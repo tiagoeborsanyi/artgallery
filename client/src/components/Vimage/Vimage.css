@@ -7,12 +7,23 @@
   align-items: center;
 }
 
-.vimage-title > h1 {
+.vimage-title__content {
+  height: 100%;
   width: 40%;
-  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.vimage-title__content > h1 {
+  margin: 0 9px 0 0;
   font-size: 2.5rem;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.7);
+}
+.vimage-title__content > span {
+  padding-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .vimage-title__items {
@@ -36,7 +47,8 @@
   color: rgb(185, 184, 184);
 }
 
-.vimage-title__item-icon > span:hover {
+.vimage-title__item-icon > span:hover,
+.vimage-title__item-icon > span.active {
   cursor: pointer;
   color: red;
 }

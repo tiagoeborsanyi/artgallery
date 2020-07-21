@@ -14,7 +14,7 @@ const getPhotoById = async (req, res, next) => {
 
   let photo
   try {
-    photo = await Photo.findById(photoId).populate('creator').populate('likes')
+    photo = await Photo.findById(photoId).populate('creator').populate('likes.user')
   } catch (error) {
     const err = new HttpError('Something whent weong, could not find a art.', 500);
     return next(err);
@@ -72,6 +72,7 @@ const createArt = async (req, res, next) => {
 
   let user
   try {
+    // Aqui eu tenho que pegar o uid de req.uid, que o middleware me retorna
     user = await User.findOne({ email: creator }).exec()
   } catch(error) {
     const err = new HttpError('Creating Art failed, please try again.', 500)

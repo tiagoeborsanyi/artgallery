@@ -7,15 +7,20 @@ import Vimage from '../../components/Vimage/Vimage'
 
 const ViewImage = props => {
   const [arte, setArte] = useState()
+  const [like, setLike] = useState(false)
   const isCancelled = useRef(false)
 
   const {vimageId} = props.match.params
+  const {uid} = props
   useEffect(() => {
     // console.log(isCancelled)
     const fetchData = async () => {
       const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
       if (!isCancelled.current) {
         console.log(result)
+        if(result.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
+          setLike(true)
+        }
         setArte(result.data)
       }
     }
@@ -23,10 +28,10 @@ const ViewImage = props => {
     return () => {
       isCancelled.current = true
     }
-  }, [vimageId])
+  }, [vimageId, uid])
 
   const onLikeHandler = () => {
-
+    console.log('clicked like')
   }
 
   let vimage = <p>loading</p>
@@ -35,6 +40,7 @@ const ViewImage = props => {
       arte={arte.photo}
       isAuth={props.isAuthenticated}
       autualUserIcon={props.isAtualUserIcon}
+      like={like}
       clickedLike={onLikeHandler} />
   }
 
@@ -44,7 +50,8 @@ const ViewImage = props => {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
-    isAtualUserIcon: state.auth.photoURL
+    isAtualUserIcon: state.auth.photoURL,
+    uid: state.auth.userId
   }
 }
 
