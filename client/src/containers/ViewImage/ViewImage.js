@@ -36,17 +36,11 @@ const ViewImage = props => {
     console.log(nImg)
     const storage = firebase.storage().ref()
     storage.child(nImg).getDownloadURL().then(url => {
-      const xhr = new XMLHttpRequest()
-      xhr.responseType = 'blob'
-      xhr.onload = (e) => {
-        let blob = xhr.response
-        console.log(blob)
-        // window.URL.revokeObjectURL(url)
-      }
-      xhr.open('GET', url, true)
-      xhr.send()
+      // console.log(url)
       const a = document.createElement("a");
       a.download = true;
+      a.target = '_blank'
+      a.rel = 'noopener noreferrer'
       a.href = url;
       a.click();
     })
