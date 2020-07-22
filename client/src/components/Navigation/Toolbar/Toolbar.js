@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './Toolbar.css'
 import Logo from '../../Logo/Logo'
@@ -7,10 +7,6 @@ import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle'
 import DrawerOffline from '../SideDrawer/DrawerOffline/DrawerOffline'
 
 const Toolbar = props => {
-  const [openMenu, setOpenMenu] = useState(false)
-  const iconMenu = () => {
-    setOpenMenu(!openMenu)
-  }
   return (
     <header className="main-header">
         <div className="main-header__content">
@@ -57,11 +53,10 @@ const Toolbar = props => {
                   { !props.isAuth ?
                   <div className="main-header__photo-icon">
                     <button
-                      className="main-header__photo-icon-button"
-                      onClick={iconMenu}>
+                      className="main-header__photo-icon-button">
                       <img src={props.photoIcon ? props.photoIcon : require('../../../assets/icon_default_logged.png')} alt="phot icon" />
                     </button>
-                    <div className={`main-header__photo-icon-content ${openMenu ? "open" : "close"}`}>
+                    <div className={`main-header__photo-icon-content`}>
                       <ul className="main-header__photo-icon-content__items">
                       <NavigationItem
                           classes='mobile-nav__item'

@@ -54,11 +54,12 @@
 
 /* STYLE BUTTON ICON PHOTO */
 .main-header__photo-icon {
+  height: 100%;
   position: relative;
   margin: 0 0.8rem;
 }
 .main-header__photo-icon-button {
-  height: 45px;
+  height: 100%;
   width: 45px;
   padding: 0;
   border: 0;
@@ -68,6 +69,7 @@
 .main-header__photo-icon-button:hover {
   cursor: pointer;
 }
+
 .main-header__photo-icon-button > img {
   width: 100%;
   border-radius: 100%;
@@ -77,18 +79,16 @@
   width: 10rem;
   padding: 1rem 0.3rem;
   position: absolute;
-  /* display: none; */
+  display: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
   left: -25px;
-  top: 65px;
+  top: 80px;
 }
-.main-header__photo-icon-content.open {
+.main-header__photo-icon:hover > .main-header__photo-icon-content {
+  cursor: pointer;
   z-index: 100;
   background: white;
   display: block;
-}
-.main-header__photo-icon-content.close {
-  display: none;
 }
 .main-header__photo-icon-content__items {
   width: 100%;

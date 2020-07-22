@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import './ViewImage.css'
 import firebase from '../../services/firebase'
 import Vimage from '../../components/Vimage/Vimage'
+import Spinner from '../../components/UI/Spinner/Spinner'
 
 const ViewImage = props => {
   const [arte, setArte] = useState()
@@ -62,7 +63,7 @@ const ViewImage = props => {
     console.log(arte)
   }
 
-  let vimage = <p>loading</p>
+  let vimage = <Spinner />
   if (arte) {
     vimage = <Vimage
       arte={arte}
