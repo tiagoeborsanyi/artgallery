@@ -11,22 +11,8 @@ import Button from '../../../components/UI/Button/Button'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 
 const Signup = props => {
+  const [loading, setLoading] = useState(false)
   const [controls, setControls] = useState({
-    // name: {
-    //   elementType: 'input',
-    //   elementConfig: {
-    //     type: 'text',
-    //     placeholder: 'Your name'
-    //   },
-    //   label: 'Name',
-    //   value: '',
-    //   validation: {
-    //     required: true
-    //   },
-    //   valid: false,
-    //   touched: false,
-    //   space: 'space'
-    // },
     email: {
       elementType: 'input',
       elementConfig: {
@@ -107,6 +93,7 @@ const Signup = props => {
   }
 
   const loginWithGoogleHandler = () => {
+    setLoading(true)
     const provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithRedirect(provider)
   }
@@ -140,8 +127,11 @@ const Signup = props => {
         <Button
           btnType='container-login-google'
           clicked={loginWithGoogleHandler}>
+            {loading ? <Spinner form='form' /> :
+            <>
             <img src={require('../../../assets/icons8-google-logo-48.png')} alt='icon google' />
             <span>Continue with Google</span>
+            </>}
         </Button>
         <div className="container-signup__or-divider">
             <div className="container-signup__or-line"></div>
