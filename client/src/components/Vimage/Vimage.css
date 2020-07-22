@@ -13,15 +13,16 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+  padding-bottom: 0.8rem;
 }
 .vimage-title__content > h1 {
   margin: 0 9px 0 0;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.7);
 }
 .vimage-title__content > span {
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.1rem;
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -232,10 +233,10 @@
   }
   .vimage-title__content {
     height: 100%;
-    width: 40%;
+    width: 83%;
   }
   .vimage-title__items {
     height: 100%;
-    width: 58%;
+    width: 15%;
   }
 }
