@@ -5,6 +5,7 @@ const checkAuth = require('../middleware/check-auth')
 const router = express.Router()
 const photoController = require('../controllers/photos-controllers')
 const likeController = require('../controllers/likes-controllers')
+const commentsController = require('../controllers/comments-controllers')
 
 router.get('/', (req, res, next) => {
   res.json({ photos: 'return same photos... '})
@@ -24,6 +25,8 @@ router.post(
 
 // LIKE
 router.post('/like/:lid', likeController.like)
+
+// COMMENTS
 
 
 module.exports = router

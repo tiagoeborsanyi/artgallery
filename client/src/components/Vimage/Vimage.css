@@ -198,6 +198,18 @@
 /* FINAL STYLE FORM COMMENTS */
 
 /* INIT STYLE LIST COMENT  */
+.vimage-comments__not {
+  height: 10rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vimage-comments__not > p {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .vimage-coments__items {
   list-style: none;
   margin: 0;

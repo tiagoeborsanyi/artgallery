@@ -16,13 +16,13 @@ const getPhotoById = async (req, res, next) => {
   try {
     photo = await Photo.findById(photoId).populate('creator').populate('likes.user')
   } catch (error) {
-    const err = new HttpError('Something whent weong, could not find a art.', 500);
-    return next(err);
+    const err = new HttpError('Something whent weong, could not find a art.', 500)
+    return next(err)
   }
 
   if (!photo) {
-    const err = HttpError('Could not find a art for the provided id.', 404);
-    return next(err);
+    const err = new HttpError('Could not find a art for the provided id.', 404)
+    return next(err)
   }
   res.status(201).json({ photo: photo.toObject({ getters: true }) })
 }
