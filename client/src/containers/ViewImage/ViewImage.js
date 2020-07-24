@@ -6,8 +6,10 @@ import './ViewImage.css'
 import firebase from '../../services/firebase'
 import Vimage from '../../components/Vimage/Vimage'
 import Spinner from '../../components/UI/Spinner/Spinner'
+import Modal from '../../components/UI/Modal/Modal'
 
 const ViewImage = props => {
+  const [erro, setErro] = useState()
   const [arte, setArte] = useState()
   const [like, setLike] = useState(false)
   const isCancelled = useRef(false)
@@ -17,13 +19,20 @@ const ViewImage = props => {
   useEffect(() => {
     // console.log(isCancelled)
     const fetchData = async () => {
-      const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
-      if (!isCancelled.current) {
-        if(result.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
-          setLike(true)
+      try {
+        const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
+        if (!isCancelled.current) {
+          if(result.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
+            setLike(true)
+          }
+          setArte(result.data.photo)
         }
-        setArte(result.data.photo)
+      } catch (error) {
+        if (!isCancelled.current) {
+          setErro(error.response.data.message)
+        }
       }
+
     }
     fetchData()
     return () => {
@@ -48,17 +57,20 @@ const ViewImage = props => {
   }
 
   const onLikeHandler = async () => {
-    let newArte
     try {
-      newArte = await axios.post(`/api/photos/like/${vimageId}`, { uid })
+      setLike(!like)
+      const newArte = await axios.post(`/api/photos/like/${vimageId}3`, { uid })
+      if(newArte.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
+        setLike(true)
+      } else {
+        setLike(false)
+      }
       setArte({...arte, likes: newArte.data.photo.likes})
     } catch(error) {
-      console.log(error.message)
-    }
-    if(newArte.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
-      setLike(true)
-    } else {
-      setLike(false)
+      setLike(like)
+      // respose.data pode ser undefined se caso cair a conexao do usuario o navegador vai retornar um erro, mas response.data vai ser undefined
+      setErro(error.response.data.message)
+      console.log('Erro: ', error.response.data.message)
     }
     console.log(arte)
   }
@@ -74,7 +86,14 @@ const ViewImage = props => {
       clickedLike={onLikeHandler} />
   }
 
-  return vimage
+  return (
+    <React.Fragment>
+      <Modal show={erro}>
+        Erro de alguma coisa {erro}
+      </Modal>
+      {vimage}
+    </React.Fragment>
+  )
 }
 
 const mapStateToProps = state => {
