@@ -97,7 +97,8 @@ const Vimage = props => {
         <img src={
             props.arte.creator.avatar ?
             props.arte.creator.avatar :
-            require('../../assets/icon_default_logged.png')}
+            require('../../assets/person.png')}
+            className={!props.arte.creator.avatar ? 'avatar-not-logged' : ''}
             alt="person" />
         <span>
           {
@@ -143,7 +144,10 @@ const Vimage = props => {
                     <p>This component of the description will need to refer directly to the artwork at hand. There's no perfect formula for this</p>
                 </div>
             </li>
-        </ul>) : <p>SEM COMENTARIOS</p>}
+        </ul>) :
+        <div className='vimage-comments__not'>
+          <p>SEM COMENTARIOS</p>
+        </div>}
       </div>
   </div>
   )

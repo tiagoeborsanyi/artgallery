@@ -54,7 +54,7 @@ const Toolbar = props => {
                   <div className="main-header__photo-icon">
                     <button
                       className="main-header__photo-icon-button">
-                      <img src={props.photoIcon ? props.photoIcon : require('../../../assets/icon_default_logged.png')} alt="phot icon" />
+                      <img src={props.photoIcon ? props.photoIcon : require('../../../assets/person.png')} alt="" className={!props.photoIcon ? 'icon-not-logged' : ''} />
                     </button>
                     <div className={`main-header__photo-icon-content`}>
                       <ul className="main-header__photo-icon-content__items">
