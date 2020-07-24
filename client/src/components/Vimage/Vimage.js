@@ -51,8 +51,18 @@ const Vimage = props => {
           <h1>{props.arte.title}</h1>
           <span>{props.arte.likes.length > 0 ? `${props.arte.likes.length} LIKE` : null}</span>
         </div>
-        <ul className="vimage-title__items">
+        <ul className="vimage-title__items tooltip">
+            {!props.isAuth ? <span className='tooltiptext'>Faça login</span> : null}
             <li className="vimage-title__item" style={{display: 'flex'}}>
+              {!props.isAuth ?
+              (<div className="vimage-title__item-icon not-logged">
+                  <span
+                    className={`material-icons`}
+                    >
+                    favorite
+                  </span>
+                </div>)
+              :
               <Button
                 clicked={props.clickedLike}
                 btnType='like'>
@@ -63,13 +73,23 @@ const Vimage = props => {
                     favorite
                   </span>
                 </div>
-              </Button>
+              </Button>}
             </li>
             <li className="vimage-title__item-icon">
+            {!props.isAuth ?
+              <div className="vimage-title__item-marked not-logged">
+                  <span className="material-icons marked-turned">turned_in</span>
+                  <span className="material-icons marked-check">check</span>
+              </div>
+              :
+              <Button
+                clicked={()=>{}}
+                btnType='like'>
                 <div className="vimage-title__item-marked">
-                    <span className="material-icons marked-turned">turned_in</span>
-                    <span className="material-icons marked-check">check</span>
+                  <span className="material-icons marked-turned">turned_in</span>
+                  <span className="material-icons marked-check">check</span>
                 </div>
+              </Button>}
             </li>
         </ul>
       </div>
