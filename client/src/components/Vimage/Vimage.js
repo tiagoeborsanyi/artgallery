@@ -135,15 +135,24 @@ const Vimage = props => {
       <div className="vimage-coments">
         {props.arte.comment.length ?
         (<ul className="vimage-coments__items">
-            <li>
-                <div className="vimage__item-person comment">
-                    <img src="../img//avatar-370-456322.webp" alt="person" />
-                    <span>Tiago Emerick</span>
-                </div>
-                <div className="vimage__item-comment">
-                    <p>This component of the description will need to refer directly to the artwork at hand. There's no perfect formula for this</p>
-                </div>
+          {props.arte.comment.map(cmt => (
+            <li key={cmt._id}>
+              <div className="vimage__item-person comment">
+                  <img
+                    src={
+                      props.arte.creator.avatar ?
+                      props.arte.creator.avatar :
+                      require('../../assets/person.png')}
+                      className={!props.arte.creator.avatar ? 'avatar-not-logged' : ''}
+                    alt="person" />
+                  <span>{cmt.user.displayName ? cmt.user.displayName : cmt.user.email.split('@')[0]}</span>
+              </div>
+              <div className="vimage__item-comment">
+                  <p>{cmt.content}</p>
+              </div>
             </li>
+          ))}
+
         </ul>) :
         <div className='vimage-comments__not'>
           <p>SEM COMENTARIOS</p>
