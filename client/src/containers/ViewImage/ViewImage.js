@@ -9,6 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import Modal from '../../components/UI/Modal/Modal'
 
 const ViewImage = props => {
+  const [load, setLoad] = useState(false)
   const [erro, setErro] = useState()
   const [arte, setArte] = useState()
   const [like, setLike] = useState(false)
@@ -26,10 +27,12 @@ const ViewImage = props => {
             setLike(true)
           }
           setArte(result.data.photo)
+          setLoad(true)
         }
       } catch (error) {
         if (!isCancelled.current) {
           setErro(error.response.data.message)
+          setLoad(true)
         }
       }
 
@@ -59,7 +62,7 @@ const ViewImage = props => {
   const onLikeHandler = async () => {
     try {
       setLike(!like)
-      const newArte = await axios.post(`/api/photos/like/${vimageId}3`, { uid })
+      const newArte = await axios.post(`/api/photos/like/${vimageId}`, { uid })
       if(newArte.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
         setLike(true)
       } else {
@@ -75,8 +78,11 @@ const ViewImage = props => {
     console.log(arte)
   }
 
-  let vimage = <Spinner />
-  if (arte) {
+  let vimage
+  if (!load) {
+    vimage = <Spinner />
+  }
+  if (load && arte) {
     vimage = <Vimage
       arte={arte}
       isAuth={props.isAuthenticated}
@@ -88,8 +94,8 @@ const ViewImage = props => {
 
   return (
     <React.Fragment>
-      <Modal show={erro}>
-        Erro de alguma coisa {erro}
+      <Modal show={erro} modalClosed={() => setErro(null)}>
+        {erro}
       </Modal>
       {vimage}
     </React.Fragment>
