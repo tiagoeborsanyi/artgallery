@@ -60,7 +60,7 @@ const ViewImage = props => {
   const onLikeHandler = async () => {
     try {
       setLike(!like)
-      const newArte = await axios.post(`/api/photos/like/${vimageId}3`, { uid })
+      const newArte = await axios.post(`/api/photos/like/${vimageId}`, { uid })
       if(newArte.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
         setLike(true)
       } else {
