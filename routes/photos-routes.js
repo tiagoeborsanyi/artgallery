@@ -23,10 +23,13 @@ router.post(
   photoController.createArt
   )
 
-// LIKE
+// LIKE (auth route)
 router.post('/like/:lid', likeController.like)
 
-// COMMENTS
+// FAVORITE (auth route)
 
+// COMMENTS (auth routes)
+router.post('/comment/:pid', commentsController.addComment)
+router.delete('/comment/:pid/:cid', commentsController.deleteComment)
 
 module.exports = router
