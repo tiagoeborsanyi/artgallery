@@ -18,7 +18,6 @@ const ViewImage = props => {
   const {vimageId} = props.match.params
   const {uid} = props
   useEffect(() => {
-    // console.log(isCancelled)
     const fetchData = async () => {
       try {
         const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
@@ -47,7 +46,6 @@ const ViewImage = props => {
     const nImg = img.split('/o/')[1]
     const storage = firebase.storage().ref()
     storage.child(nImg).getDownloadURL().then(url => {
-      // console.log(url)
       const a = document.createElement("a");
       a.download = true;
       a.target = '_blank'
@@ -62,7 +60,7 @@ const ViewImage = props => {
   const onLikeHandler = async () => {
     try {
       setLike(!like)
-      const newArte = await axios.post(`/api/photos/like/${vimageId}`, { uid })
+      const newArte = await axios.post(`/api/photos/like/${vimageId}3`, { uid })
       if(newArte.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
         setLike(true)
       } else {
@@ -71,7 +69,6 @@ const ViewImage = props => {
       setArte({...arte, likes: newArte.data.photo.likes})
     } catch(error) {
       setLike(like)
-      // respose.data pode ser undefined se caso cair a conexao do usuario o navegador vai retornar um erro, mas response.data vai ser undefined
       setErro(error.response.data.message)
       console.log('Erro: ', error.response.data.message)
     }
@@ -95,7 +92,10 @@ const ViewImage = props => {
   return (
     <React.Fragment>
       <Modal show={erro} modalClosed={() => setErro(null)}>
-        {erro}
+        <div className='vimage-modal-error'>
+          {erro}
+          <button  onClick={() => setErro(null)}>Close</button>
+        </div>
       </Modal>
       {vimage}
     </React.Fragment>
