@@ -124,11 +124,17 @@ const Vimage = props => {
           <h1>Comments</h1>
       </div>
       <div className="vimage-form">
-        <form>
+        <form onSubmit={props.addComment}>
             <div className="vimage-form-control first tooltip">
                 <img src={props.autualUserIcon ? props.autualUserIcon : require('../../assets/person_icon_black.png')} alt="person" />
                 {!props.isAuth ? <span className='tooltiptext'>Faça login</span> : null}
-                <input type="text" placeholder="ADD YOUR COMMENTS..." className={!props.isAuth ? 'disabled' : ''} disabled={!props.isAuth} />
+                <input
+                  type="text"
+                  placeholder="ADD YOUR COMMENTS..."
+                  className={!props.isAuth ? 'disabled' : ''}
+                  disabled={!props.isAuth}
+                  value={props.valueComment}
+                  onChange={props.changeComment} />
             </div>
         </form>
       </div>

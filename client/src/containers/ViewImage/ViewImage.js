@@ -13,6 +13,7 @@ const ViewImage = props => {
   const [erro, setErro] = useState()
   const [arte, setArte] = useState()
   const [like, setLike] = useState(false)
+  const [valueComment, setValueComment] = useState('')
   const isCancelled = useRef(false)
 
   const {vimageId} = props.match.params
@@ -75,6 +76,21 @@ const ViewImage = props => {
     console.log(arte)
   }
 
+  const addCommentHandler = (e) => {
+    e.preventDefault()
+    if (valueComment.length >= 15) {
+      const objComment = {
+        uid: props.uid,
+        content: valueComment
+      }
+      console.log('add comment', objComment)
+    }
+  }
+
+  const changeCommentHandler = (e) => {
+    setValueComment(e.target.value)
+  }
+
   let vimage
   if (!load) {
     vimage = <Spinner />
@@ -86,7 +102,10 @@ const ViewImage = props => {
       downloadImage={downloadImageHandler}
       autualUserIcon={props.isAtualUserIcon}
       like={like}
-      clickedLike={onLikeHandler} />
+      addComment={addCommentHandler}
+      clickedLike={onLikeHandler}
+      valueComment={valueComment}
+      changeComment={changeCommentHandler} />
   }
 
   return (
