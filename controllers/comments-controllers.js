@@ -1,5 +1,3 @@
-const { validationResult } = require('express-validator')
-
 const HttpError = require('../models/http-error')
 const User = require('../models/user')
 const Photo = require('../models/photo')
@@ -8,11 +6,6 @@ const util = require('./utils')
 
 // ADD COMMENT
 const addComment = async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new HttpError('Invalid inputs passe, please check your data.', 422))
-  }
-
   const { pid } = req.params
   const { uid, content } = req.body
   let user
@@ -36,11 +29,6 @@ const addComment = async (req, res, next) => {
 
 // DELETE COMMENT
 const deleteComment = async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new HttpError('Invalid inputs passe, please check your data.', 422))
-  }
-
   const { pid, cid } = req.params
   const { uid } = req.body
   let photo

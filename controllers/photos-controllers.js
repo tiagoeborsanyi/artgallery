@@ -1,4 +1,3 @@
-const { validationResult } = require('express-validator')
 const mongoose = require('mongoose')
 
 const HttpError = require('../models/http-error')
@@ -55,11 +54,6 @@ const getPhotosByUserId = async (req, res, next) => {
 }
 
 const createArt = async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    next(new HttpError('Invalid inputs passe, please check your data.', 422))
-  }
-
   const {
     title,
     description,

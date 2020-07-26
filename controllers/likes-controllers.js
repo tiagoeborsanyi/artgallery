@@ -3,7 +3,7 @@ const User = require('../models/user')
 const Photo = require('../models/photo')
 
 const like = async (req, res, next) => {
-  const { lid } = req.params
+  const { pid } = req.params
   const { uid } = req.body
   let user
   let photo
@@ -16,7 +16,7 @@ const like = async (req, res, next) => {
   }
 
   try {
-    photo = await Photo.findOne({ _id: lid })
+    photo = await Photo.findOne({ _id: pid })
   } catch(error) {
     const err = new HttpError('Like Art failed, please try again.', 500)
     return next(err)
@@ -38,7 +38,7 @@ const like = async (req, res, next) => {
 
   let newPhoto
   try {
-    newPhoto = await Photo.findById(lid).populate('creator').populate('likes.user')
+    newPhoto = await Photo.findById(pid).populate('creator').populate('likes.user')
   } catch (error) {
     const err = new HttpError('Something whent weong, could not find a art.', 500);
     return next(err);
