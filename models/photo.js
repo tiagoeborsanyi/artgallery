@@ -12,6 +12,7 @@ const photoSchema = new Schema({
   favorited: [{ type: mongoose.Types.ObjectId, required: true, ref: 'User' }],
   comment: [{
     user: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
+    user_uid: { type: String, required: true },
     content: { type: String, required: true},
     createcomment: { type: Date, default: Date.now }
   }],

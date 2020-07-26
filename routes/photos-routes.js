@@ -1,5 +1,5 @@
 const express = require('express')
-const { check } = require('express-validator')
+const { check, body } = require('express-validator')
 
 const checkAuth = require('../middleware/check-auth')
 const router = express.Router()
@@ -29,7 +29,18 @@ router.post('/like/:lid', likeController.like)
 // FAVORITE (auth route)
 
 // COMMENTS (auth routes)
-router.post('/comment/:pid', commentsController.addComment)
-router.delete('/comment/:pid/:cid', commentsController.deleteComment)
+router.post(
+  '/comment/:pid',
+  [
+    check('uid').not().isEmpty(),
+    check('content').not().isEmpty()
+  ],
+  commentsController.addComment)
+router.delete(
+  '/comment/:pid/:cid',
+  [
+    check('uid').not().isEmpty()
+  ],
+  commentsController.deleteComment)
 
 module.exports = router

@@ -1,6 +1,6 @@
 const HttpError = require('../models/http-error')
 
-const auxFind = async (obj, aux, message) => {
+const auxFind = async (obj, aux, message, next) => {
   try {
     return await obj.findOne(aux)
   } catch(error) {
@@ -9,7 +9,7 @@ const auxFind = async (obj, aux, message) => {
   }
 }
 
-const auxSave = async (obj, message) => {
+const auxSave = async (obj, message, next) => {
   try {
     await obj.save()
   } catch(error) {
