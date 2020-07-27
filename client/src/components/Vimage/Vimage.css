@@ -98,14 +98,15 @@
 }
 
 /* STYLE LINE AVATAR/NAME CREATOR */
-.vimage__item-person {
+.vimage__item-person .user-comments,
+.vimage__item-person.avatar-creator {
   width: 100%;
-  margin-bottom: 0.8rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
+.vimage__item-person .user-comments > img,
 .vimage__item-person > img {
   height: 3rem;
   width: 3rem;
@@ -115,6 +116,7 @@
 .avatar-not-logged {
   background: rgba(0, 0, 0, 0.2);
 }
+.vimage__item-person .user-comments > span,
 .vimage__item-person > span {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.8);
@@ -231,12 +233,19 @@
   margin: 0;
   padding: 0;
 }
-
-.vimage__item-person.comment > img {
+.vimage-coments__items > li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+.vimage__item-person.comment {
+  display: flex;
+  justify-content: space-between;
+}
+.vimage__item-person.comment > div > img {
   height: 2rem;
   width: 2rem;
 }
-.vimage__item-person.comment > span {
+.vimage__item-person.comment > div > span {
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -245,6 +254,15 @@
   height: auto;
   width: 100%;
   padding-left: 3rem;
+}
+
+.more-comments {
+  color: rgba(0, 0, 0, 0.7);
+}
+.more-comments:hover > span {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.95);
+  font-weight: 500;
 }
 
 /* FINAL STYLE LIST COMENT  */

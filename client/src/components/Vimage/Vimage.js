@@ -94,7 +94,7 @@ const Vimage = props => {
             </li>
         </ul>
       </div>
-      <div className="vimage__item-person">
+      <div className="vimage__item-person avatar-creator">
         <img src={
             props.arte.creator.avatar ?
             props.arte.creator.avatar :
@@ -145,6 +145,7 @@ const Vimage = props => {
           {props.comments.map(cmt => (
             <li key={cmt._id}>
               <div className="vimage__item-person comment">
+                <div className='user-comments'>
                   <img
                     src={
                       cmt.user.avatar ?
@@ -153,6 +154,10 @@ const Vimage = props => {
                       className={!cmt.user.avatar ? 'avatar-not-logged' : ''}
                     alt="person" />
                   <span>{cmt.user.displayName ? cmt.user.displayName : cmt.user.email.split('@')[0]}</span>
+                </div>
+                <div className='more-comments'>
+                  <span className="material-icons">more_vert</span>
+                </div>
               </div>
               <div className="vimage__item-comment">
                   <p>{cmt.content}</p>
