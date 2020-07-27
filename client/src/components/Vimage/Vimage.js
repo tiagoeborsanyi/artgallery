@@ -5,6 +5,7 @@ import './Vimage.css'
 import Button from '../UI/Button/Button'
 
 const Vimage = props => {
+  // console.log(props.comments)
   return (
     <div className="vimage">
       <section className="vimage-carousel" aria-label="Gallery">
@@ -139,17 +140,17 @@ const Vimage = props => {
         </form>
       </div>
       <div className="vimage-coments">
-        {props.arte.comment.length ?
+        {props.comments.length ?
         (<ul className="vimage-coments__items">
-          {props.arte.comment.map(cmt => (
+          {props.comments.map(cmt => (
             <li key={cmt._id}>
               <div className="vimage__item-person comment">
                   <img
                     src={
-                      props.arte.creator.avatar ?
-                      props.arte.creator.avatar :
+                      cmt.user.avatar ?
+                      cmt.user.avatar :
                       require('../../assets/person.png')}
-                      className={!props.arte.creator.avatar ? 'avatar-not-logged' : ''}
+                      className={!cmt.user.avatar ? 'avatar-not-logged' : ''}
                     alt="person" />
                   <span>{cmt.user.displayName ? cmt.user.displayName : cmt.user.email.split('@')[0]}</span>
               </div>

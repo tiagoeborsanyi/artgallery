@@ -13,6 +13,7 @@ const ViewImage = props => {
   const [erro, setErro] = useState()
   const [arte, setArte] = useState()
   const [like, setLike] = useState(false)
+  const [comments, setComments] = useState([])
   const [valueComment, setValueComment] = useState('')
   const isCancelled = useRef(false)
 
@@ -27,6 +28,7 @@ const ViewImage = props => {
             setLike(true)
           }
           setArte(result.data.photo)
+          setComments(result.data.photo.comment)
           setLoad(true)
         }
       } catch (error) {
@@ -76,14 +78,26 @@ const ViewImage = props => {
     console.log(arte)
   }
 
-  const addCommentHandler = (e) => {
+  const addCommentHandler = async (e) => {
     e.preventDefault()
     if (valueComment.length >= 15) {
       const objComment = {
         uid: props.uid,
         content: valueComment
       }
-      console.log('add comment', objComment)
+      const headers = {
+        headers: { Authorization: props.token }
+      }
+      try {
+        const result = await axios.post(`/api/photos/comment/${vimageId}`, objComment, headers)
+        if (result) {
+          console.log(result)
+          setComments([result.data.photo, ...comments])
+          setValueComment('')
+        }
+      } catch (error) {
+        console.log(error.response)
+      }
     }
   }
 
@@ -102,6 +116,7 @@ const ViewImage = props => {
       downloadImage={downloadImageHandler}
       autualUserIcon={props.isAtualUserIcon}
       like={like}
+      comments={comments}
       addComment={addCommentHandler}
       clickedLike={onLikeHandler}
       valueComment={valueComment}
@@ -125,7 +140,8 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
     isAtualUserIcon: state.auth.photoURL,
-    uid: state.auth.userId
+    uid: state.auth.userId,
+    token: state.auth.token
   }
 }
 
