@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import './VimageCarrousel.css'
 import './Vimage.css'
 import Button from '../UI/Button/Button'
 
 const Vimage = props => {
+  const [more, setMore] = useState(false)
+  const wrapper = useRef(null)
+
+  useEffect(() => {
+    if (wrapper) {
+      console.log(wrapper.current)
+    }
+    return () => {
+      wrapper = false
+    }
+  }, [wrapper])
   // console.log(props.comments)
   return (
-    <div className="vimage">
+    <div className="vimage" ref={wrapper} onClick={() => console.log(wrapper)}>
       <section className="vimage-carousel" aria-label="Gallery">
           <ol className="carousel__viewport">
             {props.arte ? props.arte.original_img.map((img, i) => (
@@ -155,8 +166,17 @@ const Vimage = props => {
                     alt="person" />
                   <span>{cmt.user.displayName ? cmt.user.displayName : cmt.user.email.split('@')[0]}</span>
                 </div>
-                <div className='more-comments'>
-                  <span className="material-icons">more_vert</span>
+                <div className={`more-comments ${more ? '' : ''}`}>
+                  <span
+                    className={`material-icons`}
+                    onClick={() => setMore(!more)}>more_vert</span>
+                  <div className='more-comments__content' style={{display: more ? 'block' : 'none'}}>
+                    <button
+                      className='more-comments__content-button'>
+                        Delete
+                    </button>
+                    <span className='more-comments__content-text'>Report this comment...</span>
+                  </div>
                 </div>
               </div>
               <div className="vimage__item-comment">

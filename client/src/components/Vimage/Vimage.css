@@ -258,11 +258,36 @@
 
 .more-comments {
   color: rgba(0, 0, 0, 0.7);
+  position: relative;
 }
 .more-comments:hover > span {
   cursor: pointer;
   color: rgba(0, 0, 0, 0.95);
   font-weight: 500;
+}
+.more-comments.actived > .more-comments__content{
+  display: block;
+}
+.more-comments__content {
+  height: 3.5rem;
+  width: 13rem;
+  position: absolute;
+  right: 0;
+  display: none;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0.4rem 0.9rem;
+  border-radius: 3px;
+  box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.2);
+}
+.more-comments__content-button {
+  border: none;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 1px 0;
+}
+.more-comments__content-text {
+  display: inline-block;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
 }
 
 /* FINAL STYLE LIST COMENT  */
