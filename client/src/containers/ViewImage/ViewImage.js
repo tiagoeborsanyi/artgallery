@@ -14,7 +14,15 @@ const ViewImage = props => {
   const [arte, setArte] = useState()
   const [like, setLike] = useState(false)
   const [comments, setComments] = useState([])
-  const [valueComment, setValueComment] = useState('')
+  const [valueComment, setValueComment] = useState({
+    value: '',
+    validation: {
+      required: true,
+      minLength: 2
+    },
+    valid: false,
+    touched: false
+  })
   const [loadComment, setLoadComment] = useState(false)
   const isCancelled = useRef(false)
 
@@ -84,7 +92,7 @@ const ViewImage = props => {
 
   const addCommentHandler = async (e) => {
     e.preventDefault()
-    if (valueComment.length >= 15) {
+    if (valueComment.length >= 2) {
       const objComment = {
         uid: props.uid,
         content: valueComment
@@ -96,13 +104,12 @@ const ViewImage = props => {
       try {
         const result = await axios.post(`/api/photos/comment/${vimageId}`, objComment, headers)
         if (result) {
-          console.log(result)
           setComments([result.data.photo, ...comments])
           setLoadComment(false)
           setValueComment('')
         }
       } catch (error) {
-        console.log(error.response)
+        // console.log(error.response)
         setLoadComment(false)
         setErro(error.response.data.message)
       }
@@ -122,7 +129,6 @@ const ViewImage = props => {
     try {
       const result = await axios.delete(`/api/photos/comment/${vimageId}/${id}`, config)
       if (result) {
-        console.log(result)
         setLoadComment(false)
         setComments(result.data.photo.comment)
       }

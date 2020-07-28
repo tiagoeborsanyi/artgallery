@@ -194,6 +194,9 @@
   position: relative;
   cursor: not-allowed;
 }
+.vimage-form-control .invalid {
+  border: 1px solid red;
+}
 .tooltip {
   position: relative;
 }

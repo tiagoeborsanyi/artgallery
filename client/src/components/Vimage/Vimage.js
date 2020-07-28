@@ -146,8 +146,8 @@ const Vimage = props => {
                 {!props.isAuth ? <span className='tooltiptext'>Faça login</span> : null}
                 <input
                   type="text"
-                  placeholder="ADD YOUR COMMENTS..."
-                  className={!props.isAuth ? 'disabled' : ''}
+                  placeholder="PRESS (ENTER) TO ADD YOUR COMMENT"
+                  className={`${!props.isAuth ? 'disabled' : ''} ${props.inputValid ? 'invalid' : ''}`}
                   disabled={!props.isAuth}
                   value={props.valueComment}
                   onChange={props.changeComment} />
