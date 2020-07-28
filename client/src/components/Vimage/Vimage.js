@@ -168,7 +168,8 @@ const Vimage = props => {
                       require('../../assets/person.png')}
                       className={!cmt.user.avatar ? 'avatar-not-logged' : ''}
                     alt="person" />
-                  <span>{cmt.user.displayName ? cmt.user.displayName : cmt.user.email.split('@')[0]}</span>
+                  <span className='user-comments__name'>{cmt.user.displayName ? cmt.user.displayName : cmt.user.email.split('@')[0]}</span>
+                  <span className='user-comments__date'>{cmt.createcomment}</span>
                 </div>
                 <div className={`more-comments ${more ? '' : ''}`}>
                   <span

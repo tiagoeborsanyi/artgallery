@@ -116,10 +116,18 @@
 .avatar-not-logged {
   background: rgba(0, 0, 0, 0.2);
 }
-.vimage__item-person .user-comments > span,
+.user-comments__name,
 .vimage__item-person > span {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.8);
+}
+
+.user-comments__date {
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  margin-bottom: -4px;
 }
 
 /* FINAL STYLE AVATAR/NAME CREATOR */
@@ -256,10 +264,6 @@
 .vimage__item-person.comment > div > img {
   height: 2rem;
   width: 2rem;
-}
-.vimage__item-person.comment > div > span {
-  font-size: 0.9rem;
-  font-weight: 600;
 }
 
 .vimage__item-comment {
