@@ -25,7 +25,7 @@ const addComment = async (req, res, next) => {
   await util.auxSave(photo, 'Comment failed, please try again.', next)
   const resComment = {
     content: content,
-    createdcomment: photo.comment[0].createcomment,
+    createcomment: photo.comment[0].createcomment,
     user: user,
     user_uid: uid,
     _id: photo.comment[0]._id

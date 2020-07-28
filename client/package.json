@@ -9,6 +9,7 @@
     "axios": "0.19.2",
     "firebase": "7.15.4",
     "http-proxy-middleware": "1.0.4",
+    "moment": "^2.27.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "7.2.0",

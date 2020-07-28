@@ -98,6 +98,7 @@ const ViewImage = props => {
       try {
         const result = await axios.post(`/api/photos/comment/${vimageId}`, objComment, headers)
         if (result) {
+          console.log(result.data)
           setComments([result.data.photo, ...comments])
           setLoadComment(false)
           setValueComment(objInputComment)

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import moment from 'moment';
 
 import './VimageCarrousel.css'
 import './Vimage.css'
@@ -169,7 +170,15 @@ const Vimage = props => {
                       className={!cmt.user.avatar ? 'avatar-not-logged' : ''}
                     alt="person" />
                   <span className='user-comments__name'>{cmt.user.displayName ? cmt.user.displayName : cmt.user.email.split('@')[0]}</span>
-                  <span className='user-comments__date'>{cmt.createcomment}</span>
+                  <span className='user-comments__date'>
+                    {moment(
+                      [
+                        +cmt.createcomment.split('T')[0].split('-')[0],
+                        +cmt.createcomment.split('T')[0].split('-')[1].split('')[1]-1,
+                        +cmt.createcomment.split('T')[0].split('-')[2]
+                      ]
+                    ).fromNow()}
+                  </span>
                 </div>
                 <div className={`more-comments ${more ? '' : ''}`}>
                   <span
