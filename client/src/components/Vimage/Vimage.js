@@ -5,20 +5,23 @@ import './Vimage.css'
 import Button from '../UI/Button/Button'
 
 const Vimage = props => {
-  const [more, setMore] = useState(false)
-  const wrapper = useRef(null)
+  const [more, setMore] = useState()
+  let wrapper = useRef(false)
 
   useEffect(() => {
-    if (wrapper) {
-      console.log(wrapper.current)
-    }
+    document.addEventListener('click', () => {
+      console.log(wrapper.current, more)
+      if (wrapper.current && more) {
+        setMore('')
+      }
+    })
     return () => {
-      wrapper = false
+      wrapper.current = true
     }
-  }, [wrapper])
+  }, [wrapper, more])
   // console.log(props.comments)
   return (
-    <div className="vimage" ref={wrapper} onClick={() => console.log(wrapper)}>
+    <div className="vimage" ref={wrapper}>
       <section className="vimage-carousel" aria-label="Gallery">
           <ol className="carousel__viewport">
             {props.arte ? props.arte.original_img.map((img, i) => (
@@ -169,8 +172,11 @@ const Vimage = props => {
                 <div className={`more-comments ${more ? '' : ''}`}>
                   <span
                     className={`material-icons`}
-                    onClick={() => setMore(!more)}>more_vert</span>
-                  <div className='more-comments__content' style={{display: more ? 'block' : 'none'}}>
+                    onClick={() => {
+                      setMore(cmt._id)
+                      wrapper.current = false;
+                    }}>more_vert</span>
+                  <div className='more-comments__content' style={{display: more === cmt._id ? 'block' : 'none'}}>
                     <button
                       className='more-comments__content-button'>
                         Delete
