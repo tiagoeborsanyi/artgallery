@@ -147,7 +147,7 @@ const Vimage = props => {
                 <input
                   type="text"
                   placeholder="PRESS (ENTER) TO ADD YOUR COMMENT"
-                  className={`${!props.isAuth ? 'disabled' : ''} ${props.inputValid ? 'invalid' : ''}`}
+                  className={`${!props.isAuth ? 'disabled' : ''} ${props.inputValid && props.touched ? 'invalid' : ''}`}
                   disabled={!props.isAuth}
                   value={props.valueComment}
                   onChange={props.changeComment} />
@@ -182,11 +182,12 @@ const Vimage = props => {
                       wrapper.current = false;
                     }}>more_vert</span>
                   <div className='more-comments__content' style={{display: more === cmt._id ? 'block' : 'none'}}>
+                    {cmt.user_uid === props.atualUserId &&
                     <button
                       className='more-comments__content-button'
                       onClick={() => props.commentDelete(cmt._id)}>
                         Delete
-                    </button>
+                    </button>}
                     <span className='more-comments__content-text'>Report this comment...</span>
                   </div>
                 </div>

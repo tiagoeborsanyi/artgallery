@@ -281,7 +281,7 @@
   display: block;
 }
 .more-comments__content {
-  height: 3.5rem;
+  height: auto;
   width: 13rem;
   position: absolute;
   right: 0;

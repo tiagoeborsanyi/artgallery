@@ -3,6 +3,8 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 
 import './ViewImage.css'
+import { checkValidity } from '../../shared/utility'
+import { objInputComment } from './objInputComment'
 import firebase from '../../services/firebase'
 import Vimage from '../../components/Vimage/Vimage'
 import Spinner from '../../components/UI/Spinner/Spinner'
@@ -14,15 +16,7 @@ const ViewImage = props => {
   const [arte, setArte] = useState()
   const [like, setLike] = useState(false)
   const [comments, setComments] = useState([])
-  const [valueComment, setValueComment] = useState({
-    value: '',
-    validation: {
-      required: true,
-      minLength: 2
-    },
-    valid: false,
-    touched: false
-  })
+  const [valueComment, setValueComment] = useState(objInputComment)
   const [loadComment, setLoadComment] = useState(false)
   const isCancelled = useRef(false)
 
@@ -92,10 +86,10 @@ const ViewImage = props => {
 
   const addCommentHandler = async (e) => {
     e.preventDefault()
-    if (valueComment.length >= 2) {
+    if (valueComment.value.length >= 2) {
       const objComment = {
         uid: props.uid,
-        content: valueComment
+        content: valueComment.value
       }
       const headers = {
         headers: { Authorization: props.token }
@@ -106,7 +100,7 @@ const ViewImage = props => {
         if (result) {
           setComments([result.data.photo, ...comments])
           setLoadComment(false)
-          setValueComment('')
+          setValueComment(objInputComment)
         }
       } catch (error) {
         // console.log(error.response)
@@ -117,7 +111,13 @@ const ViewImage = props => {
   }
 
   const changeCommentHandler = (e) => {
-    setValueComment(e.target.value)
+    const updateValueComment = {
+      ...valueComment,
+      value: e.target.value,
+      valid: checkValidity(e.target.value, valueComment.validation),
+      touched: true
+    }
+    setValueComment(updateValueComment)
   }
 
   const commentDeleteHandler = async (id) => {
@@ -147,12 +147,15 @@ const ViewImage = props => {
       arte={arte}
       isAuth={props.isAuthenticated}
       downloadImage={downloadImageHandler}
+      atualUserId={props.uid}
       autualUserIcon={props.isAtualUserIcon}
       like={like}
       comments={comments}
       addComment={addCommentHandler}
       clickedLike={onLikeHandler}
-      valueComment={valueComment}
+      valueComment={valueComment.value}
+      inputValid={!valueComment.valid}
+      touched={valueComment.touched}
       changeComment={changeCommentHandler}
       commentDelete={commentDeleteHandler}
       loadComments={loadComment} />
