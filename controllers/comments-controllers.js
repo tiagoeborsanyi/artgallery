@@ -49,6 +49,12 @@ const deleteComment = async (req, res, next) => {
   const removeIndex = photo.comment.map(cm => cm._id.toString()).indexOf(cid)
   photo.comment.splice(removeIndex, 1)
   await util.auxSave(photo, 'Comment failed, please try again.', next)
+  try {
+    photo = await Photo.findById(pid).populate('creator').populate('comment.user')
+  } catch (error) {
+    const err = new HttpError('Something whent weong, could not find a art.', 500)
+    return next(err)
+  }
   res.status(201).json({photo})
 }
 

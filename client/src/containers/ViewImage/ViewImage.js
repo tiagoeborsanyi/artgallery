@@ -100,12 +100,29 @@ const ViewImage = props => {
         }
       } catch (error) {
         console.log(error.response)
+        setErro(error.response.data.message)
       }
     }
   }
 
   const changeCommentHandler = (e) => {
     setValueComment(e.target.value)
+  }
+
+  const commentDeleteHandler = async (id) => {
+    const config = {
+      headers: { Authorization: props.token },
+      data: { uid: props.uid }
+    }
+    try {
+      const result = await axios.delete(`/api/photos/comment/${vimageId}/${id}`, config)
+      if (result) {
+        console.log(result)
+        setComments(result.data.photo.comment)
+      }
+    } catch(error) {
+      setErro(error.response.data.message)
+    }
   }
 
   let vimage
@@ -123,7 +140,8 @@ const ViewImage = props => {
       addComment={addCommentHandler}
       clickedLike={onLikeHandler}
       valueComment={valueComment}
-      changeComment={changeCommentHandler} />
+      changeComment={changeCommentHandler}
+      commentDelete={commentDeleteHandler} />
   }
 
   return (

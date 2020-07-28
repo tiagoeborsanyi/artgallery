@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { check } = require('express-validator')
+const { check, body } = require('express-validator')
 
 const checkAuth = require('../middleware/check-auth')
 const checkInputs = require('../middleware/check-inputs')
@@ -44,6 +44,7 @@ router.post(
 // COMMENTS (auth routes)
 router.post(
   '/comment/:pid',
+  checkAuth,
   [
     check('uid').not().isEmpty(),
     check('content').not().isEmpty()
@@ -52,8 +53,9 @@ router.post(
   commentsController.addComment)
 router.delete(
   '/comment/:pid/:cid',
+  checkAuth,
   [
-    check('uid').not().isEmpty()
+    body('uid').not().isEmpty()
   ],
   checkInputs,
   commentsController.deleteComment)

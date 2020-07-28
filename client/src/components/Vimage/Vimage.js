@@ -182,7 +182,8 @@ const Vimage = props => {
                     }}>more_vert</span>
                   <div className='more-comments__content' style={{display: more === cmt._id ? 'block' : 'none'}}>
                     <button
-                      className='more-comments__content-button'>
+                      className='more-comments__content-button'
+                      onClick={() => props.commentDelete(cmt._id)}>
                         Delete
                     </button>
                     <span className='more-comments__content-text'>Report this comment...</span>
