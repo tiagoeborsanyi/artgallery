@@ -232,7 +232,7 @@
 }
 .load-comments {
   position: absolute;
-  top: -30%;
+  top: -3%;
   right: 50%;
   transform: translate(-50%);
 }
@@ -275,13 +275,21 @@
   margin-bottom: 0.2rem;
 }
 .comment-like {
+  display: flex;
+  align-items: center;
+  margin-top: 0.2rem;
   margin-bottom: 0.8rem;
   padding-left: 2.9rem;
 }
 .comment-like > span {
-  margin-right: 0.6rem;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+.comment-like > .share {
+  margin-right: 0.6rem;
+}
+.comment-like > .like-comment {
+  margin-right: 0.2rem;
 }
 .comment-like > .share:hover,
 .comment-like > .like-comment:hover {

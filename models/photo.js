@@ -9,12 +9,16 @@ const photoSchema = new Schema({
   original_img: [{ type: String, required: true }],
   tags: [String],
   download: { type: Boolean, required: true },
-  favorited: [{ type: mongoose.Types.ObjectId, required: true, ref: 'User' }],
+  favorited: [{
+    user: { type: mongoose.Types.ObjectId, required: true, ref: 'User' }
+  }],
   comment: [{
     user: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
     user_uid: { type: String, required: true },
     content: { type: String, required: true},
-    likes: { type: Number, required: false },
+    likes: [{
+      user: { type: Schema.Types.ObjectId, ref: 'User' }
+    }],
     createcomment: { type: Date, default: Date.now }
   }],
   likes: [{

@@ -214,6 +214,7 @@ const Vimage = props => {
                   >
                   favorite
                 </span>
+                <span>{cmt.likes.length ? cmt.likes.length : null}</span>
               </div>
             </li>
           ))}

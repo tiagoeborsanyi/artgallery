@@ -18,13 +18,15 @@ const addComment = async (req, res, next) => {
     const newComment = {
       user: user._id.toString(),
       user_uid: uid,
-      content: content
+      content: content,
+      likes: []
     }
     photo.comment.unshift(newComment)
   }
   await util.auxSave(photo, 'Comment failed, please try again.', next)
   const resComment = {
     content: content,
+    likes: [],
     createcomment: photo.comment[0].createcomment,
     user: user,
     user_uid: uid,
@@ -58,5 +60,10 @@ const deleteComment = async (req, res, next) => {
   res.status(201).json({photo})
 }
 
+const likeComment = (req, res, next) => {
+  res.status(201).json({photo: 'like comment ok.'})
+}
+
 exports.addComment = addComment
 exports.deleteComment = deleteComment
+exports.likeComment = likeComment
