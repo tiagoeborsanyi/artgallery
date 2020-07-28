@@ -205,6 +205,16 @@ const Vimage = props => {
               <div className="vimage__item-comment">
                   <p>{cmt.content}</p>
               </div>
+              <div className='comment-like'>
+                <span className="material-icons share">
+                  share
+                </span>
+                <span
+                  className={`material-icons like-comment`}
+                  >
+                  favorite
+                </span>
+              </div>
             </li>
           ))}
 

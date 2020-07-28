@@ -271,6 +271,28 @@
   width: 100%;
   padding-left: 3rem;
 }
+.vimage__item-comment > p {
+  margin-bottom: 0.2rem;
+}
+.comment-like {
+  margin-bottom: 0.8rem;
+  padding-left: 2.9rem;
+}
+.comment-like > span {
+  margin-right: 0.6rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+}
+.comment-like > .share:hover,
+.comment-like > .like-comment:hover {
+  cursor: pointer;
+}
+.comment-like > .share:hover {
+  color: rgba(0, 0, 0, 0.95);
+}
+.comment-like > .like-comment:hover {
+  color: rgb(235, 85, 85);
+}
 
 .more-comments {
   color: rgba(0, 0, 0, 0.7);
