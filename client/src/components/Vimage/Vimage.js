@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import './VimageCarrousel.css'
 import './Vimage.css'
 import Button from '../UI/Button/Button'
+import Spinner from '../UI/Spinner/Spinner'
 
 const Vimage = props => {
   const [more, setMore] = useState()
@@ -200,6 +201,9 @@ const Vimage = props => {
         <div className='vimage-comments__not'>
           <p>SEM COMENTARIOS</p>
         </div>}
+        <div className='load-comments'>
+          {props.loadComments ? <Spinner form='form' /> : null}
+        </div>
       </div>
   </div>
   )

@@ -216,6 +216,15 @@
 /* FINAL STYLE FORM COMMENTS */
 
 /* INIT STYLE LIST COMENT  */
+.vimage-coments {
+  position: relative;
+}
+.load-comments {
+  position: absolute;
+  top: -30%;
+  right: 50%;
+  transform: translate(-50%);
+}
 .vimage-comments__not {
   height: 10rem;
   width: 100%;

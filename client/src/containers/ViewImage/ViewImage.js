@@ -15,6 +15,7 @@ const ViewImage = props => {
   const [like, setLike] = useState(false)
   const [comments, setComments] = useState([])
   const [valueComment, setValueComment] = useState('')
+  const [loadComment, setLoadComment] = useState(false)
   const isCancelled = useRef(false)
 
   const {vimageId} = props.match.params
@@ -91,15 +92,18 @@ const ViewImage = props => {
       const headers = {
         headers: { Authorization: props.token }
       }
+      setLoadComment(true)
       try {
         const result = await axios.post(`/api/photos/comment/${vimageId}`, objComment, headers)
         if (result) {
           console.log(result)
           setComments([result.data.photo, ...comments])
+          setLoadComment(false)
           setValueComment('')
         }
       } catch (error) {
         console.log(error.response)
+        setLoadComment(false)
         setErro(error.response.data.message)
       }
     }
@@ -114,13 +118,16 @@ const ViewImage = props => {
       headers: { Authorization: props.token },
       data: { uid: props.uid }
     }
+    setLoadComment(true)
     try {
       const result = await axios.delete(`/api/photos/comment/${vimageId}/${id}`, config)
       if (result) {
         console.log(result)
+        setLoadComment(false)
         setComments(result.data.photo.comment)
       }
     } catch(error) {
+      setLoadComment(false)
       setErro(error.response.data.message)
     }
   }
@@ -141,7 +148,8 @@ const ViewImage = props => {
       clickedLike={onLikeHandler}
       valueComment={valueComment}
       changeComment={changeCommentHandler}
-      commentDelete={commentDeleteHandler} />
+      commentDelete={commentDeleteHandler}
+      loadComments={loadComment} />
   }
 
   return (
