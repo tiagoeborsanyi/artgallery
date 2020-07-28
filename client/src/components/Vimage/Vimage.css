@@ -282,12 +282,21 @@
 .more-comments__content-button {
   border: none;
   color: rgba(0, 0, 0, 0.7);
-  padding: 1px 0;
+  padding: 0.1rem 0.4rem;
+  margin-bottom: 0.3rem;
+  border-radius: 3px;
+  font-weight: 600;
+  background-color: rgb(232, 190, 240);
 }
 .more-comments__content-text {
   display: inline-block;
   margin-top: 0.2rem;
   font-size: 0.9rem;
+}
+.more-comments__content-button:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.95);
+  font-weight: 700;
 }
 
 /* FINAL STYLE LIST COMENT  */

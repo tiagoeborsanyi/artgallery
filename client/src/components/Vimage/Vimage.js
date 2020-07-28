@@ -10,7 +10,7 @@ const Vimage = props => {
 
   useEffect(() => {
     document.addEventListener('click', () => {
-      console.log(wrapper.current, more)
+      // console.log(wrapper.current, more)
       if (wrapper.current && more) {
         setMore('')
       }
@@ -173,6 +173,10 @@ const Vimage = props => {
                   <span
                     className={`material-icons`}
                     onClick={() => {
+                      if (!!more) {
+                        setMore('')
+                        return
+                      }
                       setMore(cmt._id)
                       wrapper.current = false;
                     }}>more_vert</span>
