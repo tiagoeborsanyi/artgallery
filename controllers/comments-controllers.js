@@ -42,7 +42,7 @@ const deleteComment = async (req, res, next) => {
   const { uid } = req.body
   let photo
 
-  photo = await util.auxFind(Photo, { _id: pid }, 'Delete comment failed, for search arte.')
+  photo = await util.auxFind(Photo, { _id: pid }, 'Delete comment failed, for search arte.', next)
 
   if (photo.comment.filter(cm => cm._id.toString() === cid && cm.user_uid === uid).length === 0) {
     const err = new HttpError('Não pode deleta seu comentario.', 500)
@@ -60,8 +60,37 @@ const deleteComment = async (req, res, next) => {
   res.status(201).json({photo})
 }
 
-const likeComment = (req, res, next) => {
-  res.status(201).json({photo: 'like comment ok.'})
+const likeComment = async (req, res, next) => {
+  const { pid, cid } = req.params
+  const { uid } = req.body
+  let user
+  let photo
+  let comment
+
+  user = await util.auxFind(User, {uid}, 'Like comment failed, for search user.', next)
+  photo = await util.auxFind(Photo, {_id: pid}, 'Like comment failed, for search arte.', next)
+
+  comment = photo.comment.map(c => {
+    if(c._id.toString() === cid) {
+      return c
+    }
+  })[0]
+  // console.log(comment)
+
+  if (comment.likes.filter(like => like.user.toString() === user._id.toString()).length > 0) {
+    const removeIndex = comment.likes.map(item => item.user.toString()).indexOf(user._id.toString())
+    comment.likes.splice(removeIndex, 1)
+  } else {
+    comment.likes.push({user: user._id.toString()})
+  }
+  photo.comment.map((c, i) => {
+    if(c._id.toString() === cid) {
+      photo.comment[i] = comment
+    }
+  })
+  await util.auxSave(photo, 'Comment failed, please try again.', next)
+
+  res.json({ photo: photo })
 }
 
 exports.addComment = addComment

@@ -59,5 +59,13 @@ router.delete(
   ],
   checkInputs,
   commentsController.deleteComment)
+router.post(
+  '/comment/like/:pid/:cid',
+  // this.checkout,
+  [
+    check('uid').not().isEmpty()
+  ],
+  checkInputs,
+  commentsController.likeComment)
 
 module.exports = router

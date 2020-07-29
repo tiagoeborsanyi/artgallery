@@ -12,7 +12,6 @@ const Vimage = props => {
 
   useEffect(() => {
     document.addEventListener('click', () => {
-      // console.log(wrapper.current, more)
       if (wrapper.current && more) {
         setMore('')
       }
@@ -21,7 +20,7 @@ const Vimage = props => {
       wrapper.current = true
     }
   }, [wrapper, more])
-  // console.log(props.comments)
+
   return (
     <div className="vimage" ref={wrapper}>
       <section className="vimage-carousel" aria-label="Gallery">
@@ -207,7 +206,7 @@ const Vimage = props => {
               </div>
               <div className='comment-like'>
                 <span className="material-icons share">
-                  share
+                  reply
                 </span>
                 <span
                   className={`material-icons like-comment`}
