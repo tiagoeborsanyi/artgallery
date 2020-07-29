@@ -90,7 +90,16 @@ const likeComment = async (req, res, next) => {
   })
   await util.auxSave(photo, 'Comment failed, please try again.', next)
 
-  res.json({ photo: photo })
+  const resComment = {
+    content: comment.content,
+    likes: comment.likes,
+    createcomment: comment.createcomment,
+    user: user,
+    user_uid: uid,
+    _id: comment._id
+  }
+
+  res.json({ photo: resComment })
 }
 
 exports.addComment = addComment
