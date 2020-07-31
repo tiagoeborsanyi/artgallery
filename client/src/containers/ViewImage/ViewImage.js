@@ -84,6 +84,23 @@ const ViewImage = props => {
     console.log(arte)
   }
 
+  const onCommentLikeHandler = async (id) => {
+    try {
+      const headers = {
+        headers: { Authorization: props.token }
+      }
+      const commentLike = await axios.post(`/api/photos/comment/like/${vimageId}/${id}`, { uid }, headers)
+      const { photo } = commentLike.data
+      setComments([
+        ...comments,
+        photo
+      ])
+    } catch (error) {
+      setErro(error.response.data.message)
+      console.log('Erro: ', error.response.data.message)
+    }
+  }
+
   const addCommentHandler = async (e) => {
     e.preventDefault()
     if (valueComment.value.length >= 2) {
@@ -154,6 +171,7 @@ const ViewImage = props => {
       comments={comments}
       addComment={addCommentHandler}
       clickedLike={onLikeHandler}
+      clickedComentLike={onCommentLikeHandler}
       valueComment={valueComment.value}
       inputValid={!valueComment.valid}
       touched={valueComment.touched}

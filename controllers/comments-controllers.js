@@ -81,13 +81,19 @@ const likeComment = async (req, res, next) => {
     const removeIndex = comment.likes.map(item => item.user.toString()).indexOf(user._id.toString())
     comment.likes.splice(removeIndex, 1)
   } else {
-    comment.likes.push({user: user._id.toString()})
+    comment.likes.push(
+      {
+        user: user._id.toString(),
+        uid: uid
+      }
+    )
   }
   photo.comment.map((c, i) => {
     if(c._id.toString() === cid) {
       photo.comment[i] = comment
     }
   })
+
   await util.auxSave(photo, 'Comment failed, please try again.', next)
 
   const resComment = {

@@ -208,11 +208,21 @@ const Vimage = props => {
                 <span className="material-icons share">
                   reply
                 </span>
-                <span
-                  className={`material-icons like-comment`}
+                {!props.isAuth ?
+                (<span
+                  className={`material-icons`}
                   >
                   favorite
-                </span>
+                </span>)
+                :
+                <Button
+                  clicked={() => props.clickedComentLike(cmt._id)}>
+                  <span
+                    className={`material-icons like-comment ${cmt.likes.filter(l => l.uid === props.atualUserId).length > 0 ? 'selected' : ''}`}
+                    >
+                    favorite
+                  </span>
+                </Button>}
                 <span>{cmt.likes.length ? cmt.likes.length : null}</span>
               </div>
             </li>

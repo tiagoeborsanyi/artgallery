@@ -61,7 +61,7 @@ router.delete(
   commentsController.deleteComment)
 router.post(
   '/comment/like/:pid/:cid',
-  // this.checkout,
+  checkAuth,
   [
     check('uid').not().isEmpty()
   ],
