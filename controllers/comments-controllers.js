@@ -70,7 +70,7 @@ const likeComment = async (req, res, next) => {
   user = await util.auxFind(User, {uid}, 'Like comment failed, for search user.', next)
   photo = await util.auxFind(Photo, {_id: pid}, 'Like comment failed, for search arte.', next)
 
-  comment = photo.comment.map(c => {
+  comment = photo.comment.filter(c => {
     if(c._id.toString() === cid) {
       return c
     }
@@ -83,7 +83,8 @@ const likeComment = async (req, res, next) => {
   } else {
     comment.likes.push(
       {
-        user: user._id.toString()
+        user: user._id.toString(),
+        uid
       }
     )
   }

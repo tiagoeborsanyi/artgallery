@@ -17,7 +17,8 @@ const photoSchema = new Schema({
     user_uid: { type: String, required: true },
     content: { type: String, required: true},
     likes: [{
-      user: { type: Schema.Types.ObjectId, ref: 'User' }
+      user: { type: Schema.Types.ObjectId, ref: 'User' },
+      uid: { type: String, required: false}
     }],
     createcomment: { type: Date, default: Date.now }
   }],
