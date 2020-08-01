@@ -66,8 +66,9 @@ const likeComment = async (req, res, next) => {
   let user
   let photo
   let comment
+  let updatedPhoto
 
-  user = await util.auxFind(User, {uid}, 'Like comment failed, for search user.', next)
+  user = await util.auxFind(User, {uid: uid}, 'Like comment failed, for search user.', next)
   photo = await util.auxFind(Photo, {_id: pid}, 'Like comment failed, for search arte.', next)
 
   comment = photo.comment.filter(c => {
@@ -75,7 +76,10 @@ const likeComment = async (req, res, next) => {
       return c
     }
   })[0]
-  // console.log(comment)
+
+  if (!comment) {
+    return next(new HttpError('Error id comment.', 500))
+  }
 
   if (comment.likes.filter(like => like.user.toString() === user._id.toString()).length > 0) {
     const removeIndex = comment.likes.map(item => item.user.toString()).indexOf(user._id.toString())
@@ -96,7 +100,14 @@ const likeComment = async (req, res, next) => {
 
   await util.auxSave(photo, 'Comment failed, please try again.', next)
 
-  res.json({ photo: photo.comment })
+  try {
+    updatedPhoto = await Photo.findById(pid).populate('comment.user')
+  } catch (error) {
+    const err = new HttpError('Something whent weong, could not like a art.', 500)
+    return next(err)
+  }
+
+  res.json({ photo: updatedPhoto.comment })
 }
 
 exports.addComment = addComment
