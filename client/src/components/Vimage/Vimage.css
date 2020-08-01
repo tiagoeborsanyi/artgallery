@@ -346,6 +346,16 @@
   font-weight: 600;
   background-color: rgb(232, 190, 240);
 }
+.report-comment__button {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+.report-comment__button:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.9);
+}
 .more-comments__content-text {
   display: inline-block;
   margin-top: 0.2rem;

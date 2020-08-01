@@ -2,12 +2,14 @@
   text-align: center;
 }
 
-.vimage-modal-error {
+.vimage-modal-error,
+.vimage-modal-report-comment {
   display: flex;
   flex-direction: column;
 }
 
-.vimage-modal-error > button {
+.vimage-modal-error > button,
+.vimage-modal-report-comment > button {
   width: 7rem;
   margin-top: 0.7rem;
   padding: 0.4rem 0;
@@ -20,8 +22,16 @@
   outline: none;
   box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.5);
 }
+.vimage-modal-report-comment > button {
+  background-color: grey;
+}
+
 
 .vimage-modal-error > button:hover {
   cursor: pointer;
   background-color: rgb(248, 39, 39);
+}
+
+.vimage-modal-report-comment > button {
+  cursor: pointer;
 }

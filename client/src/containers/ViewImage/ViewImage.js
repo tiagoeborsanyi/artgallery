@@ -18,6 +18,7 @@ const ViewImage = props => {
   const [comments, setComments] = useState([])
   const [valueComment, setValueComment] = useState(objInputComment)
   const [loadComment, setLoadComment] = useState(false)
+  const [reportCm, setReportCm] = useState(false)
   const isCancelled = useRef(false)
 
   const {vimageId} = props.match.params
@@ -151,6 +152,11 @@ const ViewImage = props => {
     }
   }
 
+  const reportCommentHandler = (id) => {
+    console.log(id)
+    setReportCm(true)
+  }
+
   let vimage
   if (!load) {
     vimage = <Spinner />
@@ -172,11 +178,18 @@ const ViewImage = props => {
       touched={valueComment.touched}
       changeComment={changeCommentHandler}
       commentDelete={commentDeleteHandler}
+      reportComment={reportCommentHandler}
       loadComments={loadComment} />
   }
 
   return (
     <React.Fragment>
+      <Modal show={reportCm} modalClosed={() => setReportCm(false)}>
+        <div className='vimage-modal-report-comment'>
+          <p>Comment reported. Thank you.</p>
+          <button onClick={() => setReportCm(false)}>Close</button>
+        </div>
+      </Modal>
       <Modal show={erro} modalClosed={() => setErro(null)}>
         <div className='vimage-modal-error'>
           {erro}

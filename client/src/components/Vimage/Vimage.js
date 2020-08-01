@@ -198,7 +198,11 @@ const Vimage = props => {
                       onClick={() => props.commentDelete(cmt._id)}>
                         Delete
                     </button>}
-                    <span className='more-comments__content-text'>Report this comment...</span>
+                    <button
+                      className='report-comment__button'
+                      onClick={() => {props.reportComment(cmt._id)}}>
+                      <span className='more-comments__content-text'>Report this comment...</span>
+                    </button>
                   </div>
                   : null}
                 </div>
