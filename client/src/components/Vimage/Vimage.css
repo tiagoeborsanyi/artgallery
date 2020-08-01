@@ -309,6 +309,11 @@
   color: rgb(235, 85, 85);
 }
 
+.comment-like .not-logged {
+  cursor: not-allowed;
+  margin-right: 0.2rem;
+}
+
 .more-comments {
   color: rgba(0, 0, 0, 0.7);
   position: relative;

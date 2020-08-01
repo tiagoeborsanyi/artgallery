@@ -91,13 +91,11 @@ const ViewImage = props => {
       }
       const commentLike = await axios.post(`/api/photos/comment/like/${vimageId}/${id}`, { uid }, headers)
       const { photo } = commentLike.data
-      setComments([
-        ...comments,
-        photo
-      ])
+      console.log(photo)
+      setComments(photo)
     } catch (error) {
-      setErro(error.response.data.message)
-      console.log('Erro: ', error.response.data.message)
+      setErro(error)
+      console.log('Erro: ', error)
     }
   }
 

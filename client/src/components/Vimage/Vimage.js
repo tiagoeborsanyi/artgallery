@@ -210,7 +210,7 @@ const Vimage = props => {
                 </span>
                 {!props.isAuth ?
                 (<span
-                  className={`material-icons`}
+                  className={`material-icons not-logged`}
                   >
                   favorite
                 </span>)
