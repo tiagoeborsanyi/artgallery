@@ -190,6 +190,7 @@ const Vimage = props => {
                       setMore(cmt._id)
                       wrapper.current = false;
                     }}>more_vert</span>
+                  {props.isAuth ?
                   <div className='more-comments__content' style={{display: more === cmt._id ? 'block' : 'none'}}>
                     {cmt.user_uid === props.atualUserId &&
                     <button
@@ -199,6 +200,7 @@ const Vimage = props => {
                     </button>}
                     <span className='more-comments__content-text'>Report this comment...</span>
                   </div>
+                  : null}
                 </div>
               </div>
               <div className="vimage__item-comment">

@@ -79,9 +79,8 @@ const ViewImage = props => {
     } catch(error) {
       setLike(like)
       setErro(error.response.data.message)
-      console.log('Erro: ', error.response.data.message)
+      // console.log('Erro: ', error.response.data.message)
     }
-    // console.log(arte)
   }
 
   const onCommentLikeHandler = async (id) => {
@@ -96,7 +95,6 @@ const ViewImage = props => {
       }
     } catch (error) {
       setErro(error.response.data.message)
-      console.log('Erro: ', error.response, error)
     }
   }
 
@@ -114,13 +112,11 @@ const ViewImage = props => {
       try {
         const result = await axios.post(`/api/photos/comment/${vimageId}`, objComment, headers)
         if (result) {
-          console.log(result.data)
           setComments([result.data.photo, ...comments])
           setLoadComment(false)
           setValueComment(objInputComment)
         }
       } catch (error) {
-        // console.log(error.response)
         setLoadComment(false)
         setErro(error.response.data.message)
       }
