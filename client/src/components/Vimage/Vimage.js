@@ -140,7 +140,6 @@ const Vimage = props => {
 
       </div>
       <div className="vimage-title__comments">
-          <h1>Comments</h1>
       </div>
       <div className="vimage-form">
         <form onSubmit={props.addComment}>
