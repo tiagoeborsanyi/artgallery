@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import moment from 'moment';
 
 import './VimageCarrousel.css'
@@ -116,13 +117,15 @@ const Vimage = props => {
             require('../../assets/person.png')}
             className={!props.arte.creator.avatar ? 'avatar-not-logged' : ''}
             alt="person" />
-        <span>
-          {
-            props.arte.creator.displayName ?
-            props.arte.creator.displayName :
-            props.arte.creator.email.split('@')[0]
-          }
-        </span>
+        <Link to='/'>
+          <span>
+            {
+              props.arte.creator.displayName ?
+              props.arte.creator.displayName :
+              props.arte.creator.email.split('@')[0]
+            }
+          </span>
+        </Link>
       </div>
       <div className="vimage-description">
         {props.arte.description ?

@@ -116,10 +116,17 @@
 .avatar-not-logged {
   background: rgba(0, 0, 0, 0.2);
 }
+.vimage__item-person > a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+}
 .user-comments__name,
-.vimage__item-person > span {
+.vimage__item-person > a > span {
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.7);
+}
+.vimage__item-person > a:hover > span {
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .user-comments__date {
