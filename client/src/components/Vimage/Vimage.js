@@ -68,7 +68,11 @@ const Vimage = props => {
           <h1>{props.arte.title}</h1>
           <span>{props.arte.likes.length > 0 ? `${props.arte.likes.length} LIKE` : null}</span>
         </div>
-        <ul className="vimage-title__items tooltip">
+        <div className="vimage-title__div-for-mobile">
+          <div className="vimage-title__numlikes-mobile">
+            <span>{props.arte.likes.length > 0 ? `${props.arte.likes.length} LIKE` : null}</span>
+          </div>
+          <ul className="vimage-title__items tooltip">
             {!props.isAuth ? <span className='tooltiptext'>Faça login</span> : null}
             <li className="vimage-title__item" style={{display: 'flex'}}>
               {!props.isAuth ?
@@ -109,6 +113,7 @@ const Vimage = props => {
               </Button>}
             </li>
         </ul>
+        </div>
       </div>
       <div className="vimage__item-person avatar-creator">
         <img src={
