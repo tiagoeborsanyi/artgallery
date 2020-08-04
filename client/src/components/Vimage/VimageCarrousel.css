@@ -11,7 +11,7 @@
   padding: 0;
   position: relative;
   padding-top: 0%;
-  box-shadow: 0 4px 20px -11px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 21px 49px -40px rgba(0, 0, 0, 0.6);
   perspective: 100px;
   overflow: hidden;
 }
@@ -87,12 +87,19 @@
   position: absolute;
   top: 0;
   margin-top: 11rem;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2rem;
+  height: 2rem;
   transform: translateY(-50%);
   border-radius: 100%;
   font-size: 0;
   outline: 0;
+  opacity: 0;
+}
+.vimage-carousel:hover.vimage-carousel::before,
+.vimage-carousel:hover.vimage-carousel::after,
+.vimage-carousel:hover .carousel__prev,
+.vimage-carousel:hover .carousel__next  {
+  opacity: 1 !important;
 }
 
 .vimage-carousel::before,
@@ -109,7 +116,7 @@
   content: '';
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.3);
-  background-size: 0.7rem 0.7rem;
+  background-size: 25px;
   background-repeat: no-repeat;
   background-position: center center;
   color: white;
@@ -131,9 +138,10 @@
 /* INICIO DA THUMB */
 
 .vimage-thumb {
-  height: 6rem;
+  height: 9rem;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -159,7 +167,8 @@
   background-size: cover;
 }
 
-.carousel__navigation-item__cover {
+.carousel__navigation-item:hover > .carousel__navigation-item__cover {
+  cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
@@ -213,7 +222,9 @@
       width: 4rem;
   }
   .vimage-thumb {
-      justify-content: start;
+    height: 6rem;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 

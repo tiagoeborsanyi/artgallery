@@ -55,13 +55,16 @@ const Vimage = props => {
                     (<button
                         onClick={() => props.downloadImage(img)}
                         className="carousel__navigation-button">
-                        <span className="material-icons">arrow_downward</span>
+                        {/* <span className="material-icons">arrow_downward</span> */}
                     </button>) :
                     (<button className="carousel__navigation-button"></button>)}
                   </li>
                 )) : null}
               </ol>
           </aside>
+          <Button
+            btnType='Download'
+            clicked={() => {}}>Download</Button>
       </section>
       <div className="vimage-title">
         <div className="vimage-title__content">
