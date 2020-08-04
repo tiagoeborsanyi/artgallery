@@ -160,14 +160,26 @@
 }
 
 .carousel__navigation-item {
+  height: 4.5rem;
+  width: 4rem;
   position: relative;
   margin-right: 1rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 4px;
 }
 
-.carousel__navigation-item:hover > .carousel__navigation-item__cover {
+.carousel__navigation-item > a {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.carousel__navigation-item:hover > a .carousel__navigation-item__cover {
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -177,7 +189,7 @@
   background: linear-gradient(to top, rgba(14, 48, 143, 0.3), 100%, transparent);
 }
 
-.carousel__navigation-button {
+/* .carousel__navigation-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,7 +212,7 @@
 .carousel__navigation-button:hover > span {
   cursor: pointer;
   color: rgb(175, 175, 117);
-}
+} */
 
 /* FINAL DA THUMB */
 
