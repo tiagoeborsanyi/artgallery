@@ -121,7 +121,7 @@ const Vimage = props => {
             require('../../assets/person.png')}
             className={!props.arte.creator.avatar ? 'avatar-not-logged' : ''}
             alt="person" />
-        <Link to='/'>
+        <Link to={`/profile/${props.arte.creator.uid}`}>
           <span>
             {
               props.arte.creator.displayName ?
