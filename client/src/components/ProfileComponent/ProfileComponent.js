@@ -53,8 +53,8 @@ const ProfileComponent = props => {
                     </li>
                     <li className="profile-menu__item">
                         <a href="#">
-                            <span className="material-icons">store</span>
-                            <p>Sells</p>
+                            <span className="material-icons">storage</span>
+                            <p>Files</p>
                         </a>
                     </li>
                     <li className="profile-menu__item">
