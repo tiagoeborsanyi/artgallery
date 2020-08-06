@@ -59,9 +59,9 @@ const Toolbar = props => {
                     <div className={`main-header__photo-icon-content`}>
                       <ul className="main-header__photo-icon-content__items">
                       <NavigationItem
-                          classes='mobile-nav__item'
+                          classes='main-nav__item'
                           item='link'
-                          link='/'
+                          link={`/profile/${props.uid}`}
                           icon='icon'
                           iconContent='account_box'>
                           My Profile

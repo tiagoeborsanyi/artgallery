@@ -20,7 +20,8 @@ const Layout = props => {
       <Toolbar
         isAuth={!props.isAuthenticated}
         drawerToggledClicked={sideDrawerToggleHandler}
-        photoIcon={props.isPhotoIcon} />
+        photoIcon={props.isPhotoIcon}
+        uid={props.userId} />
       <SideDrawer
         isAuth={!props.isAuthenticated}
         open={showSideDrawer}
@@ -35,7 +36,8 @@ const Layout = props => {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
-    isPhotoIcon: state.auth.photoURL
+    isPhotoIcon: state.auth.photoURL,
+    userId : state.auth.userId
   }
 }
 

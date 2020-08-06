@@ -176,8 +176,9 @@
 }
 .profile-art__icon {
   position: absolute;
-  top: 146px;
-  left: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
