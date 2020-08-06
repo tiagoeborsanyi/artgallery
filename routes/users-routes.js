@@ -6,14 +6,14 @@ const userController = require('../controllers/users-controllers')
 
 router.get('/', checkAuth, userController.getUsers)
 
-router.get('/uid', checkAuth, userController.getUser)
-
 router.post('/signupOrLogin', userController.signupOrLogin)
 
-router.get('/getFollowers', userController.getFollowers)
+router.get('/userbyid/:userId', userController.getUserById)
+
+router.get('/followers', userController.getFollowers)
 
 router.get('/following', userController.getFollowing)
 
-router.get('favorites', userController.getFavorites)
+router.get('/favorites', userController.getFavorites)
 
 module.exports = router

@@ -13,8 +13,31 @@ const getUsers = async (req, res, next) => {
   res.json({ users: users.map(user => user.toObject({ getters: true }))})
 }
 
-const getUser = (req, res, next) => {
+const getUserById = async (req, res, next) => {
+  const userUid = req.params.userId
 
+  let userWithPhotos
+  try {
+    userWithPhotos = await User.findOne({ uid: userUid }).populate('arts')
+  } catch (error) {
+    const err = new HttpError('Fetching user failed, please try again later', 500)
+    return next(err)
+  }
+
+  if (!userWithPhotos || userWithPhotos.length === 0) {
+    return next(
+      new HttpError(
+        'Could not find user for the provided user id',
+        404
+        )
+      )
+  }
+
+  res.status(201).json({
+    photos: userWithPhotos.arts.map(
+      photo => photo.toObject({ getters: true })
+    )
+  })
 }
 
 const signupOrLogin = async (req, res, next) => {
@@ -66,7 +89,7 @@ const getFavorites = (req, res, next) => {
 }
 
 exports.getUsers = getUsers
-exports.getUser = getUser
+exports.getUserById = getUserById
 exports.signupOrLogin = signupOrLogin
 exports.getFollowers = getFollowers
 exports.getFollowing = getFollowing

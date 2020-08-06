@@ -26,33 +26,6 @@ const getPhotoById = async (req, res, next) => {
   res.status(201).json({ photo: photo.toObject({ getters: true }) })
 }
 
-const getPhotosByUserId = async (req, res, next) => {
-  const userUid = req.body.uid
-
-  let userWithPhotos
-  try {
-    userWithPhotos = await (await User.findOne({ uid: userUid })).populate('arts')
-  } catch (error) {
-    const err = new HttpError('Fetching arts failed, please try again later', 500)
-    return next(err)
-  }
-
-  if (!userWithPhotos || userWithPhotos.length === 0) {
-    return next(
-      new HttpError(
-        'Could not find places for the provided user id',
-        404
-        )
-      )
-  }
-
-  res.status(201).json({
-    photos: userWithPhotos.arts.map(
-      photo => photo.toObject({ getters: true })
-    )
-  })
-}
-
 const createArt = async (req, res, next) => {
   const {
     title,
