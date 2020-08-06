@@ -9,6 +9,7 @@ const photoSchema = new Schema({
   original_img: [{ type: String, required: true }],
   tags: [String],
   download: { type: Boolean, required: true },
+  link_download: { type: String, required: false },
   favorited: [{
     user: { type: mongoose.Types.ObjectId, required: true, ref: 'User' }
   }],

@@ -21,6 +21,7 @@ const Publish = props => {
     thumb: '',
     original_img: []
   })
+  const [linkDownload, setLinkDownload] = useState()
   const [loadFile, setLoadFile] = useState(false)
   const [loadFileThumb, setLoadFileThumb] = useState(false)
   const storage = firebase.storage().ref()
@@ -81,7 +82,7 @@ const Publish = props => {
       })
       pickedHandler(controlFiles, 'thumb')
     } else if (typeimg === 'zip') {
-      const uploadTask = storage.child(`${uid(32)}images-zip.zip`)
+      const uploadTask = storage.child(`${uid(32)}images.zip`)
       const bytes = new Uint8Array(controlFiles)
       uploadTask.put(bytes).on(
         firebase.storage.TaskEvent.STATE_CHANGED,
@@ -93,6 +94,7 @@ const Publish = props => {
           }
           if (progress === 100) {
             console.log('snapshot: ', snapshot)
+            setLinkDownload(`drawdry-3f5b8.appspot.com/o/${snapshot.ref.fullPath}`)
           }
         },
         error => console.log(error),
@@ -198,6 +200,7 @@ const Publish = props => {
         original_img: updatePathImages,
         tags: publishForm.tags.elementConfig.content,
         download: publishForm.download.elementConfig.checked,
+        link_download: linkDownload,
         creator: props.email
       }
       const headers = {

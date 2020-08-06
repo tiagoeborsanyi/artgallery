@@ -51,15 +51,16 @@ const Vimage = props => {
                     className="carousel__navigation-item"
                     style={{backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/${img}?alt=media')`}}>
                     <a href={`#carousel__slide${i+1}`}>
-                      <div className="carousel__navigation-item__cover" onClick={() => console.log(`indice: ${i}`)}></div>
+                      <div className="carousel__navigation-item__cover"></div>
                     </a>
                   </li>
                 )) : null}
               </ol>
           </aside>
+          {props.arte.download &&
           <Button
             btnType='Download'
-            clicked={() => {}}>Download</Button>
+            clicked={() => props.downloadImage(props.arte.link_download, props.arte.download)}>Download</Button>}
       </section>
       <div className="vimage-title">
         <div className="vimage-title__content">

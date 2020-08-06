@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import './ViewImage.css'
 import { checkValidity } from '../../shared/utility'
 import { objInputComment } from './objInputComment'
-import firebase from '../../services/firebase'
 import Vimage from '../../components/Vimage/Vimage'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Modal from '../../components/UI/Modal/Modal'
@@ -49,19 +48,17 @@ const ViewImage = props => {
     }
   }, [vimageId, uid])
 
-  const downloadImageHandler = (img) => {
-    const nImg = img.split('/o/')[1]
-    const storage = firebase.storage().ref()
-    storage.child(nImg).getDownloadURL().then(url => {
+  const downloadImageHandler = (link, statusDownload) => {
+    if (statusDownload) {
+      const urlDownload = `https://firebasestorage.googleapis.com/v0/b/${link}?alt=media`
       const a = document.createElement("a");
       a.download = true;
       a.target = '_blank'
       a.rel = 'noopener noreferrer'
-      a.href = url;
+      a.href = urlDownload;
       a.ariaLabel = 'download'
       a.click();
-    })
-
+    }
   }
 
   const onLikeHandler = async () => {

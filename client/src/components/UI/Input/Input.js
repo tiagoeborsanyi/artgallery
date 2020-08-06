@@ -56,7 +56,7 @@ const Input = props => {
             setImageValid('imageValid')
           } else {
             pickedFiltered.push(file)
-            // console.log(file)
+            console.log(file)
             zip.folder(`images-${newUid}`).file(file.name, file)
           }
           if (i === ([...pickedFile].length-1) && pickedFiltered.length >= 0) {

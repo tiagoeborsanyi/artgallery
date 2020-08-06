@@ -61,6 +61,7 @@ const createArt = async (req, res, next) => {
     original_img,
     tags,
     download,
+    link_download,
     creator
   } = req.body
 
@@ -80,6 +81,7 @@ const createArt = async (req, res, next) => {
     original_img,
     tags,
     download,
+    link_download,
     favorited: [],
     comment: [],
     likes: [],
