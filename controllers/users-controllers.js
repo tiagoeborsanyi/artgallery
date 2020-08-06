@@ -18,7 +18,7 @@ const getUserById = async (req, res, next) => {
 
   let userWithPhotos
   try {
-    userWithPhotos = await User.findOne({ uid: userUid }).populate('arts')
+    userWithPhotos = await User.findOne({ uid: userUid }).populate('arts', 'original_img likes')
   } catch (error) {
     const err = new HttpError('Fetching user failed, please try again later', 500)
     return next(err)
@@ -34,9 +34,7 @@ const getUserById = async (req, res, next) => {
   }
 
   res.status(201).json({
-    photos: userWithPhotos.arts.map(
-      photo => photo.toObject({ getters: true })
-    )
+    user: userWithPhotos
   })
 }
 
