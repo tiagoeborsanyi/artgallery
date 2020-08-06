@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import JSZip from 'jszip'
+import uid from 'uid'
 
 import './Input.css'
 import './input-image.css'
@@ -11,6 +13,7 @@ const Input = props => {
   const [files, setFiles] = useState([])
   const [previewUrl, setPreviewUrl] = useState([])
   const [imageValid, setImageValid] = useState('')
+  const zip = new JSZip()
   let inputElement = null
   let classValid = ''
 
@@ -45,17 +48,23 @@ const Input = props => {
   const pickedHandler = (event, typeimg) => {
       let pickedFile;
       let pickedFiltered = [];
+      const newUid = uid();
       if (event.target.files && event.target.files.length >= 1) {
         pickedFile = event.target.files;
-        [...pickedFile].forEach((file, i) => {
+        [...pickedFile].forEach(async (file, i) => {
           if (file.type.split('/')[0] !== 'image') {
             setImageValid('imageValid')
           } else {
             pickedFiltered.push(file)
+            // console.log(file)
+            zip.folder(`images-${newUid}`).file(file.name, file)
           }
           if (i === ([...pickedFile].length-1) && pickedFiltered.length >= 0) {
             setFiles(pickedFiltered)
             props.onPicked(pickedFiltered, typeimg);
+            const promise = await zip.generateAsync({ type: 'uint8array' })
+            // console.log(promise)
+            props.onPicked(promise, 'zip')
           }
         })
       }

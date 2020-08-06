@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import uid from 'uid'
 
 import './Publish.css'
 import firebase from '../../services/firebase'
@@ -79,6 +80,24 @@ const Publish = props => {
         thumb: controlFiles
       })
       pickedHandler(controlFiles, 'thumb')
+    } else if (typeimg === 'zip') {
+      const uploadTask = storage.child(`${uid(32)}images-zip.zip`)
+      const bytes = new Uint8Array(controlFiles)
+      uploadTask.put(bytes).on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        snapshot => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          if (snapshot.state === firebase.storage.TaskState.RUNNING) {
+            console.log(`Progress: ${progress}%`);
+
+          }
+          if (progress === 100) {
+            console.log('snapshot: ', snapshot)
+          }
+        },
+        error => console.log(error),
+        () => {}
+      )
     } else {
       setLoadFile(true)
       setFiles({
