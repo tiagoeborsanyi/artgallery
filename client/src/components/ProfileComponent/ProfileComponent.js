@@ -9,7 +9,12 @@ const ProfileComponent = props => {
       <div className="profile">
             <div className="profile-info">
                 <div className="profile-info__image">
-                    <img src={props.user.avatar} alt="avatar" />
+                    <img src={
+                            props.user.avatar ?
+                            props.user.avatar :
+                            require('../../assets/person.png')}
+                          alt="avatar"
+                          style={{background:'rgba(0,0,0,.2)'}} />
                 </div>
                 <div className="profile-info__text">
                     <div className="profile-info__text-lineone">
@@ -81,7 +86,7 @@ const ProfileComponent = props => {
                             </div>
                         </Link>
                     </div>
-                  ): null}
+                  ): <p className='list-arts__not-images'>Not images...</p>}
                 </div>
             </div>
         </div>

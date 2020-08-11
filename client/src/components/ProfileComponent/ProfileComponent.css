@@ -151,6 +151,13 @@
   width: 100%;
 }
 
+.list-arts__not-images {
+  text-align: center;
+  color: rgb(0, 0, 0, 0.5);
+  font-weight: 500;
+  margin-top: 5rem;
+}
+
 .list-arts__item {
   width: 100%;
   margin-bottom: 1.5rem;
