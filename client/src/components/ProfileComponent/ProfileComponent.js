@@ -21,10 +21,14 @@ const ProfileComponent = props => {
                         <h1>{props.user.displayName ? props.user.displayName : props.user.email.split('@')[0]}</h1>
                         {props.currentUid === props.user.uid ?
                         <Link to='/'>Edit Profile</Link>
-                        :
+                        : props.follower ?
                         <button className="text-lineone__button">
                             <span className="material-icons">person</span>
                             <span className="material-icons check">done</span>
+                        </button>
+                        :
+                        <button className="text-lineone__button">
+                            SEGUIR
                         </button>}
                     </div>
                     <div className="profile-info__text-linetwo">

@@ -8,8 +8,8 @@ const userSchema = new Schema({
   uid: { type: String, required: false },
   avatar: { type: String, required: false },
   arts: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Photo' }],
-  followers: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
-  following: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
+  followers: [{ type: mongoose.Types.ObjectId, ref: 'User' }], // flollowers = seguidores
+  following: [{ type: mongoose.Types.ObjectId, ref: 'User' }], // following = seguindo
   favorites: [{ type: mongoose.Types.ObjectId, ref: 'Photo' }],
   description: { type: String, required: false },
   createUser: { type: Date, default: Date.now }
