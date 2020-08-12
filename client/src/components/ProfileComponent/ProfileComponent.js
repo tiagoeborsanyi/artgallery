@@ -18,11 +18,14 @@ const ProfileComponent = props => {
                 </div>
                 <div className="profile-info__text">
                     <div className="profile-info__text-lineone">
-                        <h1>{props.user.displayName}</h1>
+                        <h1>{props.user.displayName ? props.user.displayName : props.user.email.split('@')[0]}</h1>
+                        {props.currentUid === props.user.uid ?
+                        <Link to='/'>Edit Profile</Link>
+                        :
                         <button className="text-lineone__button">
                             <span className="material-icons">person</span>
                             <span className="material-icons check">done</span>
-                        </button>
+                        </button>}
                     </div>
                     <div className="profile-info__text-linetwo">
                         <ul className="text-linetwo__items">

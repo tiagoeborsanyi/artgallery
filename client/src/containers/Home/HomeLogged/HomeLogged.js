@@ -41,7 +41,7 @@ const HomeLogged = props => {
   if (!props.onGoogleRedirectStatus) {
     content = <p>HOME LOGADO</p>
   }
-
+  console.log('home logged....')
   return content
 }
 
