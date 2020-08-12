@@ -7,8 +7,8 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 
 const Profile = (props) => {
   const [user, setUser] = useState()
-  const { profileUId } = props.match.params
   const [follower, setFollower] = useState(false)
+  const { profileUId } = props.match.params
 
   useEffect(() => {
     let mounted = true
@@ -16,7 +16,7 @@ const Profile = (props) => {
       if (mounted && result) {
         console.log(result.data)
         setUser(result.data.user)
-        if (result.data.user.followers.filter(follow => follow.uid === profileUId).length > 0) {
+        if (result.data.user.followers.filter(follow => follow.uid === props.uid).length > 0) {
           setFollower(true)
         }
       }
@@ -24,12 +24,17 @@ const Profile = (props) => {
     return () => mounted = false
   }, [profileUId])
 
+  const onFollowerHandler = (uid) => {
+    console.log(uid)
+  }
+
   let profile = <Spinner />
   if (user) {
     profile = <ProfileComponent
       user={user}
       currentUid={props.uid}
-      follower={follower} />
+      follower={follower}
+      onFollower={onFollowerHandler} />
   }
 
   return profile

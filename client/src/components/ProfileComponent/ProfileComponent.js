@@ -27,7 +27,9 @@ const ProfileComponent = props => {
                             <span className="material-icons check">done</span>
                         </button>
                         :
-                        <button className="text-lineone__button">
+                        <button
+                          className="text-lineone__button follow"
+                          onClick={() => props.onFollower(props.user.uid)}>
                             SEGUIR
                         </button>}
                     </div>

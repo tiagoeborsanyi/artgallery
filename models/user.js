@@ -15,4 +15,7 @@ const userSchema = new Schema({
   createUser: { type: Date, default: Date.now }
 })
 
+// Quando clicar em segui eu tenho que adicionar o uid da pessoa que cliquei em folloing no meu
+// e adicionar meu uid no followers da pessoa que cliquei :)
+
 module.exports = mongoose.model('User', userSchema)
