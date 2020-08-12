@@ -25,7 +25,13 @@ const Profile = (props) => {
   }, [profileUId, props.uid])
 
   const onFollowerHandler = (uid) => {
-    console.log(uid)
+    const ObjFollow = {
+      uidFollow: uid, // following (porque eu vou seguir esse id)
+      uidFollowed: props.uid // followers (é a pessoa que vai me seguir)
+      // mas esse follower eu tenho que gravar no banco de dados desse usuario pq eu sou um
+      // seguidor dele
+    }
+    console.log(ObjFollow)
   }
 
   let profile = <Spinner />

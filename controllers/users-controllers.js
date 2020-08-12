@@ -79,14 +79,6 @@ const signupOrLogin = async (req, res, next) => {
   }
 }
 
-const getFollowers = (req, res, next) => {
-
-}
-
-const getFollowing = (req, res, next) => {
-
-}
-
 const getFavorites = (req, res, next) => {
 
 }
@@ -94,6 +86,4 @@ const getFavorites = (req, res, next) => {
 exports.getUsers = getUsers
 exports.getUserById = getUserById
 exports.signupOrLogin = signupOrLogin
-exports.getFollowers = getFollowers
-exports.getFollowing = getFollowing
 exports.getFavorites = getFavorites
