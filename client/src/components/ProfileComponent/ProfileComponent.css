@@ -31,11 +31,15 @@
   height: auto;
   width: 68%;
 }
-
+.profile-info__text-lineone {
+  display: block;
+}
+.profile-info__text-linetwo {
+  display: flex;
+}
 .profile-info__text-lineone,
 .profile-info__text-linetwo {
   width: 100%;
-  display: flex;
   justify-content: flex-start;
   align-items: center;
 }
@@ -45,9 +49,14 @@
 
 .profile-info__text-lineone > h1 {
   margin: 0 1.1rem 0 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: rgb(0, 0, 0, 0.8);
+}
+
+.profile-info__text-lineone-mobile {
+  display: flex;
+  margin-top: 0.8rem;
 }
 
 .text-lineone__button {
@@ -60,12 +69,13 @@
   border: 1px solid rgb(0, 0, 0, 0.2);
 }
 .text-lineone__button.follow {
-  padding: 0.5rem 0.95rem;
-  background-color: rgb(65, 148, 225);
-  border-radius: 5px;
+  padding: 0.35rem 0.8rem;
+  background-color: rgb(0, 149, 246);
+  border-radius: 3px;
   color: white;
   border: none;
   font-weight: 500;
+  margin-right: 0.5rem;
 }
 .text-lineone__button > span {
   font-size: 1.1rem;
@@ -147,6 +157,34 @@
 .profile-menu__item.active > a {
   color: rgb(0, 0, 0, 0.8);
 }
+
+/* MENU COM INFOS DE PUBLICAÇÂO-SEGUIDORES-SEGUINDO */
+.profile-info--mobile {
+  width: 100%;
+  display: inline-block;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+.profile-info--mobile__items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: .8rem 0;
+  margin: 0;
+}
+.profile-info--mobile__item {
+  text-align: center;
+}
+.profile-info--mobile__item > p {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.profile-info--mobile__item > span {
+  color: rgb(0, 0, 0, 0.6);
+  font-size: 0.85rem;
+}
+/* MENU COM INFOS DE PUBLICAÇÂO-SEGUIDORES-SEGUINDO */
 
 
 /* INIT CARD ARTS */
@@ -238,13 +276,20 @@
   .profile-info__text-lineone > h1 {
       font-size: 1.8rem;
   }
-  .profile-info__text-linetwo {
+  .profile-info__text-linetwo,
+  .profile-info__text-lineone {
     display: flex;
+  }
+  .profile-info__text-lineone-mobile {
+    margin-top: 0;
   }
   .list-arts__item {
       width: 23.8%;
       display: inline-block;
       margin: 1rem 0.3rem;
+  }
+  .profile-info--mobile {
+    display: none;
   }
   .featured-arts__image {
       width: 100%;

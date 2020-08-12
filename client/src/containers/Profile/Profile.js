@@ -22,7 +22,7 @@ const Profile = (props) => {
       }
     })
     return () => mounted = false
-  }, [profileUId])
+  }, [profileUId, props.uid])
 
   const onFollowerHandler = (uid) => {
     console.log(uid)

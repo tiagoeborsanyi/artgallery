@@ -18,20 +18,29 @@ const ProfileComponent = props => {
                 </div>
                 <div className="profile-info__text">
                     <div className="profile-info__text-lineone">
-                        <h1>{props.user.displayName ? props.user.displayName : props.user.email.split('@')[0]}</h1>
-                        {props.currentUid === props.user.uid ?
-                        <Link to='/'>Edit Profile</Link>
-                        : props.follower ?
-                        <button className="text-lineone__button">
-                            <span className="material-icons">person</span>
-                            <span className="material-icons check">done</span>
-                        </button>
-                        :
-                        <button
-                          className="text-lineone__button follow"
-                          onClick={() => props.onFollower(props.user.uid)}>
-                            SEGUIR
-                        </button>}
+                        <h1>
+                          {
+                            props.user.displayName ?
+                              props.user.displayName :
+                              props.user.email.split('@')[0]
+                          }
+                        </h1>
+                        <div className='profile-info__text-lineone-mobile'>
+                          {props.currentUid === props.user.uid ?
+                          <Link to='/'>Edit Profile</Link>
+                          : props.follower ?
+                          <button className="text-lineone__button">
+                              <span className="material-icons">person</span>
+                              <span className="material-icons check">done</span>
+                          </button>
+                          :
+                          <button
+                            className="text-lineone__button follow"
+                            onClick={() => props.onFollower(props.user.uid)}>
+                              SEGUIR
+                          </button>}
+                          <span className="material-icons">more_horiz</span>
+                        </div>
                     </div>
                     <div className="profile-info__text-linetwo">
                         <ul className="text-linetwo__items">
@@ -56,6 +65,22 @@ const ProfileComponent = props => {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div className='profile-info--mobile'>
+              <ul className="profile-info--mobile__items">
+                  <li className="profile-info--mobile__item">
+                      <p>{props.user.arts.length}</p>
+                      <span>publish</span>
+                  </li>
+                  <li className="profile-info--mobile__item">
+                      <p>{props.user.followers.length}</p>
+                      <span>Followers</span>
+                  </li>
+                  <li className="profile-info--mobile__item">
+                      <p>{props.user.following.length}</p>
+                      <span>Follows</span>
+                  </li>
+              </ul>
             </div>
             <div className="profile-menu">
                 <ul className="profile-menu__items">
