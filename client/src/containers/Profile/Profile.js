@@ -32,6 +32,7 @@ const Profile = (props) => {
       // seguidor dele
     }
     console.log(ObjFollow)
+    setFollower(true)
   }
 
   let profile = <Spinner />
