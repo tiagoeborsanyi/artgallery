@@ -29,7 +29,9 @@ const ProfileComponent = props => {
                           {props.currentUid === props.user.uid ?
                           <Link to='/'>Edit Profile</Link>
                           : props.follower ?
-                          <button className="text-lineone__button">
+                          <button
+                            className="text-lineone__button"
+                            onClick={() => props.onFollower(props.user.uid)}>
                               <span className="material-icons">person</span>
                               <span className="material-icons check">done</span>
                           </button>
