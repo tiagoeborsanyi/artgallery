@@ -5,6 +5,7 @@ import axios from 'axios'
 import * as action from '../../../store/actions/index'
 import firebase from '../../../services/firebase'
 import Spinner from '../../../components/UI/Spinner/Spinner'
+import HomeComponentLogged from '../../../components/HomeComponent/HomeComponentLogged/HomeComponentLogged'
 
 const HomeLogged = props => {
   useEffect(() => {
@@ -39,7 +40,7 @@ const HomeLogged = props => {
 
   let content = <Spinner />
   if (!props.onGoogleRedirectStatus) {
-    content = <p>HOME LOGADO</p>
+    content = <HomeComponentLogged />
   }
   console.log('home logged....')
   return content

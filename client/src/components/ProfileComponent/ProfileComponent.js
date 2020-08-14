@@ -56,7 +56,7 @@ const ProfileComponent = props => {
                             </li>
                             <li className="text-linetwo__item">
                                 <p>{props.user.following.length}</p>
-                                <span>Follows</span>
+                                <span>Following</span>
                             </li>
                         </ul>
                     </div>
