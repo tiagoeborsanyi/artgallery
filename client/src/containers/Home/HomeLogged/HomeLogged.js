@@ -41,11 +41,17 @@ const HomeLogged = props => {
   })
 
   useEffect(() => {
+    let memoryLeak = true
     axios.get('/api/photos').then(result => {
-      console.log('photos: ', result)
-      setImages(result.data.photos)
+      if (images.length === 0 && memoryLeak) {
+        console.log('photos: ', result)
+        setImages(result.data.photos)
+      }
     })
     .catch(error => console.log(error.response))
+
+    return () => memoryLeak = false
+
   }, [])
 
   let content = <Spinner />

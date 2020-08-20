@@ -13,24 +13,26 @@ const HomeComponentLogged = props => {
           {props.images.map(image => (
             <div className='list-arts__item' key={image._id}>
               <Link to='/'>
-                <div className='featured-arts__image second'>
+                <div className='featured-arts__image' style={{backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/${image.original_img[0]}?alt=media')`}}>
                     <div className='featured-arts__image-back'></div>
                 </div>
               </Link>
               <div className='list-arts__item-icon'>
                   <div className='list-arts__item-svg'>
                       <span className='material-icons'>favorite</span>
-                      <span className='material-icons'>insert_comment</span>
                   </div>
                   <div className='list-arts__item-marked'>
                       <span className='material-icons marked-turned'>turned_in</span>
                       <span className='material-icons marked-check'>check</span>
                   </div>
               </div>
-              <p>aquarela art</p>
+              <p>{image.title}</p>
               <div className='list-arts__item-person'>
-                  <img src='../img/person.png' alt='person' />
-                  <Link to='/'><span>Tiago Emerick</span></Link>
+                  <img src={
+                            image.creator.avatar ?
+                            image.creator.avatar :
+                            require('../../../assets/person.png')} alt='person' />
+                  <Link to='/'><span>{image.creator.displayName ? image.creator.displayName : image.creator.email.split('@')[0]}</span></Link>
               </div>
             </div>
           ))}
