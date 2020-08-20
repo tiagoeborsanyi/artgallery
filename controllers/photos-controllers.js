@@ -4,8 +4,16 @@ const HttpError = require('../models/http-error')
 const User = require('../models/user')
 const Photo = require('../models/photo')
 
-const getPhotos = (req, res, next) => {
-  res.json({photos: 'get photos'})
+const getPhotos = async (req, res, next) => {
+  let photos
+  try {
+    photos = await Photo.find().populate('creator')
+  } catch (error) {
+    const err = new HttpError('Something whent weong, could not find arts.', 500)
+    return next(err)
+  }
+
+  res.status(201).json({ photos })
 }
 
 const getPhotoById = async (req, res, next) => {

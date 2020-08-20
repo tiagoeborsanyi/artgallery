@@ -1,14 +1,42 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './HomeComponentLogged.css'
 import SearchArts from '../../UI/SearchArts/SearchArts'
 
 const HomeComponentLogged = props => {
   return (
-    <div>
+    <React.Fragment>
       <SearchArts />
-      <h1>HOME COM VARIOS MILHOES DE CARDS</h1>
-    </div>
+      <div className='list-arts'>
+        <div className='container-list-arts'>
+          {props.images.map(image => (
+            <div className='list-arts__item' key={image._id}>
+              <Link to='/'>
+                <div className='featured-arts__image second'>
+                    <div className='featured-arts__image-back'></div>
+                </div>
+              </Link>
+              <div className='list-arts__item-icon'>
+                  <div className='list-arts__item-svg'>
+                      <span className='material-icons'>favorite</span>
+                      <span className='material-icons'>insert_comment</span>
+                  </div>
+                  <div className='list-arts__item-marked'>
+                      <span className='material-icons marked-turned'>turned_in</span>
+                      <span className='material-icons marked-check'>check</span>
+                  </div>
+              </div>
+              <p>aquarela art</p>
+              <div className='list-arts__item-person'>
+                  <img src='../img/person.png' alt='person' />
+                  <Link to='/'><span>Tiago Emerick</span></Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 

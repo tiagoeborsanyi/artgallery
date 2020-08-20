@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
@@ -8,9 +8,11 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 import HomeComponentLogged from '../../../components/HomeComponent/HomeComponentLogged/HomeComponentLogged'
 
 const HomeLogged = props => {
+  const [images, setImages] = useState([])
+
   useEffect(() => {
     firebase.auth().getRedirectResult().then(async result => {
-      console.log(result)
+      // console.log(result)
       if (result.user) {
         props.onLoginGoogleRedirect(true)
         const objUser = {
@@ -38,11 +40,19 @@ const HomeLogged = props => {
     })
   })
 
+  useEffect(() => {
+    axios.get('/api/photos').then(result => {
+      console.log('photos: ', result)
+      setImages(result.data.photos)
+    })
+    .catch(error => console.log(error.response))
+  }, [])
+
   let content = <Spinner />
   if (!props.onGoogleRedirectStatus) {
-    content = <HomeComponentLogged />
+    content = <HomeComponentLogged images={images} />
   }
-  console.log('home logged....')
+  // console.log('home logged....')
   return content
 }
 

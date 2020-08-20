@@ -8,13 +8,27 @@ const photoController = require('../controllers/photos-controllers')
 const likeController = require('../controllers/likes-controllers')
 const commentsController = require('../controllers/comments-controllers')
 
+
+/*
+
+  NOT LOGGED ROUTES
+
+*/
 // PHOTOS/IMAGES/ARTS
-router.get('/', (req, res, next) => {
-  res.json({ photos: 'return same photos... '})
-})
+router.get('/', photoController.getPhotos)
 
 router.get('/photobyid/:pid', photoController.getPhotoById)
 
+
+
+
+
+
+/*
+
+  AUTH ROUTES
+
+*/
 router.post(
   '/create-art',
   checkAuth,
