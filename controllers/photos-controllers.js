@@ -7,7 +7,7 @@ const Photo = require('../models/photo')
 const getPhotos = async (req, res, next) => {
   let photos
   try {
-    photos = await Photo.find().populate('creator')
+    photos = await Photo.find().populate('creator').populate('likes.user', 'uid')
   } catch (error) {
     const err = new HttpError('Something whent weong, could not find arts.', 500)
     return next(err)

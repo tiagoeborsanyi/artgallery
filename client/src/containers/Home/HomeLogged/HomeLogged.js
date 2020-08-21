@@ -52,11 +52,27 @@ const HomeLogged = props => {
 
     return () => memoryLeak = false
 
-  }, [])
+  })
+
+  const onLikeHandler = async (imageId) => {
+    // console.log('imageid: ', imageId)
+    const { uid } = props
+    try {
+      const headers = {
+        headers: { Authorization: props.token }
+      }
+      const newArte = await axios.post(`/api/photos/like/${imageId}`, { uid }, headers)
+    } catch(error) {
+      console.log('Erro: ', error.response.data.message)
+    }
+  }
 
   let content = <Spinner />
   if (!props.onGoogleRedirectStatus) {
-    content = <HomeComponentLogged images={images} />
+    content = <HomeComponentLogged
+                  images={images}
+                  uid={props.uid}
+                  likeImage={onLikeHandler} />
   }
   // console.log('home logged....')
   return content
@@ -64,7 +80,9 @@ const HomeLogged = props => {
 
 const mapStateToProps = state => {
   return {
-    onGoogleRedirectStatus: state.auth.loading
+    token: state.auth.token,
+    onGoogleRedirectStatus: state.auth.loading,
+    uid: state.auth.userId
   }
 }
 

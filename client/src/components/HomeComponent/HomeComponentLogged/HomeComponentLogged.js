@@ -19,20 +19,28 @@ const HomeComponentLogged = props => {
               </Link>
               <div className='list-arts__item-icon'>
                   <div className='list-arts__item-svg'>
-                      <span className='material-icons'>favorite</span>
+                      <span
+                        className={`material-icons ${image.likes.filter(lk => lk.user.uid === props.uid).length > 0 ? 'active' : '' }`}
+                        onClick={() => props.likeImage(image._id)}>
+                          favorite
+                      </span>
                   </div>
                   <div className='list-arts__item-marked'>
                       <span className='material-icons marked-turned'>turned_in</span>
                       <span className='material-icons list-arts__marked-check'>check</span>
                   </div>
               </div>
-              <p>{image.title}</p>
+              <p>{image.title.length <= 15 ? image.title : `${image.title.slice(0, 15)}...`}</p>
               <div className='list-arts__item-person'>
                   <img src={
                             image.creator.avatar ?
                             image.creator.avatar :
                             require('../../../assets/person.png')} alt='person' />
-                  <Link to={`/profile/${image.creator.uid}`}><span>{image.creator.displayName ? image.creator.displayName : image.creator.email.split('@')[0]}</span></Link>
+                  <Link to={`/profile/${image.creator.uid}`}>
+                    <span className='list-arts__item-person-name'>
+                      {image.creator.displayName ? image.creator.displayName : image.creator.email.split('@')[0]}
+                    </span>
+                  </Link>
               </div>
             </div>
           ))}
