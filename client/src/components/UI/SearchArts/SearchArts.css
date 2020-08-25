@@ -57,6 +57,34 @@
 .open {
     display: block !important;
 }
+
+/* INICIO INPUT DE BUSCA */
+.search-arts__form {
+  margin: 1rem 0.3rem;
+}
+
+.search-arts__form-group--input {
+  width: 100%;
+  font-size: 1rem;
+  font-family: inherit;
+  padding: .5rem .8rem;
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  display: block;
+  transition: all .3s;
+}
+.search-arts__form-group--input:focus {
+  outline: none;
+  box-shadow: 0 .8rem 1.5rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid rgba(255, 72, 0, 0.5);
+}
+.search-arts__form-group--label {
+
+}
+
+
+/* FINAL INPUT DE BUSCAS */
+
 .search-arts__filter-list__items {
     display: block;
     list-style: none;

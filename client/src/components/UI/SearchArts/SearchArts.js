@@ -4,6 +4,7 @@ import './SearchArts.css'
 
 const SearchArts = props => {
   const [vFilter, setVFilter] = useState(false)
+  const [clickedFilter, setClickedFilter] = useState(false)
   let wrapper = useRef(false)
 
   useEffect(() => {
@@ -37,7 +38,20 @@ const SearchArts = props => {
         </button>
         <div
           className="search-arts__filter-list"
-          style={{display: vFilter ? 'block' : ''}}>
+          style={{display: vFilter || clickedFilter ? 'block' : ''}}
+          onClick={() => {
+            console.log('teste')
+            setClickedFilter(true)
+          }}>
+            <form className='search-arts__form'>
+              <div className='search-arts__form-group'>
+                <input
+                  type='search'
+                  className='search-arts__form-group--input'
+                  placeholder='Search tags for arts' />
+                <label className='search-arts__form-group--label'>Search tags</label>
+              </div>
+            </form>
             <ul className="search-arts__filter-list__items">
                 <li className="search-arts__filter-list__item">
                     <button>Arts</button>
