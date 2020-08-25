@@ -79,7 +79,18 @@
   border-bottom: 3px solid rgba(255, 72, 0, 0.5);
 }
 .search-arts__form-group--label {
-
+  color: rgba(255, 72, 0, 0.8);;
+  font-size: .8rem;
+  font-weight: 500;
+  margin-left: .5rem;
+  margin-top: .3rem;
+  display: block;
+  transition: all .3s;
+}
+.search-arts__form-group--input:placeholder-shown + .search-arts__form-group--label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2rem);
 }
 
 
