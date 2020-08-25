@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import './ViewImage.css'
 import { checkValidity } from '../../shared/utility'
+import { likeHandler } from '../../utils/likeHandler'
 import { objInputComment } from './objInputComment'
 import Vimage from '../../components/Vimage/Vimage'
 import Spinner from '../../components/UI/Spinner/Spinner'
@@ -62,23 +63,11 @@ const ViewImage = props => {
   }
 
   const onLikeHandler = async () => {
-    try {
-      const headers = {
-        headers: { Authorization: props.token }
-      }
-      setLike(!like)
-      const newArte = await axios.post(`/api/photos/like/${vimageId}`, { uid }, headers)
-      if(newArte.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
-        setLike(true)
-      } else {
-        setLike(false)
-      }
-      setArte({...arte, likes: newArte.data.photo.likes})
-    } catch(error) {
-      setLike(like)
-      setErro(error.response.data.message)
-      // console.log('Erro: ', error.response.data.message)
-    }
+    setLike(!like)
+    const obj = await likeHandler(props.token, vimageId, uid)
+    setLike(obj.valid)
+    setArte({...arte, likes: obj.art})
+    setErro(obj.error)
   }
 
   const onCommentLikeHandler = async (id) => {

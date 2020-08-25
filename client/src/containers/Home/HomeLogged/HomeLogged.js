@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import * as action from '../../../store/actions/index'
 import firebase from '../../../services/firebase'
+import { likeHandler } from '../../../utils/likeHandler'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import HomeComponentLogged from '../../../components/HomeComponent/HomeComponentLogged/HomeComponentLogged'
 
@@ -55,15 +56,16 @@ const HomeLogged = props => {
   })
 
   const onLikeHandler = async (imageId) => {
-    // console.log('imageid: ', imageId)
-    const { uid } = props
-    try {
-      const headers = {
-        headers: { Authorization: props.token }
+    // console.log(images)
+    const obj = await likeHandler(props.token, imageId, props.uid)
+    const updateImage = [...images]
+    for (let key in images) {
+      // console.log(key)
+      if (images[key]._id === imageId) {
+        updateImage[key].likes = obj.art
+        setImages(updateImage)
+        return;
       }
-      const newArte = await axios.post(`/api/photos/like/${imageId}`, { uid }, headers)
-    } catch(error) {
-      console.log('Erro: ', error.response.data.message)
     }
   }
 
