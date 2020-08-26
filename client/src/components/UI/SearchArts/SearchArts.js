@@ -20,23 +20,34 @@ const SearchArts = props => {
     }
   }, [wrapper, vFilter])
 
+  let timeOut;
   const onSearchHandler = event => {
     setSValue(event.target.value)
-    const valor = event.target.value
-    // const temp = 2000;
-    // setTimeout(() => {
-      axios.get(`https://drawdry-3f5b8.firebaseio.com/tags.json?orderBy="tag"&startAt="${valor}"&endAt="${valor}\uf8ff"`).then(res => {
-        // console.log(res.data)
-        const newTag = []
-        for (let key in res.data) {
-          newTag.push(res.data[key].tag)
-        }
-        setTags(newTag)
-        console.log(newTag)
-      })
-      .catch(err => console.log(err.response))
-    // }, temp);
+    clearTimeout(timeOut)
+  }
 
+  const onKeyDown = e => {
+    clearTimeout(timeOut)
+  }
+
+  const handleKeyUp = e => {
+
+    timeOut = setTimeout(async () => {
+      try{
+        console.log('vezes')
+        const res = await axios.get(`https://drawdry-3f5b8.firebaseio.com/tags.json?orderBy="tag"&startAt="${sValue}"&endAt="${sValue}\uf8ff"`)
+        const newTag = []
+          for (let key in res.data) {
+            newTag.push(res.data[key].tag)
+          }
+          setTags(newTag)
+          console.log(newTag)
+      } catch (error) {
+        console.log(error.response)
+      }
+
+    }, 1100);
+    console.log(timeOut)
   }
 
   return (
@@ -68,7 +79,9 @@ const SearchArts = props => {
                   className='search-arts__form-group--input'
                   placeholder='Search tags for arts'
                   value={sValue}
-                  onChange={onSearchHandler} />
+                  onChange={onSearchHandler}
+                  onKeyDown={onKeyDown}
+                  onKeyUp={handleKeyUp} />
                 <label className='search-arts__form-group--label'>Search tags</label>
               </div>
             </form>
