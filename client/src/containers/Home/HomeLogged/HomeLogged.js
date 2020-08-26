@@ -76,6 +76,7 @@ const HomeLogged = props => {
     content = <HomeComponentLogged
                   images={images}
                   uid={props.uid}
+                  token={props.token}
                   likeImage={onLikeHandler} />
   }
 

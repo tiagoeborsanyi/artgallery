@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
+import axios from 'axios'
 
 import './SearchArts.css'
 
 const SearchArts = props => {
+  const [sValue, setSValue] = useState('')
+  const [tags, setTags] = useState([])
   const [vFilter, setVFilter] = useState(false)
   let wrapper = useRef(false)
 
@@ -16,6 +19,25 @@ const SearchArts = props => {
       wrapper.current = true
     }
   }, [wrapper, vFilter])
+
+  const onSearchHandler = event => {
+    setSValue(event.target.value)
+    const valor = event.target.value
+    // const temp = 2000;
+    // setTimeout(() => {
+      axios.get(`https://drawdry-3f5b8.firebaseio.com/tags.json?orderBy="tag"&startAt="${valor}"&endAt="${valor}\uf8ff"`).then(res => {
+        // console.log(res.data)
+        const newTag = []
+        for (let key in res.data) {
+          newTag.push(res.data[key].tag)
+        }
+        setTags(newTag)
+        console.log(newTag)
+      })
+      .catch(err => console.log(err.response))
+    // }, temp);
+
+  }
 
   return (
     <div className="search-arts">
@@ -44,32 +66,30 @@ const SearchArts = props => {
                 <input
                   type='search'
                   className='search-arts__form-group--input'
-                  placeholder='Search tags for arts' />
+                  placeholder='Search tags for arts'
+                  value={sValue}
+                  onChange={onSearchHandler} />
                 <label className='search-arts__form-group--label'>Search tags</label>
               </div>
             </form>
             <ul className="search-arts__filter-list__items">
-                <li className="search-arts__filter-list__item">
-                    <button>Arts</button>
+              {tags.map(t => (
+                <li className="search-arts__filter-list__item" key={t}>
+                  <button>{t}</button>
                 </li>
-                <li className="search-arts__filter-list__item">
-                    <button>Public</button>
-                </li>
-                <li className="search-arts__filter-list__item">
-                    <button>Free</button>
-                </li>
-                <li className="search-arts__filter-list__item">
-                    <button>Download</button>
-                </li>
-                <li className="search-arts__filter-list__item">
-                    <button>$6</button>
-                </li>
-                <li className="search-arts__filter-list__item">
-                    <button>Comics</button>
-                </li>
-                <li className="search-arts__filter-list__item">
-                    <button>Cartoon</button>
-                </li>
+              ))}
+              <li className="search-arts__filter-list__item">
+                  <button>Arts</button>
+              </li>
+              <li className="search-arts__filter-list__item">
+                  <button>Public</button>
+              </li>
+              <li className="search-arts__filter-list__item">
+                  <button>Free</button>
+              </li>
+              <li className="search-arts__filter-list__item">
+                  <button>Download</button>
+              </li>
             </ul>
         </div>
         <div className="search-arts-result">
