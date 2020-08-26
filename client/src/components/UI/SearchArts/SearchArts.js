@@ -6,6 +6,7 @@ import './SearchArts.css'
 const SearchArts = props => {
   const [sValue, setSValue] = useState('')
   const [tags, setTags] = useState([])
+  const [choiceTags, setChoiceTags] = useState([])
   const [vFilter, setVFilter] = useState(false)
   let wrapper = useRef(false)
 
@@ -46,8 +47,13 @@ const SearchArts = props => {
         console.log(error.response)
       }
 
-    }, 1100);
+    }, 800)
     console.log(timeOut)
+  }
+
+  const choiceTag = tag => {
+    console.log(tag)
+    setChoiceTags([...choiceTags, tag])
   }
 
   return (
@@ -88,20 +94,20 @@ const SearchArts = props => {
             <ul className="search-arts__filter-list__items">
               {tags.map(t => (
                 <li className="search-arts__filter-list__item" key={t}>
-                  <button>{t}</button>
+                  <button onClick={() => choiceTag(t)}>{t}</button>
                 </li>
               ))}
               <li className="search-arts__filter-list__item">
                   <button>Arts</button>
               </li>
               <li className="search-arts__filter-list__item">
-                  <button>Public</button>
+                  <button onClick={() => choiceTag('public')}>Public</button>
               </li>
               <li className="search-arts__filter-list__item">
-                  <button>Free</button>
+                  <button onClick={() => choiceTag('free')}>Free</button>
               </li>
               <li className="search-arts__filter-list__item">
-                  <button>Download</button>
+                  <button onClick={() => choiceTag('download')}>Download</button>
               </li>
             </ul>
         </div>
@@ -115,6 +121,18 @@ const SearchArts = props => {
                         All
                     </button>
                 </li>
+                {choiceTags.map(tag => (
+                  <li
+                    className="search-arts-result__item"
+                    key={tag}>
+                    <button>
+                      <span className="material-icons">
+                          close
+                      </span>
+                      {tag}
+                    </button>
+                  </li>
+                ))}
             </ul>
         </div>
       </div>
