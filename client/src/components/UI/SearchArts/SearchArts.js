@@ -52,13 +52,15 @@ const SearchArts = props => {
   }
 
   const choiceTag = tag => {
-    console.log(tag)
+    // console.log(tag)
     setChoiceTags([...choiceTags, tag])
+    props.choiceTags([...choiceTags, tag])
   }
 
   const closeTag = tag => {
     const updateTags = choiceTags.filter(item => item !== tag)
     setChoiceTags(updateTags)
+    props.choiceTags(updateTags)
   }
 
   return (

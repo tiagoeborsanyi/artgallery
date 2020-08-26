@@ -17,6 +17,8 @@ const commentsController = require('../controllers/comments-controllers')
 // PHOTOS/IMAGES/ARTS
 router.get('/', photoController.getPhotos)
 
+router.post('/', photoController.filterFotosByTag)
+
 router.get('/photobyid/:pid', photoController.getPhotoById)
 
 

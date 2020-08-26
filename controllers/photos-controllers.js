@@ -16,6 +16,19 @@ const getPhotos = async (req, res, next) => {
   res.status(201).json({ photos })
 }
 
+const filterFotosByTag = async (req, res, next) => {
+  const { tags } = req.body
+
+  try {
+    photos = await Photo.find({ tags: { $in: [...tags] } }).populate('creator').populate('likes.user', 'uid')
+  } catch (error) {
+    const err = new HttpError('Something whent weong, could not find arts.', 500)
+    return next(err)
+  }
+
+  res.status(201).json({ photos })
+}
+
 const getPhotoById = async (req, res, next) => {
   const photoId = req.params.pid
 
@@ -87,5 +100,6 @@ const createArt = async (req, res, next) => {
 }
 
 exports.getPhotos = getPhotos
+exports.filterFotosByTag = filterFotosByTag
 exports.getPhotoById = getPhotoById
 exports.createArt = createArt

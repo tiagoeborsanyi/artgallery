@@ -7,7 +7,7 @@ import SearchArts from '../../UI/SearchArts/SearchArts'
 const HomeComponentLogged = props => {
   return (
     <React.Fragment>
-      <SearchArts token={props.token} />
+      <SearchArts token={props.token} choiceTags={props.choiceTags} />
       <div className='list-arts'>
         <div className='container-list-arts'>
           {props.images.map(image => (

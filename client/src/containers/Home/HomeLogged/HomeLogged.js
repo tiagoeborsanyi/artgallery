@@ -71,13 +71,28 @@ const HomeLogged = props => {
     }
   }
 
+  const choiceTags = async (arr) => {
+    console.log(arr)
+    try {
+      const response = await axios.post('/api/photos', {tags: arr})
+      if (response.status === 201) {
+        console.log(response.data)
+        setImages(response.data.photos)
+      }
+    } catch(err) {
+      console.log(err.response)
+      setErro(err.response)
+    }
+  }
+
   let content = <Spinner />
   if (!props.onGoogleRedirectStatus) {
     content = <HomeComponentLogged
                   images={images}
                   uid={props.uid}
                   token={props.token}
-                  likeImage={onLikeHandler} />
+                  likeImage={onLikeHandler}
+                  choiceTags={choiceTags} />
   }
 
   return (
