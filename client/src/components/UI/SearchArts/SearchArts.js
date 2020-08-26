@@ -56,6 +56,11 @@ const SearchArts = props => {
     setChoiceTags([...choiceTags, tag])
   }
 
+  const closeTag = tag => {
+    const updateTags = choiceTags.filter(item => item !== tag)
+    setChoiceTags(updateTags)
+  }
+
   return (
     <div className="search-arts">
       <div className="container-search-arts">
@@ -93,21 +98,28 @@ const SearchArts = props => {
             </form>
             <ul className="search-arts__filter-list__items">
               {tags.map(t => (
-                <li className="search-arts__filter-list__item" key={t}>
+                <li
+                  className="search-arts__filter-list__item"
+                  key={t}
+                  style={{display: choiceTags.indexOf(t) === -1 ? '' : 'none' }}>
                   <button onClick={() => choiceTag(t)}>{t}</button>
                 </li>
               ))}
               <li className="search-arts__filter-list__item">
-                  <button>Arts</button>
+                  <button onClick={() => choiceTag('arts')}
+                          style={{display: choiceTags.indexOf('arts') === -1 ? '' : 'none' }}>Arts</button>
               </li>
               <li className="search-arts__filter-list__item">
-                  <button onClick={() => choiceTag('public')}>Public</button>
+                  <button onClick={() => choiceTag('public')}
+                  style={{display: choiceTags.indexOf('public') === -1 ? '' : 'none' }}>Public</button>
               </li>
               <li className="search-arts__filter-list__item">
-                  <button onClick={() => choiceTag('free')}>Free</button>
+                  <button onClick={() => choiceTag('free')}
+                  style={{display: choiceTags.indexOf('free') === -1 ? '' : 'none' }}>Free</button>
               </li>
               <li className="search-arts__filter-list__item">
-                  <button onClick={() => choiceTag('download')}>Download</button>
+                  <button onClick={() => choiceTag('download')}
+                  style={{display: choiceTags.indexOf('download') === -1 ? '' : 'none' }}>Download</button>
               </li>
             </ul>
         </div>
@@ -125,7 +137,7 @@ const SearchArts = props => {
                   <li
                     className="search-arts-result__item"
                     key={tag}>
-                    <button>
+                    <button onClick={() => closeTag(tag)}>
                       <span className="material-icons">
                           close
                       </span>
