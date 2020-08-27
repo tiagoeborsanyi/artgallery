@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 
 import './HomeComponentLogged.css'
 import SearchArts from '../../UI/SearchArts/SearchArts'
+import Spinner from '../../UI/Spinner/Spinner'
 
 const HomeComponentLogged = props => {
   return (
     <React.Fragment>
       <SearchArts token={props.token} choiceTags={props.choiceTags} />
-      <div className='list-arts'>
+      {!props.load ? <div className='list-arts'>
         <div className='container-list-arts'>
           {props.images.map(image => (
             <div className='list-arts__item' key={image._id}>
@@ -45,7 +46,7 @@ const HomeComponentLogged = props => {
             </div>
           ))}
         </div>
-      </div>
+      </div> : <Spinner />}
     </React.Fragment>
   )
 }

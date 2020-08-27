@@ -11,6 +11,7 @@ import Modal from '../../../components/UI/Modal/Modal'
 
 const HomeLogged = props => {
   const [images, setImages] = useState([])
+  const [load, setLoad] = useState(false)
   const [erro, setErro] = useState()
 
   useEffect(() => {
@@ -49,10 +50,11 @@ const HomeLogged = props => {
         setImages(result.data.photos)
       }
     })
-    .catch(error => setErro(error.response.data.message))
+    .catch(error => {
+      setErro(error.response.data.message)
+    })
 
     return () => memoryLeak = false
-
   })
 
   const onLikeHandler = async (imageId) => {
@@ -72,27 +74,31 @@ const HomeLogged = props => {
   }
 
   const choiceTags = async (arr) => {
-    console.log(arr)
     try {
+      setLoad(true)
       const response = await axios.post('/api/photos', {tags: arr})
       if (response.status === 201) {
-        console.log(response.data)
+        // console.log(response.data)
         setImages(response.data.photos)
+        setLoad(false)
       }
     } catch(err) {
-      console.log(err.response)
+      // console.log(err.response)
       setErro(err.response)
+      setLoad(false)
     }
   }
 
   let content = <Spinner />
+
   if (!props.onGoogleRedirectStatus) {
     content = <HomeComponentLogged
                   images={images}
                   uid={props.uid}
                   token={props.token}
                   likeImage={onLikeHandler}
-                  choiceTags={choiceTags} />
+                  choiceTags={choiceTags}
+                  load={load} />
   }
 
   return (

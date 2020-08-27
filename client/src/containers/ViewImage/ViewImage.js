@@ -65,9 +65,13 @@ const ViewImage = props => {
   const onLikeHandler = async () => {
     setLike(!like)
     const obj = await likeHandler(props.token, vimageId, uid)
+    if(obj.error) {
+      setErro(obj.error)
+      setLike(false)
+      return;
+    }
     setLike(obj.valid)
     setArte({...arte, likes: obj.art})
-    setErro(obj.error)
   }
 
   const onCommentLikeHandler = async (id) => {

@@ -18,6 +18,7 @@ const SearchArts = props => {
     })
     return () => {
       wrapper.current = true
+      // setVFilter(false)
     }
   }, [wrapper, vFilter])
 
@@ -35,24 +36,20 @@ const SearchArts = props => {
 
     timeOut = setTimeout(async () => {
       try{
-        console.log('vezes')
         const res = await axios.get(`https://drawdry-3f5b8.firebaseio.com/tags.json?orderBy="tag"&startAt="${sValue}"&endAt="${sValue}\uf8ff"`)
         const newTag = []
           for (let key in res.data) {
             newTag.push(res.data[key].tag)
           }
           setTags(newTag)
-          console.log(newTag)
       } catch (error) {
         console.log(error.response)
       }
 
-    }, 800)
-    console.log(timeOut)
+    }, 500)
   }
 
   const choiceTag = tag => {
-    // console.log(tag)
     setChoiceTags([...choiceTags, tag])
     props.choiceTags([...choiceTags, tag])
   }

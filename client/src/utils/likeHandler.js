@@ -3,7 +3,7 @@ import axios from 'axios'
 export const likeHandler = async (token, vimageId, uid) => {
   try {
     const headers = {
-      headers: { Authorization: 'token' }
+      headers: { Authorization: token }
     }
     const newArte = await axios.post(`/api/photos/like/${vimageId}`, { uid }, headers)
     if(newArte.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
