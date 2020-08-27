@@ -31,6 +31,9 @@ const Profile = (props) => {
       // mas esse follower eu tenho que gravar no banco de dados desse usuario pq eu sou um
       // seguidor dele
     }
+    if (!uid || !props.uid) {
+      return;
+    }
     try {
       const result = await axios.post('/api/users/follow', ObjFollow)
       if (result.status === 201) {
@@ -53,7 +56,9 @@ const Profile = (props) => {
       user={user}
       currentUid={props.uid}
       follower={follower}
-      onFollower={onFollowerHandler} />
+      onFollower={onFollowerHandler}
+      match={props.match}
+      location={props.location} />
   }
 
   return profile
