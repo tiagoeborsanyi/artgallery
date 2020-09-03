@@ -96,6 +96,7 @@ const HomeLogged = props => {
                   images={images}
                   uid={props.uid}
                   token={props.token}
+                  isAuth={props.isAuthenticated}
                   likeImage={onLikeHandler}
                   choiceTags={choiceTags}
                   load={load} />
@@ -117,6 +118,7 @@ const HomeLogged = props => {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
+    isAuthenticated: state.auth.token !== null,
     onGoogleRedirectStatus: state.auth.loading,
     uid: state.auth.userId
   }

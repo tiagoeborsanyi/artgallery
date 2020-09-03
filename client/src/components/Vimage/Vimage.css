@@ -69,9 +69,10 @@
   cursor: pointer;
   color: red;
 }
-.vimage-title__item-icon.not-logged > span:hover {
-  cursor: not-allowed;
-  color: rgb(185, 184, 184);
+.vimage-title__item-icon.not-logged > span:hover,
+.not-logged:hover {
+  cursor: not-allowed !important;
+  color: rgb(185, 184, 184) !important;
 }
 
 .vimage-title__item-marked {
@@ -244,6 +245,12 @@
   left: 75px;
   top: -32px;
   z-index: 10;
+}
+.tooltip .tooltipcard {
+  font-size: 1rem;
+}
+.tooltip .tooltipcard-turned {
+  left: -140px;
 }
 .tooltip:hover .tooltiptext {
   visibility: visible;

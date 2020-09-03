@@ -19,16 +19,29 @@ const HomeComponentLogged = props => {
                 </div>
               </Link>
               <div className='list-arts__item-icon'>
-                  <div className='list-arts__item-svg'>
-                      <span
-                        className={`material-icons ${image.likes.filter(lk => lk.user.uid === props.uid).length > 0 ? 'active' : '' }`}
-                        onClick={() => props.likeImage(image._id)}>
-                          favorite
-                      </span>
+                  <div className='list-arts__item-svg tooltip'>
+                    {!props.isAuth ? <span className='tooltiptext tooltipcard'>Faça login</span> : null}
+                    {!props.isAuth ? (
+                      <span className="material-icons not-logged">
+                        favorite
+                    </span>
+                    ) :
+                    <span
+                      className={`material-icons ${image.likes.filter(lk => lk.user.uid === props.uid).length > 0 ? 'active' : '' }`}
+                      onClick={() => props.likeImage(image._id)}>
+                        favorite
+                    </span>}
                   </div>
-                  <div className='list-arts__item-marked'>
-                      <span className='material-icons marked-turned'>turned_in</span>
-                      <span className='material-icons list-arts__marked-check'>check</span>
+                  <div className='list-arts__item-marked tooltip'>
+                    {!props.isAuth ? <span className='tooltiptext tooltipcard-turned'>Faça login</span> : null}
+                    {!props.isAuth ? (
+                        <span className='material-icons marked-turned not-logged'>turned_in</span>
+                      ) : (
+                        <>
+                          <span className='material-icons marked-turned'>turned_in</span>
+                          <span className='material-icons list-arts__marked-check'>check</span>
+                        </>
+                      )}
                   </div>
               </div>
               <p>{image.title.length <= 15 ? image.title : `${image.title.slice(0, 15)}...`}</p>
