@@ -2,12 +2,14 @@ import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
 import './SearchArts.css'
+import Spinner from '../Spinner/Spinner'
 
 const SearchArts = props => {
   const [sValue, setSValue] = useState('')
   const [tags, setTags] = useState([])
   const [choiceTags, setChoiceTags] = useState([])
   const [vFilter, setVFilter] = useState(false)
+  const [load, setLoad] = useState(false)
   let wrapper = useRef(false)
 
   useEffect(() => {
@@ -36,13 +38,16 @@ const SearchArts = props => {
 
     timeOut = setTimeout(async () => {
       try{
+        setLoad(true)
         const res = await axios.get(`https://drawdry-3f5b8.firebaseio.com/tags.json?orderBy="tag"&startAt="${sValue}"&endAt="${sValue}\uf8ff"`)
         const newTag = []
           for (let key in res.data) {
             newTag.push(res.data[key].tag)
           }
+          setLoad(false)
           setTags(newTag)
       } catch (error) {
+        setLoad(false)
         console.log(error.response)
       }
 
@@ -95,6 +100,7 @@ const SearchArts = props => {
                 <label className='search-arts__form-group--label'>Search tags</label>
               </div>
             </form>
+            {load ? <Spinner form='form' /> :
             <ul className="search-arts__filter-list__items">
               {tags.map(t => (
                 <li
@@ -120,7 +126,7 @@ const SearchArts = props => {
                   <button onClick={() => choiceTag('download')}
                   style={{display: choiceTags.indexOf('download') === -1 ? '' : 'none' }}>Download</button>
               </li>
-            </ul>
+            </ul>}
         </div>
         <div className="search-arts-result">
             <ul className="search-arts-result__items">
