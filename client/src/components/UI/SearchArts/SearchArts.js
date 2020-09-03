@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 import './SearchArts.css'
@@ -8,21 +8,7 @@ const SearchArts = props => {
   const [sValue, setSValue] = useState('')
   const [tags, setTags] = useState([])
   const [choiceTags, setChoiceTags] = useState([])
-  const [vFilter, setVFilter] = useState(false)
   const [load, setLoad] = useState(false)
-  let wrapper = useRef(false)
-
-  useEffect(() => {
-    document.addEventListener('click', () => {
-      if (wrapper.current && vFilter) {
-        setVFilter(false)
-      }
-    })
-    return () => {
-      wrapper.current = true
-      // setVFilter(false)
-    }
-  }, [wrapper, vFilter])
 
   let timeOut;
   const onSearchHandler = event => {
@@ -68,25 +54,13 @@ const SearchArts = props => {
   return (
     <div className="search-arts">
       <div className="container-search-arts">
-        <button
-          className="search-arts__filter-button"
-          onClick={() => {
-            if(!!vFilter) {
-              setVFilter(false)
-              return;
-            }
-            setVFilter(true)
-            wrapper.current = false;
-          }}>
+        <button className="search-arts__filter-button">
             Filter Arts
             <span className="material-icons">
                 expand_more
             </span>
         </button>
-        <div
-          className="search-arts__filter-list"
-          style={{display: vFilter ? 'block' : ''}}
-          onClick={() => wrapper.current = false}>
+        <div className="search-arts__filter-list">
             <form className='search-arts__form'>
               <div className='search-arts__form-group'>
                 <input
