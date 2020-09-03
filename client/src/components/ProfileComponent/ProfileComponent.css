@@ -262,6 +262,14 @@
 
 /* FINAL CARD ARTS */
 
+@media (min-width: 35rem) {
+  .list-arts__item {
+    width: 48%;
+    display: inline-block;
+    margin: 1rem 0.3rem;
+  }
+}
+
 @media (min-width: 40rem) {
   .profile,
   .container-list-arts {
@@ -289,7 +297,7 @@
     margin-top: 0;
   }
   .list-arts__item {
-      width: 23.8%;
+      width: 31%;
       display: inline-block;
       margin: 1rem 0.3rem;
   }
@@ -299,6 +307,12 @@
   .featured-arts__image {
       width: 100%;
       max-width: 293px;
+  }
+}
+
+@media (min-width: 52rem) {
+  .list-arts__item {
+      width: 23.8%;
   }
 }
 
