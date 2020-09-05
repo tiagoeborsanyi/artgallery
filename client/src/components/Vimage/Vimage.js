@@ -103,11 +103,11 @@ const Vimage = props => {
               </div>
               :
               <Button
-                clicked={()=>{}}
+                clicked={props.clickedFavorite}
                 btnType='like'>
                 <div className="vimage-title__item-marked">
                   <span className="material-icons marked-turned">turned_in</span>
-                  <span className="material-icons marked-check">check</span>
+                  <span className={`material-icons marked-check ${props.check && 'marked-check-actived'}`}>check</span>
                 </div>
               </Button>}
             </li>

@@ -15,6 +15,7 @@ const ViewImage = props => {
   const [erro, setErro] = useState()
   const [arte, setArte] = useState()
   const [like, setLike] = useState(false)
+  const [check, setCheck] = useState(false)
   const [comments, setComments] = useState([])
   const [valueComment, setValueComment] = useState(objInputComment)
   const [loadComment, setLoadComment] = useState(false)
@@ -72,6 +73,10 @@ const ViewImage = props => {
     }
     setLike(obj.valid)
     setArte({...arte, likes: obj.art})
+  }
+
+  const onFavoriteHandler = () => {
+    console.log(vimageId)
   }
 
   const onCommentLikeHandler = async (id) => {
@@ -159,9 +164,11 @@ const ViewImage = props => {
       atualUserId={props.uid}
       autualUserIcon={props.isAtualUserIcon}
       like={like}
+      check={check}
       comments={comments}
       addComment={addCommentHandler}
       clickedLike={onLikeHandler}
+      clickedFavorite={onFavoriteHandler}
       clickedComentLike={onCommentLikeHandler}
       valueComment={valueComment.value}
       inputValid={!valueComment.valid}

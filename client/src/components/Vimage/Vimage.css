@@ -105,6 +105,9 @@
   cursor: pointer;
   opacity: 1;
 }
+.marked-check-actived {
+  opacity: 1 !important;
+}
 .vimage-title__item-marked.not-logged > span:hover {
   cursor: not-allowed;
   color: rgba(0, 0, 0, 0.5);
