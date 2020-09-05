@@ -55,7 +55,7 @@ router.post(
 
 // FAVORITE (auth route)
 // GET FAVORITES BY USER - ADD FAVIRITES BY USER
-router.get('/favorited', favoritedController.favoritedArt)
+router.post('/favorited/:pid', favoritedController.favoritedArt)
 // router.post()
 
 // COMMENTS (auth routes)
