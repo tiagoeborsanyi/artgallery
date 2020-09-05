@@ -6,6 +6,7 @@ const checkAuth = require('../middleware/check-auth')
 const checkInputs = require('../middleware/check-inputs')
 const photoController = require('../controllers/photos-controllers')
 const likeController = require('../controllers/likes-controllers')
+const favoritedController = require('../controllers/favorited-controllers')
 const commentsController = require('../controllers/comments-controllers')
 
 
@@ -54,7 +55,7 @@ router.post(
 
 // FAVORITE (auth route)
 // GET FAVORITES BY USER - ADD FAVIRITES BY USER
-// router.get('/favorites/:pid')
+router.get('/favorited', favoritedController.favoritedArt)
 // router.post()
 
 // COMMENTS (auth routes)
