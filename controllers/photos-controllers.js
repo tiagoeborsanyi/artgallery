@@ -7,7 +7,7 @@ const Photo = require('../models/photo')
 const getPhotos = async (req, res, next) => {
   let photos
   try {
-    photos = await Photo.find().populate('creator').populate('likes.user', 'uid')
+    photos = await Photo.find().populate('creator').populate('likes.user', 'uid').populate('favorited.user', 'uid')
   } catch (error) {
     const err = new HttpError('Something whent weong, could not find arts.', 500)
     return next(err)
@@ -34,7 +34,7 @@ const getPhotoById = async (req, res, next) => {
 
   let photo
   try {
-    photo = await Photo.findById(photoId).populate('creator').populate('likes.user').populate('comment.user')
+    photo = await Photo.findById(photoId).populate('creator').populate('likes.user').populate('favorited.user', 'uid').populate('comment.user')
   } catch (error) {
     const err = new HttpError('Something whent weong, could not find a art.', 500)
     return next(err)

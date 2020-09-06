@@ -27,7 +27,7 @@ const favoritedArt = async (req, res, next) => {
 
   let newPhoto
   try {
-    newPhoto = await Photo.findById(pid).populate('creator').populate('favorited.user')
+    newPhoto = await Photo.findById(pid).populate('creator').populate('favorited.user', 'uid')
   } catch (error) {
     const err = new HttpError('Something whent weong, could not find a art.', 500);
     return next(err);

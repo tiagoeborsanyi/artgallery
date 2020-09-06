@@ -39,7 +39,13 @@ const HomeComponentLogged = props => {
                       ) : (
                         <>
                           <span className='material-icons marked-turned'>turned_in</span>
-                          <span className='material-icons list-arts__marked-check'>check</span>
+                          <span
+                          className={
+                            `material-icons list-arts__marked-check
+                            ${image.favorited.filter(fv => fv.user.uid === props.uid).length > 0 ? 'marked-check-actived' : ''}`
+                            }>
+                            check
+                          </span>
                         </>
                       )}
                   </div>

@@ -29,8 +29,12 @@ const ViewImage = props => {
       try {
         const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
         if (!isCancelled.current) {
+          // console.log(result.data.photo.favorited, uid)
           if(result.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
             setLike(true)
+          }
+          if(result.data.photo.favorited.filter(favorite => favorite.user.uid === uid).length > 0) {
+            setCheck(true)
           }
           setArte(result.data.photo)
           setComments(result.data.photo.comment)
