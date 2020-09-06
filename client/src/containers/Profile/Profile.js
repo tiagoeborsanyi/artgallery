@@ -49,7 +49,7 @@ const Profile = (props) => {
       console.log(error.response)
     }
   }
-
+  console.log(user)
   let profile = <Spinner />
   if (user) {
     profile = <ProfileComponent

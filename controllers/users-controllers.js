@@ -24,6 +24,7 @@ const getUserById = async (req, res, next) => {
                               .populate('arts', 'original_img likes')
                               .populate('following', 'uid')
                               .populate('followers', 'uid')
+                              .populate('favorites', 'original_img likes')
   } catch (error) {
     const err = new HttpError('Fetching user failed, please try again later', 500)
     return next(err)

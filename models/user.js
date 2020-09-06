@@ -16,7 +16,9 @@ const userSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     uid: { type: String, required: false}
   }], // following = seguindo
-  favorites: [{ type: mongoose.Types.ObjectId, ref: 'Photo' }],
+  favorites: [{
+    art: { type: mongoose.Types.ObjectId, ref: 'Photo' }
+  }],
   description: { type: String, required: false },
   createUser: { type: Date, default: Date.now }
 })
