@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import './ViewImage.css'
 import { checkValidity } from '../../shared/utility'
 import { likeHandler } from '../../utils/likeHandler'
+import { favoriteHandler } from '../../utils/favoriteHandler'
 import { objInputComment } from './objInputComment'
 import Vimage from '../../components/Vimage/Vimage'
 import Spinner from '../../components/UI/Spinner/Spinner'
@@ -29,7 +30,6 @@ const ViewImage = props => {
       try {
         const result = await axios.get(`/api/photos/photobyid/${vimageId}`)
         if (!isCancelled.current) {
-          // console.log(result.data.photo.favorited, uid)
           if(result.data.photo.likes.filter(like => like.user.uid === uid).length > 0) {
             setLike(true)
           }
@@ -79,7 +79,15 @@ const ViewImage = props => {
     setArte({...arte, likes: obj.art})
   }
 
-  const onFavoriteHandler = () => {
+  const onFavoriteHandler = async () => {
+    setCheck(!check)
+    const obj = await favoriteHandler(props.token, vimageId, uid)
+    if (obj.error) {
+      setErro(obj.error)
+      setCheck(false)
+    }
+    setCheck(obj.valid)
+    setArte({...arte, likes: obj.art})
     console.log(vimageId)
   }
 
