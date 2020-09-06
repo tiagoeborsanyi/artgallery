@@ -1,6 +1,6 @@
 const HttpError = require('../models/http-error')
 const User = require('../models/user');
-const { populate } = require('../models/user');
+// const { populate } = require('../models/user');
 
 const getUsers = async (req, res, next) => {
   console.log('req.uid: ', req.uid)
@@ -24,7 +24,7 @@ const getUserById = async (req, res, next) => {
                               .populate('arts', 'original_img likes')
                               .populate('following', 'uid')
                               .populate('followers', 'uid')
-                              .populate('favorites', 'original_img likes')
+                              .populate('favorites.art', 'original_img likes')
   } catch (error) {
     const err = new HttpError('Fetching user failed, please try again later', 500)
     return next(err)

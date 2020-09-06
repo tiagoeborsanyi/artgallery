@@ -88,7 +88,7 @@ const ViewImage = props => {
     }
     setCheck(obj.valid)
     setArte({...arte, likes: obj.art})
-    console.log(vimageId)
+    // console.log(vimageId)
   }
 
   const onCommentLikeHandler = async (id) => {

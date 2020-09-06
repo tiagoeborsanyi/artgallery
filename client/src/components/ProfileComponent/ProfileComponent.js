@@ -118,7 +118,7 @@ const ProfileComponent = props => {
                 </ul>
             </div>
             <>
-              <Route path={props.match.url+"/favorites"} component={FavoritesComponent} />
+              <Route path={props.match.url+"/favorites"} component={() => <FavoritesComponent {...props} />} />
               <Route path={props.match.url+"/"} exact component={() => <Artes {...props} />} />
             </>
         </div>

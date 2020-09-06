@@ -19,7 +19,7 @@ const favoritedArt = async (req, res, next) => {
     // tem que arrumar isso aqui pra quando for tirar a arte da coleção de fotos tem que tirar a arte do array de favoritados do usuario também
     // Tenho que acrecentar um campo na coleção de usuario dentro do array de favorites pra eu ter controler sobre esse array pra poder remover
     const removeIndexUser = user.favorites.map(item => item.art.toString()).indexOf(pid)
-    console.log(removeIndexUser)
+    // console.log(removeIndexUser)
     photo.favorited.splice(removeIndex, 1)
     user.favorites.splice(removeIndexUser, 1)
   } else {
