@@ -111,6 +111,13 @@ const Vimage = props => {
                 </div>
               </Button>}
             </li>
+            {/* <li className="vimage-title__item-icon">
+              <div className="vimage-title__item-download">
+                <span className={`material-icons`}>
+                  vertical_align_bottom
+                </span>
+              </div>
+            </li> */}
         </ul>
         </div>
       </div>

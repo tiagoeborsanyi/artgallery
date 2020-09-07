@@ -63,6 +63,21 @@
   font-size: 2rem;
   color: rgb(185, 184, 184);
 }
+.vimage-title__item-download {
+  margin-left: 1rem;
+  display: none;
+}
+.vimage-title__item-download > span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(151, 138, 180, 0.85);
+  transition: all .3s;
+}
+.vimage-title__item-download > span:hover {
+  cursor: pointer;
+  color: rgba(151, 138, 180, 1);
+  transform: translateY(3px);
+}
 
 .vimage-title__item-icon > span:hover,
 .vimage-title__item-icon > span.active {

@@ -64,19 +64,22 @@
 
 .Download {
   border: none;
-  background: #4a9e4a;
+  /* background: #4a9e4a; */
+  background-image: linear-gradient(90deg, rgba(151, 115, 235, 0.7), rgba(115, 191, 235, 0.7));
   padding: 0.7rem 1.5rem;
   font-size: 1rem;
-  color: white;
+  color: rgb(238, 238, 238);
   font-weight: 600;
   border-radius: 5px;
   outline: none;
   transition: all .2s;
+  /* opacity: 0; */
 }
 
 .Download:hover {
   cursor: pointer;
-  background-color: #279727;
+  /* background-color: #279727; */
+  background-image: linear-gradient(90deg, rgba(151, 115, 235, 0.85), rgba(115, 191, 235, 0.85));
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4);
   transform: translateY(3px);
 }
