@@ -71,9 +71,17 @@
   font-weight: 600;
   border-radius: 5px;
   outline: none;
+  transition: all .2s;
 }
 
 .Download:hover {
   cursor: pointer;
-  background-color: #1f851f;
+  background-color: #279727;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4);
+  transform: translateY(3px);
+}
+
+.Download:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
