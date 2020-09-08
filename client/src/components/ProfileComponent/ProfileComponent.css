@@ -69,6 +69,22 @@
   outline: none;
   border: 1px solid rgb(0, 0, 0, 0.2);
 }
+.text-lineone__button.edit-profile {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all .3s;
+}
+.text-lineone__button.edit-profile:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+.text-lineone__button.edit-profile:active {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+}
 .text-lineone__button.follow {
   padding: 0.35rem 0.8rem;
   background-color: rgb(0, 149, 246);
@@ -89,6 +105,17 @@
 }
 .text-lineone__button.follow:hover {
   background-color: rgb(3, 127, 209);
+}
+
+.more-actions__profile {
+  transition: all .3s;
+}
+.more-actions__profile:hover {
+  color: rgba(0, 0, 0, 0.7);
+  transform: translateY(-3px);
+}
+.more-actions__profile:active {
+  transform: translateY(0);
 }
 
 .text-linetwo__items {

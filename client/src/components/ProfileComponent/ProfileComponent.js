@@ -4,6 +4,7 @@ import { Link, Route } from 'react-router-dom'
 import './ProfileComponent.css'
 import Artes from './Artes/Artes'
 import FavoritesComponent from './FavoritesComponent/FavoritesComponent'
+import Button from '../UI/Button/Button'
 
 const ProfileComponent = props => {
   const actived = props.location.pathname.split('/')[props.location.pathname.split('/').length-1]
@@ -30,7 +31,7 @@ const ProfileComponent = props => {
                         </h1>
                         <div className='profile-info__text-lineone-mobile'>
                           {props.currentUid === props.user.uid ?
-                          <Link to='/'>Edit Profile</Link>
+                          <Link className="text-lineone__button edit-profile" to='/'>Edit Profile</Link>
                           : props.follower ?
                           <button
                             className="text-lineone__button"
@@ -44,7 +45,9 @@ const ProfileComponent = props => {
                             onClick={() => props.onFollower(props.user.uid)}>
                               SEGUIR
                           </button>}
-                          <span className="material-icons">more_horiz</span>
+                          <Button btnType='like'>
+                            <span className="material-icons more-actions__profile">more_horiz</span>
+                          </Button>
                         </div>
                     </div>
                     <div className="profile-info__text-linetwo">
