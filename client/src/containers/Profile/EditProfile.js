@@ -26,7 +26,7 @@ const EditProfile = props => {
 
   return (
     <React.Fragment>
-      <div className='container'>
+      <div className='editProfile-container'>
         <h1 className="container-newart-title">Edit profile</h1>
         <div className="container-newart">
           <div className='editProfile-avatar'>
