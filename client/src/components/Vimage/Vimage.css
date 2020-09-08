@@ -65,7 +65,7 @@
 }
 .vimage-title__item-download {
   margin-left: 1rem;
-  display: none;
+  /* display: none; */
 }
 .vimage-title__item-download > span {
   font-size: 2rem;
@@ -76,7 +76,10 @@
 .vimage-title__item-download > span:hover {
   cursor: pointer;
   color: rgba(151, 138, 180, 1);
-  transform: translateY(3px);
+  transform: translateY(-3px);
+}
+.vimage-title__item-download > span:active {
+  transform: translateY(0);
 }
 
 .vimage-title__item-icon > span:hover,

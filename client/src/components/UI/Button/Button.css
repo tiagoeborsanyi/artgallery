@@ -74,6 +74,7 @@
   outline: none;
   transition: all .2s;
   /* opacity: 0; */
+  display: none;
 }
 
 .Download:hover {
@@ -81,7 +82,7 @@
   /* background-color: #279727; */
   background-image: linear-gradient(90deg, rgba(151, 115, 235, 0.85), rgba(115, 191, 235, 0.85));
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4);
-  transform: translateY(3px);
+  transform: translateY(-3px);
 }
 
 .Download:active {
