@@ -31,7 +31,9 @@ const ProfileComponent = props => {
                         </h1>
                         <div className='profile-info__text-lineone-mobile'>
                           {props.currentUid === props.user.uid ?
-                          <Link className="text-lineone__button edit-profile" to='/'>Edit Profile</Link>
+                          <Link
+                            className="text-lineone__button edit-profile"
+                            to={`/edit-profile/${props.user.uid}`}>Edit Profile</Link>
                           : props.follower ?
                           <button
                             className="text-lineone__button"

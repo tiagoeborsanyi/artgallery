@@ -14,6 +14,7 @@ import Publish from './containers/Publish/Publish'
 import ViewImage from './containers/ViewImage/ViewImage'
 import PublishNotLogged from './components/Publish/PublishNotLogged/PublishNotLogged'
 import Profile from './containers/Profile/Profile'
+import EditProfile from './containers/Profile/EditProfile'
 
 const App = props => {
 
@@ -31,6 +32,7 @@ const App = props => {
         <Route path='/logout' component={Logout} />
         <Route path='/vimage/:vimageId' component={ViewImage} />
         <Route path='/profile/:profileUId' component={Profile} />
+        <Route path='/edit-profile/:profileUId' component={EditProfile} />
         <Route path='/arts' component={HomeLogged} />
         <Route path='/' exact component={HomeUnlogged} />
         <Redirect to='/arts' />
