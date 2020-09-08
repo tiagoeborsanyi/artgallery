@@ -35,7 +35,7 @@ const App = props => {
         <Route path='/edit-profile/:profileUId' component={EditProfile} />
         <Route path='/arts' component={HomeLogged} />
         <Route path='/' exact component={HomeUnlogged} />
-        <Redirect to='/arts' />
+        {/* <Redirect to='/arts' /> */}
       </Switch>
     )
   } else {
@@ -48,7 +48,7 @@ const App = props => {
         <Route path='/profile/:profileUId' component={Profile} />
         <Route path='/arts' component={HomeLogged} />
         <Route path='/' exact component={HomeUnlogged} />
-        <Redirect to='/' />
+        {/* <Redirect to='/' /> */}
       </Switch>
     )
   }
