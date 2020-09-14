@@ -46,42 +46,45 @@ export const objEditProfile = {
     space: 'space'
   },
   password1: {
+    key: 'password1',
     elementType: 'input',
     elementConfig: {
-      type: 'text',
+      type: 'password',
       placeholder: 'OLD PASSWORD'
     },
-    label: 'CHANGE PASSWORD',
+    label: 'OLD PASSWORD',
     value: '',
     validation: {
       minLength: 6
     },
     valid: false,
     touched: false,
-    space: ''
+    space: 'space'
   },
   password2: {
+    key: 'password2',
     elementType: 'input',
     elementConfig: {
-      type: 'text',
+      type: 'password',
       placeholder: 'NEW PASSWORD'
     },
-    label: '',
+    label: 'NEW PASSWORD',
     value: '',
     validation: {
       minLength: 6
     },
     valid: false,
     touched: false,
-    space: ''
+    space: 'space'
   },
   password3: {
+    key: 'password3',
     elementType: 'input',
     elementConfig: {
-      type: 'text',
+      type: 'password',
       placeholder: 'CONFIRM PASSWORD'
     },
-    label: '',
+    label: 'CONFIRM PASSWORD',
     value: '',
     validation: {
       minLength: 6
